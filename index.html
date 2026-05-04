@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ورکشاپ ایتالیایی</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:      #222222;
+  --ink2:     #555555;
+  --ink3:     #999999;
+  --white:    #ffffff;
+  --off:      #f5f5f3;
+  --border:   #e0e0de;
+  --green:    #7ec800;
+  --green-lt: #f0fad8;
+  --green-dk: #5fa000;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  border-bottom: 1.5px solid var(--ink);
+  background: var(--white);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.logo span {
+  background: var(--green);
+  color: var(--white);
+  padding: 2px 9px;
+  border-radius: 5px;
+  margin-right: 4px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink2);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.nav-link:hover { background: var(--off); color: var(--ink); }
+
+.nav-btn {
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 9px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.15s;
+}
+
+.nav-btn:hover { background: var(--green); }
+
+/* ── HERO ── */
+.hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 57px);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.hero-left {
+  padding: 64px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  border-left: 1.5px solid var(--ink);
+}
+
+.hero-title {
+  font-size: 66px;
+  font-weight: 900;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.hero-title .line-green {
+  color: var(--green);
+}
+
+.hero-desc {
+  font-size: 15px;
+  color: var(--ink2);
+  line-height: 1.9;
+  max-width: 400px;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.meta-item {
+  padding: 12px 20px;
+  border-left: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.meta-item:last-child { border-left: none; }
+
+.meta-val {
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.meta-lbl {
+  font-size: 10px;
+  color: var(--ink3);
+  font-weight: 600;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-main {
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.15s;
+}
+
+.btn-main:hover { background: var(--green); border-color: var(--green); }
+
+.btn-out {
+  background: transparent;
+  color: var(--ink);
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.15s;
+}
+
+.btn-out:hover { background: var(--off); }
+
+/* ── HERO RIGHT ── */
+.hero-right {
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hr-deco {
+  position: absolute;
+  font-size: 260px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.03);
+  bottom: -50px;
+  left: -10px;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.hr-top-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--green);
+  color: var(--white);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 6px;
+  width: fit-content;
+}
+
+.hr-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  z-index: 2;
+}
+
+.hr-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all 0.15s;
+  gap: 12px;
+}
+
+.hr-row:hover {
+  background: rgba(126,200,0,0.1);
+  border-color: rgba(126,200,0,0.25);
+}
+
+.hr-n {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.hr-fa {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--white);
+  flex: 1;
+  text-align: right;
+}
+
+.hr-it {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+  direction: ltr;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.hr-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  z-index: 2;
+}
+
+.hr-price-big {
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--green);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.hr-price-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 3px;
+}
+
+.hr-discount-pill {
+  background: rgba(126,200,0,0.15);
+  border: 1px solid rgba(126,200,0,0.3);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 7px 14px;
+  border-radius: 6px;
+}
+
+/* ── STRIP ── */
+.strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.strip-item {
+  padding: 24px 28px;
+  border-left: 1.5px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.12s;
+}
+
+.strip-item:last-child { border-left: none; }
+.strip-item:hover { background: var(--off); }
+
+.strip-val {
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.strip-lbl {
+  font-size: 11px;
+  color: var(--ink3);
+  font-weight: 600;
+}
+
+/* ── SESSIONS PREVIEW ── */
+.sessions-wrap {
+  padding: 48px 48px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.section-hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  gap: 16px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.section-title em {
+  font-style: normal;
+  color: var(--green);
+}
+
+.see-all {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink2);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+  transition: color 0.12s;
+}
+
+.see-all:hover { color: var(--green); }
+
+.sessions-list {
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.s-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 130px;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.12s;
+}
+
+.s-row:last-child { border-bottom: none; }
+.s-row:hover { background: var(--off); }
+
+.s-n {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: var(--white);
+  background: var(--ink);
+  border-left: 1.5px solid var(--ink);
+}
+
+.s-body {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.s-fa {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.s-it {
+  font-size: 11px;
+  color: var(--ink3);
+  font-weight: 500;
+  direction: ltr;
+  text-align: right;
+}
+
+.s-desc {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+  margin-top: 2px;
+}
+
+.s-date-col {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  border-right: 1px solid var(--border);
+}
+
+.s-date-main {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ink);
+  direction: ltr;
+  text-align: left;
+}
+
+.s-date-sub {
+  font-size: 10px;
+  color: var(--ink3);
+  direction: ltr;
+  text-align: left;
+}
+
+/* ── INCLUDES STRIP ── */
+.includes-wrap {
+  padding: 48px 48px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.inc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+
+.inc-cell {
+  padding: 22px 20px;
+  border-left: 1.5px solid var(--ink);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  transition: background 0.12s;
+}
+
+.inc-cell:last-child { border-left: none; }
+.inc-cell:nth-child(4) { border-top: 1.5px solid var(--ink); }
+.inc-cell:nth-child(5) { border-top: 1.5px solid var(--ink); }
+.inc-cell:nth-child(6) { border-top: 1.5px solid var(--ink); border-left: none; }
+.inc-cell:hover { background: var(--off); }
+
+.inc-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+
+.inc-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+
+.inc-desc {
+  font-size: 11.5px;
+  color: var(--ink3);
+  line-height: 1.65;
+}
+
+/* ── PRICING ── */
+.pricing-wrap {
+  background: var(--ink);
+  padding: 48px 48px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.pricing-wrap .section-title { color: var(--white); }
+.pricing-wrap .section-title em { color: var(--green); }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.p-card {
+  border: 1.5px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: border-color 0.15s;
+}
+
+.p-card:hover { border-color: rgba(255,255,255,0.22); }
+
+.p-card.feat {
+  border-color: var(--green);
+  background: rgba(126,200,0,0.04);
+}
+
+.p-lbl {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,0.3);
+}
+
+.p-name {
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.p-amt {
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+  direction: ltr;
+  text-align: right;
+}
+
+.p-amt.g { color: var(--green); }
+
+.p-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+  direction: ltr;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.p-disc {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(126,200,0,0.12);
+  border: 1px solid rgba(126,200,0,0.25);
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 12px;
+  border-radius: 5px;
+  width: fit-content;
+}
+
+.p-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+.p-feat {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 12.5px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+}
+
+.p-chk { color: var(--green); flex-shrink: 0; }
+
+.p-btn {
+  display: block;
+  padding: 13px 20px;
+  border-radius: 7px;
+  font-family: 'Vazirmatn', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.15s;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  color: var(--white);
+  background: transparent;
+  margin-top: auto;
+}
+
+.p-btn:hover { background: rgba(255,255,255,0.07); }
+
+.p-btn.g-btn {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--white);
+}
+
+.p-btn.g-btn:hover { background: var(--green-dk); border-color: var(--green-dk); }
+
+/* ── FOOTER CTA ── */
+.footer-cta {
+  padding: 48px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.fcta-text {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.fcta-text em { font-style: normal; color: var(--green); }
+
+.fcta-btns {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 24px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--ink);
+}
+
+.f-logo {
+  font-size: 15px;
+  font-weight: 900;
+  color: var(--white);
+}
+
+.f-logo span {
+  background: var(--green);
+  color: var(--white);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.f-note {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  nav { padding: 14px 24px; }
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .hero-left { padding: 40px 24px; gap: 20px; border-left: none; border-bottom: 1.5px solid var(--ink); }
+  .hero-title { font-size: 44px; }
+  .hero-right { padding: 36px 24px; min-height: 380px; }
+  .strip { grid-template-columns: repeat(2, 1fr); }
+  .strip-item:nth-child(2) { border-left: none; }
+  .strip-item:nth-child(3) { border-top: 1.5px solid var(--ink); }
+  .strip-item:nth-child(4) { border-top: 1.5px solid var(--ink); border-left: none; }
+  .sessions-wrap, .includes-wrap, .pricing-wrap, .footer-cta { padding: 36px 24px; }
+  .inc-grid { grid-template-columns: 1fr 1fr; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .footer-cta { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .s-row { grid-template-columns: 40px 1fr; }
+  .s-date-col { display: none; }
+  footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
+}
+
+@media (max-width: 540px) {
+  .hero-title { font-size: 36px; }
+  .hero-meta { flex-direction: column; width: 100%; }
+  .meta-item { border-left: none; border-bottom: 1.5px solid var(--ink); }
+  .meta-item:last-child { border-bottom: none; }
+  .inc-grid { grid-template-columns: 1fr; }
+  .inc-cell { border-left: none !important; border-top: 1.5px solid var(--ink) !important; }
+  .inc-cell:first-child { border-top: none !important; }
+}
+
+/* ── ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-left > * {
+  animation: fadeUp 0.45s ease both;
+}
+.hero-left > *:nth-child(1) { animation-delay: 0.05s; }
+.hero-left > *:nth-child(2) { animation-delay: 0.1s; }
+.hero-left > *:nth-child(3) { animation-delay: 0.15s; }
+.hero-left > *:nth-child(4) { animation-delay: 0.2s; }
+.hero-left > *:nth-child(5) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo"><span>ورکشاپ</span> ایتالیایی</div>
+  <div class="nav-links">
+    <a href="info.html" class="nav-link">اطلاعات بیشتر</a>
+    <a href="booking.html" class="nav-btn">ثبت‌نام کن</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-title">گرامر<br>ایتالیایی<br>رو <span class="line-green">یاد بگیر.</span></h1>
+    <p class="hero-desc">پنج ورکشاپ تخصصی — هر کدوم روی یه موضوع مهم گرامر. هر جلسه ۲ ساعته و کاملاً مستقله.</p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-val">۵</div>
+        <div class="meta-lbl">جلسه</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">۲h</div>
+        <div class="meta-lbl">هر جلسه</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">A1–A2</div>
+        <div class="meta-lbl">سطح</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-val">۲۳ می</div>
+        <div class="meta-lbl">شروع</div>
+      </div>
+    </div>
+    <div class="hero-btns">
+      <a href="booking.html" class="btn-main">ثبت‌نام کن ←</a>
+      <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hr-deco">۵</div>
+    <div class="hr-top-tag">هر شنبه · از ۲۳ می</div>
+    <div class="hr-sessions">
+      <div class="hr-row">
+        <div class="hr-n">۰۱</div>
+        <div class="hr-fa">زمان‌های گذشته</div>
+        <div class="hr-it">I tempi del passato</div>
+      </div>
+      <div class="hr-row">
+        <div class="hr-n">۰۲</div>
+        <div class="hr-fa">ضمایر</div>
+        <div class="hr-it">I pronomi</div>
+      </div>
+      <div class="hr-row">
+        <div class="hr-n">۰۳</div>
+        <div class="hr-fa">امری</div>
+        <div class="hr-it">L'imperativo</div>
+      </div>
+      <div class="hr-row">
+        <div class="hr-n">۰۴</div>
+        <div class="hr-fa">مستقبل و مشروط</div>
+        <div class="hr-it">Il condizionale e il futuro</div>
+      </div>
+      <div class="hr-row">
+        <div class="hr-n">۰۵</div>
+        <div class="hr-fa">التزامی</div>
+        <div class="hr-it">Il congiuntivo</div>
+      </div>
+    </div>
+    <div class="hr-bottom">
+      <div>
+        <div class="hr-price-big">از €۱۲</div>
+        <div class="hr-price-note">هر جلسه جداگانه</div>
+      </div>
+      <div class="hr-discount-pill">🎉 ۱۷٪ تخفیف بسته کامل</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">
+    <div class="strip-val">۵</div>
+    <div class="strip-lbl">موضوع تخصصی گرامر</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-val">۱۰h</div>
+    <div class="strip-lbl">آموزش در مجموع</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-val">€۵۰</div>
+    <div class="strip-lbl">بسته کامل با تخفیف</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-val">PDF</div>
+    <div class="strip-lbl">کتابچه تمرین هر جلسه</div>
+  </div>
+</div>
+
+<!-- SESSIONS PREVIEW -->
+<div class="sessions-wrap">
+  <div class="section-hd">
+    <h2 class="section-title">برنامه <em>جلسات</em></h2>
+    <a href="info.html" class="see-all">مشاهده کامل ←</a>
+  </div>
+  <div class="sessions-list">
+    <div class="s-row">
+      <div class="s-date-col">
+        <div class="s-date-main">Sat 23 May</div>
+        <div class="s-date-sub">Session 01</div>
+      </div>
+      <div class="s-body">
+        <div class="s-fa">زمان‌های گذشته</div>
+        <div class="s-it">I tempi del passato</div>
+        <div class="s-desc">passato prossimo · imperfetto · trapassato prossimo · stare + gerundio</div>
+      </div>
+      <div class="s-n">۰۱</div>
+    </div>
+    <div class="s-row">
+      <div class="s-date-col">
+        <div class="s-date-main">Sat 30 May</div>
+        <div class="s-date-sub">Session 02</div>
+      </div>
+      <div class="s-body">
+        <div class="s-fa">ضمایر</div>
+        <div class="s-it">I pronomi</div>
+        <div class="s-desc">diretti · indiretti · combinati · riflessivi · ci e ne</div>
+      </div>
+      <div class="s-n">۰۲</div>
+    </div>
+    <div class="s-row">
+      <div class="s-date-col">
+        <div class="s-date-main">Sat 6 Jun</div>
+        <div class="s-date-sub">Session 03</div>
+      </div>
+      <div class="s-body">
+        <div class="s-fa">امری</div>
+        <div class="s-it">L'imperativo</div>
+        <div class="s-desc">affermativo · negativo · formale e informale · con pronomi · terza persona</div>
+      </div>
+      <div class="s-n">۰۳</div>
+    </div>
+    <div class="s-row">
+      <div class="s-date-col">
+        <div class="s-date-main">Sat 13 Jun</div>
+        <div class="s-date-sub">Session 04</div>
+      </div>
+      <div class="s-body">
+        <div class="s-fa">مستقبل و مشروط</div>
+        <div class="s-it">Il condizionale e il futuro</div>
+        <div class="s-desc">futuro semplice · futuro anteriore · condizionale · periodo ipotetico T1 & T2</div>
+      </div>
+      <div class="s-n">۰۴</div>
+    </div>
+    <div class="s-row">
+      <div class="s-date-col">
+        <div class="s-date-main">Sat 20 Jun</div>
+        <div class="s-date-sub">Session 05</div>
+      </div>
+      <div class="s-body">
+        <div class="s-fa">التزامی</div>
+        <div class="s-it">Il congiuntivo</div>
+        <div class="s-desc">congiuntivo presente · imperfetto · passato · periodo ipotetico T3</div>
+      </div>
+      <div class="s-n">۰۵</div>
+    </div>
+  </div>
+</div>
+
+<!-- INCLUDES -->
+<div class="includes-wrap">
+  <div class="section-hd">
+    <h2 class="section-title">هر جلسه <em>چی داره؟</em></h2>
+  </div>
+  <div class="inc-grid">
+    <div class="inc-cell">
+      <div class="inc-icon">📖</div>
+      <div>
+        <div class="inc-title">توضیح کامل گرامر</div>
+        <div class="inc-desc">با مثال‌های واقعی و دیالوگ — نه فقط قوانین خشک.</div>
+      </div>
+    </div>
+    <div class="inc-cell">
+      <div class="inc-icon">✏️</div>
+      <div>
+        <div class="inc-title">تمرین‌های متنوع</div>
+        <div class="inc-desc">۷ نوع تمرین مختلف در کلاس.</div>
+      </div>
+    </div>
+    <div class="inc-cell">
+      <div class="inc-icon">💬</div>
+      <div>
+        <div class="inc-title">دیالوگ و مکالمه</div>
+        <div class="inc-desc">گرامر در کاربرد طبیعی و واقعی.</div>
+      </div>
+    </div>
+    <div class="inc-cell">
+      <div class="inc-icon">📚</div>
+      <div>
+        <div class="inc-title">کتابچه تمرین PDF</div>
+        <div class="inc-desc">اختصاصی هر جلسه — چاپ یا دیجیتال.</div>
+      </div>
+    </div>
+    <div class="inc-cell">
+      <div class="inc-icon">🗂️</div>
+      <div>
+        <div class="inc-title">کارت مرجع</div>
+        <div class="inc-desc">خلاصه همه قوانین در یک صفحه.</div>
+      </div>
+    </div>
+    <div class="inc-cell">
+      <div class="inc-icon">🎯</div>
+      <div>
+        <div class="inc-title">طراحی برای فارسی‌زبان‌ها</div>
+        <div class="inc-desc">توضیحات با در نظر گرفتن تفاوت دو زبان.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-wrap">
+  <div class="section-hd">
+    <h2 class="section-title">قیمت‌ها</h2>
+  </div>
+  <div class="pricing-grid">
+    <div class="p-card">
+      <div class="p-lbl">جلسه جداگانه</div>
+      <div class="p-name">یه ورکشاپ<br>به انتخابت</div>
+      <div>
+        <div class="p-amt">€12</div>
+        <div class="p-note">هر جلسه · پرداخت یکجا</div>
+      </div>
+      <div class="p-feats">
+        <div class="p-feat"><span class="p-chk">✓</span>یه جلسه به انتخابت</div>
+        <div class="p-feat"><span class="p-chk">✓</span>کتابچه تمرین PDF</div>
+        <div class="p-feat"><span class="p-chk">✓</span>کارت مرجع</div>
+        <div class="p-feat"><span class="p-chk">✓</span>بدون پیش‌نیاز</div>
+      </div>
+      <a href="booking.html" class="p-btn">انتخاب جلسه</a>
+    </div>
+    <div class="p-card feat">
+      <div class="p-lbl">بسته کامل</div>
+      <div class="p-name">همه ۵ جلسه<br>با هم</div>
+      <div>
+        <div class="p-disc">🎉 ۱۷٪ تخفیف</div>
+        <div class="p-amt g" style="margin-top:10px;">€50</div>
+        <div class="p-note">به جای €60 · پرداخت یکجا</div>
+      </div>
+      <div class="p-feats">
+        <div class="p-feat"><span class="p-chk">✓</span>همه ۵ جلسه</div>
+        <div class="p-feat"><span class="p-chk">✓</span>۵ کتابچه تمرین PDF</div>
+        <div class="p-feat"><span class="p-chk">✓</span>۵ کارت مرجع</div>
+        <div class="p-feat"><span class="p-chk">✓</span>پایه گرامری کامل</div>
+        <div class="p-feat"><span class="p-chk">✓</span>€۱۰ صرفه‌جویی</div>
+      </div>
+      <a href="booking.html" class="p-btn g-btn">بسته کامل رو بگیر</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <div class="fcta-text">آماده‌ای؟<br><em>همین الان ثبت‌نام کن.</em></div>
+  <div class="fcta-btns">
+    <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
+    <a href="booking.html" class="btn-main">ثبت‌نام کن ←</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo"><span>ورکشاپ</span> ایتالیایی</div>
+  <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>
+</footer>
+
+</body>
+</html>
