@@ -520,16 +520,33 @@ footer {
     setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
-    // Initialize Stripe Payment Element
-    elements = stripe.elements({
-      mode: 'payment',
-      amount: formData.amount,
-      currency: 'eur',
-      appearance: {
-        theme: 'stripe',
-        variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
-      }
-    });
+    // Get clientSecret from Apps Script
+    try {
+      const res = await fetch(APPS_SCRIPT_URL + '?action=createIntent&amount=' + formData.amount + '&email=' + encodeURIComponent(formData.email));
+      const data = await res.json();
+      if (!data.clientSecret) throw new Error('no secret');
+      formData.clientSecret = data.clientSecret;
+
+      elements = stripe.elements({
+        clientSecret: data.clientSecret,
+        appearance: {
+          theme: 'stripe',
+          variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
+        }
+      });
+    } catch(e) {
+      // Fallback: use mode-based elements (no server needed)
+      elements = stripe.elements({
+        mode: 'payment',
+        amount: formData.amount,
+        currency: 'eur',
+        appearance: {
+          theme: 'stripe',
+          variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
+        }
+      });
+      formData.clientSecret = null;
+    }
 
     paymentElement = elements.create('payment');
     paymentElement.mount('#stripe-element-container');
@@ -543,7 +560,6 @@ footer {
     errEl.style.display = 'none';
 
     try {
-      // Validate the payment element
       const { error: submitError } = await elements.submit();
       if (submitError) {
         showError(submitError.message);
@@ -552,31 +568,22 @@ footer {
         return;
       }
 
-      // Create PaymentIntent server-side via Apps Script
-      const intentRes = await fetch(APPS_SCRIPT_URL + '?action=createIntent&amount=' + formData.amount + '&email=' + encodeURIComponent(formData.email));
-      const intentData = await intentRes.json();
-
-      if (!intentData.clientSecret) {
-        showError('خطا در ایجاد پرداخت. لطفاً دوباره امتحان کنید.');
-        btn.disabled = false;
-        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
-        return;
-      }
-
       // Confirm payment
-      const { error: confirmError } = await stripe.confirmPayment({
+      const confirmParams = {
         elements,
-        clientSecret: intentData.clientSecret,
         confirmParams: { return_url: window.location.href },
         redirect: 'if_required'
-      });
+      };
+      if (formData.clientSecret) {
+        confirmParams.clientSecret = formData.clientSecret;
+      }
+      const { error: confirmError } = await stripe.confirmPayment(confirmParams);
 
       if (confirmError) {
         showError(confirmError.message);
         btn.disabled = false;
         btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
       } else {
-        // Payment succeeded — save data and show success
         await saveData();
         showSuccess();
       }
