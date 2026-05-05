@@ -174,5 +174,28 @@ footer {
   <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>
 </footer>
 
+
+<script>
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEa9g0RdcefWJFyB3tpqvMZNWTpI4J2QJzDt0-mXajx5tVBKg9yI2_8kUqT04-BqGZIw/exec';
+
+  window.addEventListener('load', function() {
+    const raw = sessionStorage.getItem('workshopData');
+    if (!raw) return;
+    
+    const data = JSON.parse(raw);
+    
+    // Submit to Google Apps Script
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    // Clear sessionStorage
+    sessionStorage.removeItem('workshopData');
+  });
+</script>
+
 </body>
 </html>

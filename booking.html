@@ -756,7 +756,18 @@ footer {
   function goToSuccess() {
     const isBundle = document.querySelector('input[name="session"]:checked').value === 'bundle';
     const stripeUrl = isBundle ? STRIPE_BUNDLE : STRIPE_SINGLE;
-    window.location.href = stripeUrl;
+    const full = formData.firstName + ' ' + formData.lastName;
+    // Store data in sessionStorage to be submitted after successful payment
+    sessionStorage.setItem('workshopData', JSON.stringify({
+      name: full,
+      email: formData.email,
+      phone: formData.phone,
+      gmail: formData.gmail,
+      option: formData.option,
+      price: formData.price
+    }));
+    const email = encodeURIComponent(formData.email);
+    window.location.href = stripeUrl + '?prefilled_email=' + email;
   }
 
   function showPage(id) {
