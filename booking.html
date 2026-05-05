@@ -515,6 +515,13 @@ footer {
         <div class="f-error" id="phoneErr">این فیلد اجباریه</div>
       </div>
 
+      <div class="f-group">
+        <label class="f-label">آدرس Gmail برای شرکت در ورکشاپ</label>
+        <input class="f-input" type="email" id="gmail" placeholder="example@gmail.com" dir="ltr" style="text-align:right;">
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.6;">این آدرس برای دادن دسترسی به Google Meet جلسه استفاده می‌شه — باید حتماً یه آدرس Gmail باشه.</div>
+        <div class="f-error" id="gmailErr">یه آدرس Gmail معتبر وارد کن</div>
+      </div>
+
       <div class="form-section-label" style="margin-top:4px;">گزینه مورد نظر</div>
 
       <div class="session-selector">
@@ -621,6 +628,13 @@ footer {
           </div>
         </div>
         <div class="rt-row">
+          <div class="rt-label">Gmail ورکشاپ</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="rt-val" id="revGmail" style="direction:ltr;font-size:12px;">—</div>
+            <span class="edit-link" onclick="goBack()">ویرایش</span>
+          </div>
+        </div>
+        <div class="rt-row">
           <div class="rt-label">گزینه انتخابی</div>
           <div class="rt-val" id="revOption">—</div>
         </div>
@@ -696,6 +710,7 @@ footer {
       { id:'lastName',  errId:'lastNameErr',  check: v => v.trim().length > 0 },
       { id:'email',     errId:'emailErr',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
       { id:'phone',     errId:'phoneErr',     check: v => v.trim().length > 5 },
+      { id:'gmail',     errId:'gmailErr',     check: v => /^[^s@]+@gmail.com$/.test(v) },
     ];
     fields.forEach(f => {
       const el = document.getElementById(f.id);
@@ -715,6 +730,7 @@ footer {
     formData.lastName  = document.getElementById('lastName').value.trim();
     formData.email     = document.getElementById('email').value.trim();
     formData.phone     = document.getElementById('phone').value.trim();
+    formData.gmail     = document.getElementById('gmail').value.trim();
     const full = formData.firstName + ' ' + formData.lastName;
     document.getElementById('confOption').textContent = formData.option;
     document.getElementById('confName').textContent   = full;
@@ -722,6 +738,7 @@ footer {
     document.getElementById('revName').textContent    = full;
     document.getElementById('revEmail').textContent   = formData.email;
     document.getElementById('revPhone').textContent   = formData.phone;
+    document.getElementById('revGmail').textContent   = formData.gmail;
     document.getElementById('revOption').textContent  = formData.option;
     document.getElementById('revPrice').textContent   = formData.price;
     showPage('pageConfirm'); setStep(2);
@@ -759,7 +776,7 @@ footer {
     }
   }
 
-  ['firstName','lastName','email','phone'].forEach(id => {
+  ['firstName','lastName','email','phone','gmail'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       document.getElementById(id).classList.remove('error');
       document.getElementById(id + 'Err').classList.remove('show');
