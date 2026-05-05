@@ -45,8 +45,8 @@ nav {
 .logo {
   font-size: 17px;
   font-weight: 900;
-  letter-spacing: -0.01em;
   color: var(--ink);
+  text-decoration: none;
 }
 
 .logo span {
@@ -94,84 +94,53 @@ nav {
 
 /* ── HERO ── */
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: calc(100vh - 57px);
-  border-bottom: 1.5px solid var(--ink);
-}
-
-.hero-left {
-  padding: 64px 48px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 24px;
-  border-left: 1.5px solid var(--ink);
+  align-items: center;
+  text-align: center;
+  padding: 90px 48px 72px;
+  border-bottom: 1.5px solid var(--ink);
+  gap: 28px;
+}
+
+.hero-date-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--green-lt);
+  color: var(--green-dk);
+  border: 1px solid var(--green);
+  padding: 7px 16px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 700;
 }
 
 .hero-title {
-  font-size: 66px;
+  font-size: 72px;
   font-weight: 900;
   line-height: 1.06;
   letter-spacing: -0.03em;
   color: var(--ink);
+  max-width: 700px;
 }
 
-.hero-title .line-green {
-  color: var(--green);
-}
-
-.hero-desc {
-  font-size: 15px;
-  color: var(--ink2);
-  line-height: 1.9;
-  max-width: 400px;
-}
-
-.hero-meta {
-  display: flex;
-  gap: 0;
-  border: 1.5px solid var(--ink);
-  border-radius: 8px;
-  overflow: hidden;
-  width: fit-content;
-}
-
-.meta-item {
-  padding: 12px 20px;
-  border-left: 1.5px solid var(--ink);
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.meta-item:last-child { border-left: none; }
-
-.meta-val {
-  font-size: 18px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: var(--ink);
-}
-
-.meta-lbl {
-  font-size: 10px;
-  color: var(--ink3);
-  font-weight: 600;
-}
+.hero-title .green { color: var(--green); }
 
 .hero-btns {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .btn-main {
   background: var(--ink);
   color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: 8px;
   border: 1.5px solid var(--ink);
   cursor: pointer;
@@ -186,9 +155,9 @@ nav {
   background: transparent;
   color: var(--ink);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: 8px;
   border: 1.5px solid var(--ink);
   cursor: pointer;
@@ -199,235 +168,112 @@ nav {
 
 .btn-out:hover { background: var(--off); }
 
-/* ── HERO RIGHT ── */
-.hero-right {
-  background: var(--ink);
+.hero-desc {
+  font-size: 16px;
+  color: var(--ink2);
+  line-height: 1.85;
+  max-width: 520px;
+}
+
+/* ── STATS ── */
+.stats {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 48px;
-  position: relative;
-  overflow: hidden;
-}
-
-.hr-deco {
-  position: absolute;
-  font-size: 260px;
-  font-weight: 900;
-  color: rgba(255,255,255,0.03);
-  bottom: -50px;
-  left: -10px;
-  line-height: 1;
-  user-select: none;
-  pointer-events: none;
-}
-
-.hr-top-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: var(--green);
-  color: var(--white);
-  font-size: 12px;
-  font-weight: 800;
-  padding: 7px 14px;
-  border-radius: 6px;
-  width: fit-content;
-}
-
-.hr-sessions {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  position: relative;
-  z-index: 2;
-}
-
-.hr-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 13px 16px;
-  border-radius: 8px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: all 0.15s;
-  gap: 12px;
-}
-
-.hr-row:hover {
-  background: rgba(126,200,0,0.1);
-  border-color: rgba(126,200,0,0.25);
-}
-
-.hr-n {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
-  font-weight: 600;
-  flex-shrink: 0;
-}
-
-.hr-fa {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--white);
-  flex: 1;
-  text-align: right;
-}
-
-.hr-it {
-  font-size: 10px;
-  color: rgba(255,255,255,0.35);
-  font-weight: 500;
-  direction: ltr;
-  flex-shrink: 0;
-  text-align: left;
-}
-
-.hr-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
-  position: relative;
-  z-index: 2;
-}
-
-.hr-price-big {
-  font-size: 40px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.hr-price-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.3);
-  margin-top: 3px;
-}
-
-.hr-discount-pill {
-  background: rgba(126,200,0,0.15);
-  border: 1px solid rgba(126,200,0,0.3);
-  color: var(--green);
-  font-size: 12px;
-  font-weight: 800;
-  padding: 7px 14px;
-  border-radius: 6px;
-}
-
-/* ── STRIP ── */
-.strip {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 48px;
+  padding: 36px 48px;
   border-bottom: 1.5px solid var(--ink);
+  background: var(--off);
 }
 
-.strip-item {
-  padding: 24px 28px;
-  border-left: 1.5px solid var(--ink);
+.stat {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 4px;
-  transition: background 0.12s;
 }
 
-.strip-item:last-child { border-left: none; }
-.strip-item:hover { background: var(--off); }
-
-.strip-val {
-  font-size: 26px;
+.stat-val {
+  font-size: 28px;
   font-weight: 900;
   letter-spacing: -0.03em;
   color: var(--ink);
 }
 
-.strip-lbl {
+.stat-lbl {
   font-size: 11px;
   color: var(--ink3);
   font-weight: 600;
 }
 
-/* ── SESSIONS PREVIEW ── */
-.sessions-wrap {
-  padding: 48px 48px;
+.stat-divider {
+  width: 1px;
+  background: var(--border);
+  align-self: stretch;
+}
+
+/* ── SESSIONS ── */
+.sessions-section {
+  padding: 64px 48px;
   border-bottom: 1.5px solid var(--ink);
 }
 
-.section-hd {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: 24px;
-  gap: 16px;
+.sec-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.section-title {
-  font-size: 32px;
+.sec-title {
+  font-size: 36px;
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.1;
+  margin-bottom: 10px;
 }
 
-.section-title em {
-  font-style: normal;
-  color: var(--green);
-}
+.sec-title em { font-style: normal; color: var(--green); }
 
-.see-all {
-  font-size: 13px;
-  font-weight: 700;
+.sec-desc {
+  font-size: 14px;
   color: var(--ink2);
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  white-space: nowrap;
-  transition: color 0.12s;
+  line-height: 1.8;
 }
-
-.see-all:hover { color: var(--green); }
 
 .sessions-list {
   display: flex;
   flex-direction: column;
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  overflow: hidden;
+  gap: 16px;
+  max-width: 860px;
+  margin: 0 auto;
 }
 
-.s-row {
-  display: grid;
-  grid-template-columns: 48px 1fr 130px;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.12s;
-}
-
-.s-row:last-child { border-bottom: none; }
-.s-row:hover { background: var(--off); }
-
-.s-n {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 900;
-  color: var(--white);
-  background: var(--ink);
-  border-left: 1.5px solid var(--ink);
-}
-
-.s-body {
-  padding: 16px 20px;
+.s-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 10px;
+  transition: background 0.15s;
+  border: 1.5px solid var(--border);
+}
+
+.s-card:hover { background: var(--off); }
+
+.s-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.s-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .s-fa {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 800;
   color: var(--ink);
 }
@@ -440,103 +286,119 @@ nav {
   text-align: right;
 }
 
-.s-desc {
-  font-size: 12px;
-  color: var(--ink2);
-  line-height: 1.6;
-  margin-top: 2px;
-}
-
-.s-date-col {
-  padding: 16px 18px;
+.s-right {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.s-num {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--white);
+  background: var(--ink);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 2px;
-  border-right: 1px solid var(--border);
 }
 
-.s-date-main {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--ink);
-  direction: ltr;
-  text-align: left;
-}
-
-.s-date-sub {
-  font-size: 10px;
+.s-date {
+  font-size: 11px;
   color: var(--ink3);
+  font-weight: 600;
   direction: ltr;
   text-align: left;
 }
 
-/* ── INCLUDES STRIP ── */
-.includes-wrap {
-  padding: 48px 48px;
+.s-desc {
+  font-size: 13px;
+  color: var(--ink2);
+  line-height: 1.7;
+}
+
+.s-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--green-lt);
+  color: var(--green-dk);
+  border: 1px solid var(--green);
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* ── INCLUDES ── */
+.includes-section {
+  padding: 64px 48px;
+  background: var(--off);
   border-bottom: 1.5px solid var(--ink);
 }
 
 .inc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border: 1.5px solid var(--ink);
+  gap: 20px;
+  max-width: 860px;
+  margin: 32px auto 0;
+}
+
+.inc-card {
+  background: var(--white);
   border-radius: 10px;
-  overflow: hidden;
-  margin-top: 24px;
-}
-
-.inc-cell {
-  padding: 22px 20px;
-  border-left: 1.5px solid var(--ink);
+  padding: 20px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: flex-start;
-  transition: background 0.12s;
 }
 
-.inc-cell:last-child { border-left: none; }
-.inc-cell:nth-child(4) { border-top: 1.5px solid var(--ink); }
-.inc-cell:nth-child(5) { border-top: 1.5px solid var(--ink); }
-.inc-cell:nth-child(6) { border-top: 1.5px solid var(--ink); border-left: none; }
-.inc-cell:hover { background: var(--off); }
-
-.inc-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.inc-icon { font-size: 20px; flex-shrink: 0; }
 
 .inc-title {
   font-size: 13px;
   font-weight: 800;
   color: var(--ink);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 
 .inc-desc {
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--ink3);
   line-height: 1.65;
 }
 
 /* ── PRICING ── */
-.pricing-wrap {
+.pricing-section {
+  padding: 64px 48px;
   background: var(--ink);
-  padding: 48px 48px;
   border-bottom: 1.5px solid var(--ink);
 }
 
-.pricing-wrap .section-title { color: var(--white); }
-.pricing-wrap .section-title em { color: var(--green); }
+.pricing-section .sec-title { color: var(--white); }
+.pricing-section .sec-title em { color: var(--green); }
+.pricing-section .sec-desc { color: rgba(255,255,255,0.45); }
 
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 24px;
+  gap: 16px;
+  max-width: 720px;
+  margin: 32px auto 0;
 }
 
 .p-card {
   border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -544,12 +406,8 @@ nav {
   transition: border-color 0.15s;
 }
 
-.p-card:hover { border-color: rgba(255,255,255,0.22); }
-
-.p-card.feat {
-  border-color: var(--green);
-  background: rgba(126,200,0,0.04);
-}
+.p-card:hover { border-color: rgba(255,255,255,0.25); }
+.p-card.feat { border-color: var(--green); background: rgba(126,200,0,0.05); }
 
 .p-lbl {
   font-size: 10px;
@@ -559,7 +417,7 @@ nav {
 }
 
 .p-name {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 900;
   color: var(--white);
   letter-spacing: -0.02em;
@@ -591,12 +449,12 @@ nav {
   align-items: center;
   gap: 5px;
   background: rgba(126,200,0,0.12);
-  border: 1px solid rgba(126,200,0,0.25);
+  border: 1px solid rgba(126,200,0,0.3);
   color: var(--green);
   font-size: 12px;
   font-weight: 800;
   padding: 6px 12px;
-  border-radius: 5px;
+  border-radius: 20px;
   width: fit-content;
 }
 
@@ -611,10 +469,9 @@ nav {
 .p-feat {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   font-size: 12.5px;
   color: rgba(255,255,255,0.55);
-  line-height: 1.5;
 }
 
 .p-chk { color: var(--green); flex-shrink: 0; }
@@ -622,7 +479,7 @@ nav {
 .p-btn {
   display: block;
   padding: 13px 20px;
-  border-radius: 7px;
+  border-radius: 8px;
   font-family: 'Vazirmatn', sans-serif;
   font-size: 13px;
   font-weight: 800;
@@ -646,29 +503,30 @@ nav {
 
 .p-btn.g-btn:hover { background: var(--green-dk); border-color: var(--green-dk); }
 
-/* ── FOOTER CTA ── */
-.footer-cta {
-  padding: 48px 48px;
+/* ── BOTTOM CTA ── */
+.bottom-cta {
+  padding: 64px 48px;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
+  gap: 20px;
   border-bottom: 1.5px solid var(--ink);
 }
 
-.fcta-text {
-  font-size: 28px;
+.bcta-title {
+  font-size: 36px;
   font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
-.fcta-text em { font-style: normal; color: var(--green); }
+.bcta-title em { font-style: normal; color: var(--green); }
 
-.fcta-btns {
+.bcta-btns {
   display: flex;
-  gap: 10px;
-  flex-shrink: 0;
+  gap: 12px;
+  justify-content: center;
 }
 
 /* ── FOOTER ── */
@@ -684,6 +542,7 @@ footer {
   font-size: 15px;
   font-weight: 900;
   color: var(--white);
+  text-decoration: none;
 }
 
 .f-logo span {
@@ -694,39 +553,26 @@ footer {
   margin-right: 4px;
 }
 
-.f-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.25);
-}
+.f-note { font-size: 11px; color: rgba(255,255,255,0.25); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   nav { padding: 14px 24px; }
-  .hero { grid-template-columns: 1fr; min-height: auto; }
-  .hero-left { padding: 40px 24px; gap: 20px; border-left: none; border-bottom: 1.5px solid var(--ink); }
-  .hero-title { font-size: 44px; }
-  .hero-right { padding: 36px 24px; min-height: 380px; }
-  .strip { grid-template-columns: repeat(2, 1fr); }
-  .strip-item:nth-child(2) { border-left: none; }
-  .strip-item:nth-child(3) { border-top: 1.5px solid var(--ink); }
-  .strip-item:nth-child(4) { border-top: 1.5px solid var(--ink); border-left: none; }
-  .sessions-wrap, .includes-wrap, .pricing-wrap, .footer-cta { padding: 36px 24px; }
+  .hero { padding: 60px 24px 48px; gap: 22px; }
+  .hero-title { font-size: 46px; }
+  .stats { gap: 24px; padding: 28px 24px; flex-wrap: wrap; }
+  .stat-divider { display: none; }
+  .sessions-section, .includes-section, .pricing-section, .bottom-cta { padding: 48px 24px; }
   .inc-grid { grid-template-columns: 1fr 1fr; }
-  .pricing-grid { grid-template-columns: 1fr; }
-  .footer-cta { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .s-row { grid-template-columns: 40px 1fr; }
-  .s-date-col { display: none; }
+  .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
   footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
 }
 
 @media (max-width: 540px) {
   .hero-title { font-size: 36px; }
-  .hero-meta { flex-direction: column; width: 100%; }
-  .meta-item { border-left: none; border-bottom: 1.5px solid var(--ink); }
-  .meta-item:last-child { border-bottom: none; }
+  .stats { gap: 16px; }
   .inc-grid { grid-template-columns: 1fr; }
-  .inc-cell { border-left: none !important; border-top: 1.5px solid var(--ink) !important; }
-  .inc-cell:first-child { border-top: none !important; }
+  .hero-btns { flex-direction: column; align-items: center; }
 }
 
 /* ── ANIMATION ── */
@@ -735,21 +581,21 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.hero-left > * {
+.hero > * {
   animation: fadeUp 0.45s ease both;
 }
-.hero-left > *:nth-child(1) { animation-delay: 0.05s; }
-.hero-left > *:nth-child(2) { animation-delay: 0.1s; }
-.hero-left > *:nth-child(3) { animation-delay: 0.15s; }
-.hero-left > *:nth-child(4) { animation-delay: 0.2s; }
-.hero-left > *:nth-child(5) { animation-delay: 0.25s; }
+.hero > *:nth-child(1) { animation-delay: 0.05s; }
+.hero > *:nth-child(2) { animation-delay: 0.12s; }
+.hero > *:nth-child(3) { animation-delay: 0.19s; }
+.hero > *:nth-child(4) { animation-delay: 0.26s; }
+.hero > *:nth-child(5) { animation-delay: 0.33s; }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <div class="logo"><span>ورکشاپ</span> ایتالیایی</div>
+  <a href="index.html" class="logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="nav-links">
     <a href="info.html" class="nav-link">اطلاعات بیشتر</a>
     <a href="booking.html" class="nav-btn">ثبت‌نام کن</a>
@@ -758,205 +604,191 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <h1 class="hero-title">گرامر<br>ایتالیایی<br>رو <span class="line-green">یاد بگیر.</span></h1>
-    <p class="hero-desc">پنج ورکشاپ تخصصی — هر کدوم روی یه موضوع مهم گرامر. هر جلسه ۲ ساعته و کاملاً مستقله.</p>
-    <div class="hero-meta">
-      <div class="meta-item">
-        <div class="meta-val">۵</div>
-        <div class="meta-lbl">جلسه</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-val">۲h</div>
-        <div class="meta-lbl">هر جلسه</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-val">A1–A2</div>
-        <div class="meta-lbl">سطح</div>
-      </div>
-      <div class="meta-item">
-        <div class="meta-val">۲۳ می</div>
-        <div class="meta-lbl">شروع</div>
-      </div>
-    </div>
-    <div class="hero-btns">
-      <a href="booking.html" class="btn-main">ثبت‌نام کن ←</a>
-      <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
-    </div>
+  <div class="hero-date-tag">📅 شروع: شنبه ۲۳ می — هر شنبه یه جلسه</div>
+  <h1 class="hero-title">گرامر ایتالیایی رو <span class="green">یاد بگیر.</span></h1>
+  <div class="hero-btns">
+    <a href="booking.html" class="btn-main">همین الان ثبت‌نام کن ←</a>
+    <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
   </div>
-
-  <div class="hero-right">
-    <div class="hr-deco">۵</div>
-    <div class="hr-top-tag">هر شنبه · از ۲۳ می</div>
-    <div class="hr-sessions">
-      <div class="hr-row">
-        <div class="hr-n">۰۱</div>
-        <div class="hr-fa">زمان‌های گذشته</div>
-        <div class="hr-it">I tempi del passato</div>
-      </div>
-      <div class="hr-row">
-        <div class="hr-n">۰۲</div>
-        <div class="hr-fa">ضمایر</div>
-        <div class="hr-it">I pronomi</div>
-      </div>
-      <div class="hr-row">
-        <div class="hr-n">۰۳</div>
-        <div class="hr-fa">امری</div>
-        <div class="hr-it">L'imperativo</div>
-      </div>
-      <div class="hr-row">
-        <div class="hr-n">۰۴</div>
-        <div class="hr-fa">مستقبل و مشروط</div>
-        <div class="hr-it">Il condizionale e il futuro</div>
-      </div>
-      <div class="hr-row">
-        <div class="hr-n">۰۵</div>
-        <div class="hr-fa">التزامی</div>
-        <div class="hr-it">Il congiuntivo</div>
-      </div>
-    </div>
-    <div class="hr-bottom">
-      <div>
-        <div class="hr-price-big">از €۱۲</div>
-        <div class="hr-price-note">هر جلسه جداگانه</div>
-      </div>
-      <div class="hr-discount-pill">🎉 ۱۷٪ تخفیف بسته کامل</div>
-    </div>
-  </div>
+  <p class="hero-desc">پنج ورکشاپ تخصصی گرامر — هر کدوم مستقل، هر کدوم کامل. می‌تونی یه جلسه بگیری یا همه رو.</p>
 </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="strip-item">
-    <div class="strip-val">۵</div>
-    <div class="strip-lbl">موضوع تخصصی گرامر</div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stat">
+    <div class="stat-val">۵</div>
+    <div class="stat-lbl">جلسه</div>
   </div>
-  <div class="strip-item">
-    <div class="strip-val">۱۰h</div>
-    <div class="strip-lbl">آموزش در مجموع</div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-val">۲ ساعت</div>
+    <div class="stat-lbl">هر جلسه</div>
   </div>
-  <div class="strip-item">
-    <div class="strip-val">€۵۰</div>
-    <div class="strip-lbl">بسته کامل با تخفیف</div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-val">A1–A2</div>
+    <div class="stat-lbl">سطح</div>
   </div>
-  <div class="strip-item">
-    <div class="strip-val">PDF</div>
-    <div class="strip-lbl">کتابچه تمرین هر جلسه</div>
+  <div class="stat-divider"></div>
+  <div class="stat">
+    <div class="stat-val">از €۱۲</div>
+    <div class="stat-lbl">هر جلسه</div>
   </div>
 </div>
 
-<!-- SESSIONS PREVIEW -->
-<div class="sessions-wrap">
-  <div class="section-hd">
-    <h2 class="section-title">برنامه <em>جلسات</em></h2>
-    <a href="info.html" class="see-all">مشاهده کامل ←</a>
+<!-- SESSIONS -->
+<div id="sessions" class="sessions-section">
+  <div class="sec-header">
+    <h2 class="sec-title">برنامه <em>جلسات</em></h2>
+    <p class="sec-desc">هر جلسه مستقله — می‌تونی فقط اونی که می‌خوای رو بگیری.</p>
   </div>
+
   <div class="sessions-list">
-    <div class="s-row">
-      <div class="s-date-col">
-        <div class="s-date-main">Sat 23 May</div>
-        <div class="s-date-sub">Session 01</div>
+    <div class="s-card">
+      <div class="s-top">
+        <div class="s-titles">
+          <div class="s-fa">زمان‌های گذشته</div>
+          <div class="s-it">I tempi del passato</div>
+        </div>
+        <div class="s-right">
+          <div class="s-date">Sat 23 May</div>
+          <div class="s-num">۰۱</div>
+        </div>
       </div>
-      <div class="s-body">
-        <div class="s-fa">زمان‌های گذشته</div>
-        <div class="s-it">I tempi del passato</div>
-        <div class="s-desc">passato prossimo · imperfetto · trapassato prossimo · stare + gerundio</div>
+      <div class="s-desc">یاد می‌گیری چطور داستان تعریف کنی، عادت‌های گذشته رو بگی و رویدادها رو به ترتیب زمانی بچینی.</div>
+      <div class="s-pills">
+        <span class="pill">passato prossimo</span>
+        <span class="pill">imperfetto</span>
+        <span class="pill">trapassato prossimo</span>
+        <span class="pill">stare + gerundio</span>
       </div>
-      <div class="s-n">۰۱</div>
     </div>
-    <div class="s-row">
-      <div class="s-date-col">
-        <div class="s-date-main">Sat 30 May</div>
-        <div class="s-date-sub">Session 02</div>
+
+    <div class="s-card">
+      <div class="s-top">
+        <div class="s-titles">
+          <div class="s-fa">ضمایر</div>
+          <div class="s-it">I pronomi</div>
+        </div>
+        <div class="s-right">
+          <div class="s-date">Sat 30 May</div>
+          <div class="s-num">۰۲</div>
+        </div>
       </div>
-      <div class="s-body">
-        <div class="s-fa">ضمایر</div>
-        <div class="s-it">I pronomi</div>
-        <div class="s-desc">diretti · indiretti · combinati · riflessivi · ci e ne</div>
+      <div class="s-desc">یاد می‌گیری چطور مثل یه ایتالیایی واقعی صحبت کنی — بدون تکرار اسم‌ها.</div>
+      <div class="s-pills">
+        <span class="pill">diretti</span>
+        <span class="pill">indiretti</span>
+        <span class="pill">combinati</span>
+        <span class="pill">riflessivi</span>
+        <span class="pill">ci e ne</span>
       </div>
-      <div class="s-n">۰۲</div>
     </div>
-    <div class="s-row">
-      <div class="s-date-col">
-        <div class="s-date-main">Sat 6 Jun</div>
-        <div class="s-date-sub">Session 03</div>
+
+    <div class="s-card">
+      <div class="s-top">
+        <div class="s-titles">
+          <div class="s-fa">امری</div>
+          <div class="s-it">L'imperativo</div>
+        </div>
+        <div class="s-right">
+          <div class="s-date">Sat 6 Jun</div>
+          <div class="s-num">۰۳</div>
+        </div>
       </div>
-      <div class="s-body">
-        <div class="s-fa">امری</div>
-        <div class="s-it">L'imperativo</div>
-        <div class="s-desc">affermativo · negativo · formale e informale · con pronomi · terza persona</div>
+      <div class="s-desc">یاد می‌گیری چطور دستور بدی، راهنمایی کنی و درخواست کنی — رسمی و غیررسمی.</div>
+      <div class="s-pills">
+        <span class="pill">affermativo</span>
+        <span class="pill">negativo</span>
+        <span class="pill">formale e informale</span>
+        <span class="pill">con pronomi</span>
+        <span class="pill">terza persona</span>
       </div>
-      <div class="s-n">۰۳</div>
     </div>
-    <div class="s-row">
-      <div class="s-date-col">
-        <div class="s-date-main">Sat 13 Jun</div>
-        <div class="s-date-sub">Session 04</div>
+
+    <div class="s-card">
+      <div class="s-top">
+        <div class="s-titles">
+          <div class="s-fa">مستقبل و مشروط</div>
+          <div class="s-it">Il condizionale e il futuro</div>
+        </div>
+        <div class="s-right">
+          <div class="s-date">Sat 13 Jun</div>
+          <div class="s-num">۰۴</div>
+        </div>
       </div>
-      <div class="s-body">
-        <div class="s-fa">مستقبل و مشروط</div>
-        <div class="s-it">Il condizionale e il futuro</div>
-        <div class="s-desc">futuro semplice · futuro anteriore · condizionale · periodo ipotetico T1 & T2</div>
+      <div class="s-desc">یاد می‌گیری درباره آینده، آرزوها و فرضیه‌ها صحبت کنی.</div>
+      <div class="s-pills">
+        <span class="pill">futuro semplice</span>
+        <span class="pill">condizionale</span>
+        <span class="pill">periodo ipotetico T1 & T2</span>
       </div>
-      <div class="s-n">۰۴</div>
     </div>
-    <div class="s-row">
-      <div class="s-date-col">
-        <div class="s-date-main">Sat 20 Jun</div>
-        <div class="s-date-sub">Session 05</div>
+
+    <div class="s-card">
+      <div class="s-top">
+        <div class="s-titles">
+          <div class="s-fa">التزامی</div>
+          <div class="s-it">Il congiuntivo</div>
+        </div>
+        <div class="s-right">
+          <div class="s-date">Sat 20 Jun</div>
+          <div class="s-num">۰۵</div>
+        </div>
       </div>
-      <div class="s-body">
-        <div class="s-fa">التزامی</div>
-        <div class="s-it">Il congiuntivo</div>
-        <div class="s-desc">congiuntivo presente · imperfetto · passato · periodo ipotetico T3</div>
+      <div class="s-desc">یاد می‌گیری شک، نظر، احساسات و فرضیه‌های پیچیده رو بیان کنی.</div>
+      <div class="s-pills">
+        <span class="pill">congiuntivo presente</span>
+        <span class="pill">imperfetto</span>
+        <span class="pill">passato</span>
+        <span class="pill">periodo ipotetico T3</span>
       </div>
-      <div class="s-n">۰۵</div>
     </div>
   </div>
 </div>
 
 <!-- INCLUDES -->
-<div class="includes-wrap">
-  <div class="section-hd">
-    <h2 class="section-title">هر جلسه <em>چی داره؟</em></h2>
+<div class="includes-section">
+  <div class="sec-header">
+    <h2 class="sec-title">هر جلسه <em>چی داره؟</em></h2>
   </div>
   <div class="inc-grid">
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">📖</div>
       <div>
         <div class="inc-title">توضیح کامل گرامر</div>
         <div class="inc-desc">با مثال‌های واقعی و دیالوگ — نه فقط قوانین خشک.</div>
       </div>
     </div>
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">✏️</div>
       <div>
         <div class="inc-title">تمرین‌های متنوع</div>
         <div class="inc-desc">۷ نوع تمرین مختلف در کلاس.</div>
       </div>
     </div>
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">💬</div>
       <div>
         <div class="inc-title">دیالوگ و مکالمه</div>
         <div class="inc-desc">گرامر در کاربرد طبیعی و واقعی.</div>
       </div>
     </div>
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">📚</div>
       <div>
         <div class="inc-title">کتابچه تمرین PDF</div>
         <div class="inc-desc">اختصاصی هر جلسه — چاپ یا دیجیتال.</div>
       </div>
     </div>
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">🗂️</div>
       <div>
         <div class="inc-title">کارت مرجع</div>
         <div class="inc-desc">خلاصه همه قوانین در یک صفحه.</div>
       </div>
     </div>
-    <div class="inc-cell">
+    <div class="inc-card">
       <div class="inc-icon">🎯</div>
       <div>
         <div class="inc-title">طراحی برای فارسی‌زبان‌ها</div>
@@ -967,14 +799,15 @@ footer {
 </div>
 
 <!-- PRICING -->
-<div class="pricing-wrap">
-  <div class="section-hd">
-    <h2 class="section-title">قیمت‌ها</h2>
+<div class="pricing-section">
+  <div class="sec-header">
+    <h2 class="sec-title">قیمت‌ها</h2>
+    <p class="sec-desc">یه جلسه یا همه — انتخاب با توئه.</p>
   </div>
   <div class="pricing-grid">
     <div class="p-card">
       <div class="p-lbl">جلسه جداگانه</div>
-      <div class="p-name">یه ورکشاپ<br>به انتخابت</div>
+      <div class="p-name">یه ورکشاپ به انتخابت</div>
       <div>
         <div class="p-amt">€12</div>
         <div class="p-note">هر جلسه · پرداخت یکجا</div>
@@ -989,7 +822,7 @@ footer {
     </div>
     <div class="p-card feat">
       <div class="p-lbl">بسته کامل</div>
-      <div class="p-name">همه ۵ جلسه<br>با هم</div>
+      <div class="p-name">همه ۵ جلسه با هم</div>
       <div>
         <div class="p-disc">🎉 ۱۷٪ تخفیف</div>
         <div class="p-amt g" style="margin-top:10px;">€50</div>
@@ -999,7 +832,6 @@ footer {
         <div class="p-feat"><span class="p-chk">✓</span>همه ۵ جلسه</div>
         <div class="p-feat"><span class="p-chk">✓</span>۵ کتابچه تمرین PDF</div>
         <div class="p-feat"><span class="p-chk">✓</span>۵ کارت مرجع</div>
-        <div class="p-feat"><span class="p-chk">✓</span>پایه گرامری کامل</div>
         <div class="p-feat"><span class="p-chk">✓</span>€۱۰ صرفه‌جویی</div>
       </div>
       <a href="booking.html" class="p-btn g-btn">بسته کامل رو بگیر</a>
@@ -1007,10 +839,10 @@ footer {
   </div>
 </div>
 
-<!-- FOOTER CTA -->
-<div class="footer-cta">
-  <div class="fcta-text">آماده‌ای؟<br><em>همین الان ثبت‌نام کن.</em></div>
-  <div class="fcta-btns">
+<!-- BOTTOM CTA -->
+<div class="bottom-cta">
+  <h2 class="bcta-title">آماده‌ای؟<br><em>همین الان ثبت‌نام کن.</em></h2>
+  <div class="bcta-btns">
     <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
     <a href="booking.html" class="btn-main">ثبت‌نام کن ←</a>
   </div>
@@ -1018,7 +850,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="f-logo"><span>ورکشاپ</span> ایتالیایی</div>
+  <a href="index.html" class="f-logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>
 </footer>
 

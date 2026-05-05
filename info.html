@@ -29,7 +29,6 @@ body {
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
 nav {
   display: flex;
   align-items: center;
@@ -57,11 +56,7 @@ nav {
   margin-right: 4px;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.nav-links { display: flex; align-items: center; gap: 12px; }
 
 .nav-link {
   font-size: 13px;
@@ -92,17 +87,16 @@ nav {
 
 .nav-btn:hover { background: var(--green); }
 
-/* ── PAGE HEADER ── */
+/* PAGE HEADER */
 .page-header {
-  padding: 56px 48px 40px;
+  padding: 64px 48px 48px;
   border-bottom: 1.5px solid var(--ink);
+  text-align: center;
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
-
-.ph-left { display: flex; flex-direction: column; gap: 10px; }
 
 .ph-label {
   font-size: 11px;
@@ -121,40 +115,27 @@ nav {
 .ph-title em { font-style: normal; color: var(--green); }
 
 .ph-desc {
-  font-size: 14px;
+  font-size: 15px;
   color: var(--ink2);
   line-height: 1.8;
-  max-width: 480px;
-}
-
-.ph-right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  flex-shrink: 0;
+  max-width: 520px;
 }
 
 .ph-meta {
   display: flex;
-  gap: 0;
-  border: 1.5px solid var(--ink);
-  border-radius: 8px;
-  overflow: hidden;
+  gap: 32px;
+  margin-top: 8px;
 }
 
 .ph-mi {
-  padding: 10px 18px;
-  border-left: 1.5px solid var(--ink);
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  align-items: center;
+  gap: 3px;
 }
 
-.ph-mi:last-child { border-left: none; }
-
 .ph-mv {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 900;
   letter-spacing: -0.02em;
 }
@@ -165,159 +146,13 @@ nav {
   font-weight: 600;
 }
 
-/* ── SESSIONS DETAIL ── */
-.sessions-detail {
+/* SESSIONS */
+.sessions-section {
+  padding: 64px 48px;
   border-bottom: 1.5px solid var(--ink);
-}
-
-.session-block {
-  border-bottom: 1.5px solid var(--ink);
-}
-
-.session-block:last-child { border-bottom: none; }
-
-.sb-header {
-  display: grid;
-  grid-template-columns: 56px 1fr auto;
-  border-bottom: 1px solid var(--border);
-  background: var(--off);
-}
-
-.sb-num {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 900;
-  color: var(--white);
-  background: var(--ink);
-  border-left: 1.5px solid var(--ink);
-}
-
-.sb-title-wrap {
-  padding: 18px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.sb-fa {
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-}
-
-.sb-it {
-  font-size: 12px;
-  color: var(--ink3);
-  font-weight: 500;
-  direction: ltr;
-  text-align: right;
-}
-
-.sb-date {
-  padding: 18px 24px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  border-right: 1px solid var(--border);
-}
-
-.sb-date-main {
-  font-size: 13px;
-  font-weight: 800;
-  color: var(--ink);
-  direction: ltr;
-  text-align: left;
-}
-
-.sb-date-sub {
-  font-size: 10px;
-  color: var(--ink3);
-  direction: ltr;
-  text-align: left;
-}
-
-.sb-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-
-.sb-desc-col {
-  padding: 24px 24px;
-  border-left: 1px solid var(--border);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.sb-desc-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--ink3);
-}
-
-.sb-desc-text {
-  font-size: 13.5px;
-  color: var(--ink2);
-  line-height: 1.85;
-}
-
-.sb-topics-col {
-  padding: 24px 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.sb-topics-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--ink3);
-}
-
-.topic-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.topic-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--ink);
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: var(--white);
-}
-
-.topic-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  flex-shrink: 0;
-}
-
-.topic-it {
-  font-size: 11px;
-  color: var(--ink3);
-  direction: ltr;
-  margin-right: auto;
-}
-
-/* ── INCLUDES ── */
-.includes-section {
-  padding: 48px 48px;
-  border-bottom: 1.5px solid var(--ink);
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .sec-title {
@@ -325,68 +160,177 @@ nav {
   font-weight: 900;
   letter-spacing: -0.03em;
   line-height: 1.1;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .sec-title em { font-style: normal; color: var(--green); }
 
-.inc-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.inc-cell {
-  padding: 22px 20px;
-  border-left: 1.5px solid var(--ink);
+.sessions-list {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  transition: background 0.12s;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.inc-cell:last-child { border-left: none; }
-.inc-cell:nth-child(4) { border-top: 1.5px solid var(--ink); }
-.inc-cell:nth-child(5) { border-top: 1.5px solid var(--ink); }
-.inc-cell:nth-child(6) { border-top: 1.5px solid var(--ink); border-left: none; }
-.inc-cell:hover { background: var(--off); }
+.s-card {
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
 
-.inc-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
+.s-card:hover { border-color: var(--ink3); }
 
-.inc-title {
-  font-size: 13px;
+.s-header {
+  padding: 20px 24px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.s-titles { display: flex; flex-direction: column; gap: 3px; }
+
+.s-fa {
+  font-size: 19px;
   font-weight: 800;
   color: var(--ink);
-  margin-bottom: 3px;
 }
 
-.inc-desc {
-  font-size: 11.5px;
+.s-it {
+  font-size: 11px;
   color: var(--ink3);
-  line-height: 1.65;
+  font-weight: 500;
+  direction: ltr;
+  text-align: right;
 }
 
-/* ── PRICING ── */
-.pricing-section {
+.s-header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.s-num {
+  font-size: 11px;
+  font-weight: 900;
+  color: var(--white);
   background: var(--ink);
-  padding: 48px 48px;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.s-date {
+  font-size: 11px;
+  color: var(--ink3);
+  font-weight: 600;
+  direction: ltr;
+}
+
+.s-body {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.s-desc {
+  font-size: 13.5px;
+  color: var(--ink2);
+  line-height: 1.8;
+}
+
+.s-topics-label {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--ink3);
+}
+
+.s-pills {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: var(--green-lt);
+  color: var(--green-dk);
+  border: 1px solid var(--green);
+  white-space: nowrap;
+  direction: ltr;
+}
+
+/* INCLUDES */
+.includes-section {
+  padding: 64px 48px;
+  background: var(--off);
   border-bottom: 1.5px solid var(--ink);
 }
 
-.pricing-section .sec-title { color: var(--white); }
+.inc-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.inc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.inc-card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.inc-icon { font-size: 20px; flex-shrink: 0; }
+.inc-title { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.inc-desc { font-size: 12px; color: var(--ink3); line-height: 1.65; }
+
+/* PRICING */
+.pricing-section {
+  padding: 64px 48px;
+  background: var(--ink);
+  border-bottom: 1.5px solid var(--ink);
+}
+
+.pricing-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pricing-section .sec-title { color: var(--white); margin-bottom: 8px; }
 .pricing-section .sec-title em { color: var(--green); }
+
+.pricing-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 28px;
+}
 
 .pricing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 16px;
 }
 
 .p-card {
   border: 1.5px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 28px;
   display: flex;
   flex-direction: column;
@@ -394,23 +338,11 @@ nav {
   transition: border-color 0.15s;
 }
 
-.p-card:hover { border-color: rgba(255,255,255,0.22); }
-.p-card.feat { border-color: var(--green); background: rgba(126,200,0,0.04); }
+.p-card:hover { border-color: rgba(255,255,255,0.25); }
+.p-card.feat { border-color: var(--green); background: rgba(126,200,0,0.05); }
 
-.p-lbl {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.3);
-}
-
-.p-name {
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
+.p-lbl { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.3); }
+.p-name { font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: -0.02em; line-height: 1.2; }
 
 .p-amt {
   font-size: 48px;
@@ -424,25 +356,19 @@ nav {
 
 .p-amt.g { color: var(--green); }
 
-.p-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.28);
-  direction: ltr;
-  text-align: right;
-  margin-top: 2px;
-}
+.p-note { font-size: 11px; color: rgba(255,255,255,0.28); direction: ltr; text-align: right; margin-top: 2px; }
 
 .p-disc {
   display: inline-flex;
   align-items: center;
   gap: 5px;
   background: rgba(126,200,0,0.12);
-  border: 1px solid rgba(126,200,0,0.25);
+  border: 1px solid rgba(126,200,0,0.3);
   color: var(--green);
   font-size: 12px;
   font-weight: 800;
   padding: 6px 12px;
-  border-radius: 5px;
+  border-radius: 20px;
   width: fit-content;
 }
 
@@ -454,21 +380,13 @@ nav {
   border-top: 1px solid rgba(255,255,255,0.07);
 }
 
-.p-feat {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.5;
-}
-
+.p-feat { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.55); }
 .p-chk { color: var(--green); flex-shrink: 0; }
 
 .p-btn {
   display: block;
   padding: 13px 20px;
-  border-radius: 7px;
+  border-radius: 8px;
   font-family: 'Vazirmatn', sans-serif;
   font-size: 13px;
   font-weight: 800;
@@ -484,46 +402,37 @@ nav {
 
 .p-btn:hover { background: rgba(255,255,255,0.07); }
 
-.p-btn.g-btn {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--white);
-}
-
+.p-btn.g-btn { background: var(--green); border-color: var(--green); color: var(--white); }
 .p-btn.g-btn:hover { background: var(--green-dk); border-color: var(--green-dk); }
 
-/* ── BOTTOM CTA ── */
+/* BOTTOM CTA */
 .bottom-cta {
-  padding: 48px 48px;
+  padding: 64px 48px;
+  text-align: center;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  border-bottom: 1.5px solid var(--ink);
+  gap: 20px;
 }
 
-.bcta-text {
-  font-size: 28px;
+.bcta-title {
+  font-size: 36px;
   font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
-.bcta-text em { font-style: normal; color: var(--green); }
+.bcta-title em { font-style: normal; color: var(--green); }
 
-.bcta-btns {
-  display: flex;
-  gap: 10px;
-  flex-shrink: 0;
-}
+.bcta-btns { display: flex; gap: 12px; justify-content: center; }
 
 .btn-main {
   background: var(--ink);
   color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: 8px;
   border: 1.5px solid var(--ink);
   cursor: pointer;
@@ -538,9 +447,9 @@ nav {
   background: transparent;
   color: var(--ink);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
-  padding: 14px 28px;
+  padding: 15px 32px;
   border-radius: 8px;
   border: 1.5px solid var(--ink);
   cursor: pointer;
@@ -551,59 +460,40 @@ nav {
 
 .btn-out:hover { background: var(--off); }
 
-/* ── FOOTER ── */
 footer {
   padding: 24px 48px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: var(--ink);
+  border-top: 1.5px solid var(--ink);
 }
 
-.f-logo {
-  font-size: 15px;
-  font-weight: 900;
-  color: var(--white);
-  text-decoration: none;
-}
-
-.f-logo span {
-  background: var(--green);
-  color: var(--white);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 4px;
-}
-
+.f-logo { font-size: 15px; font-weight: 900; color: var(--white); text-decoration: none; }
+.f-logo span { background: var(--green); color: var(--white); padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
 .f-note { font-size: 11px; color: rgba(255,255,255,0.25); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   nav { padding: 14px 24px; }
-  .page-header { padding: 36px 24px 28px; flex-direction: column; align-items: flex-start; gap: 20px; }
-  .ph-title { font-size: 36px; }
-  .sb-header { grid-template-columns: 40px 1fr; }
-  .sb-date { display: none; }
-  .sb-body { grid-template-columns: 1fr; }
-  .sb-desc-col { border-left: none; border-bottom: 1px solid var(--border); }
-  .includes-section, .pricing-section, .bottom-cta { padding: 36px 24px; }
+  .page-header { padding: 48px 24px 36px; }
+  .ph-title { font-size: 34px; }
+  .sessions-section { padding: 48px 24px; }
+  .includes-section, .pricing-section, .bottom-cta { padding: 48px 24px; }
   .inc-grid { grid-template-columns: 1fr 1fr; }
   .pricing-grid { grid-template-columns: 1fr; }
-  .bottom-cta { flex-direction: column; align-items: flex-start; gap: 16px; }
   footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
 }
 
 @media (max-width: 540px) {
-  .ph-title { font-size: 30px; }
+  .ph-title { font-size: 28px; }
+  .ph-meta { gap: 20px; }
   .inc-grid { grid-template-columns: 1fr; }
-  .inc-cell { border-left: none !important; border-top: 1.5px solid var(--ink) !important; }
-  .inc-cell:first-child { border-top: none !important; }
+  .bcta-btns { flex-direction: column; align-items: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="nav-links">
@@ -612,289 +502,224 @@ footer {
   </div>
 </nav>
 
-<!-- PAGE HEADER -->
 <div class="page-header">
-  <div class="ph-left">
-    <div class="ph-label">اطلاعات کامل</div>
-    <h1 class="ph-title">همه چیز درباره<br><em>ورکشاپ‌ها</em></h1>
-    <p class="ph-desc">پنج ورکشاپ تخصصی گرامر ایتالیایی — هر کدوم مستقل، هر کدوم با محتوای کامل. اینجا همه چیز رو می‌بینی.</p>
-  </div>
-  <div class="ph-right">
-    <div class="ph-meta">
-      <div class="ph-mi">
-        <div class="ph-mv">۵</div>
-        <div class="ph-ml">جلسه</div>
-      </div>
-      <div class="ph-mi">
-        <div class="ph-mv">۲h</div>
-        <div class="ph-ml">هر جلسه</div>
-      </div>
-      <div class="ph-mi">
-        <div class="ph-mv">هر شنبه</div>
-        <div class="ph-ml">از ۲۳ می</div>
-      </div>
-    </div>
+  <div class="ph-label">اطلاعات کامل</div>
+  <h1 class="ph-title">همه چیز درباره <em>ورکشاپ‌ها</em></h1>
+  <p class="ph-desc">پنج ورکشاپ تخصصی گرامر ایتالیایی — هر کدوم مستقل، هر کدوم با محتوای کامل.</p>
+  <div class="ph-meta">
+    <div class="ph-mi"><div class="ph-mv">۵</div><div class="ph-ml">جلسه</div></div>
+    <div class="ph-mi"><div class="ph-mv">۲ ساعت</div><div class="ph-ml">هر جلسه</div></div>
+    <div class="ph-mi"><div class="ph-mv">هر شنبه</div><div class="ph-ml">از ۲۳ می</div></div>
   </div>
 </div>
 
-<!-- SESSIONS DETAIL -->
-<div class="sessions-detail">
+<div class="sessions-section">
+  <h2 class="sec-title">برنامه <em>کامل</em></h2>
+  <div class="sessions-list">
 
-  <!-- SESSION 1 -->
-  <div class="session-block">
-    <div class="sb-header">
-      <div class="sb-num">۰۱</div>
-      <div class="sb-title-wrap">
-        <div class="sb-fa">زمان‌های گذشته</div>
-        <div class="sb-it">I tempi del passato</div>
+    <div class="s-card">
+      <div class="s-header">
+        <div class="s-titles">
+          <div class="s-fa">زمان‌های گذشته</div>
+          <div class="s-it">I tempi del passato</div>
+        </div>
+        <div class="s-header-right">
+          <div class="s-date">Sat 23 May</div>
+          <div class="s-num">۰۱</div>
+        </div>
       </div>
-      <div class="sb-date">
-        <div class="sb-date-main">Sat 23 May 2025</div>
-        <div class="sb-date-sub">Session 01 · 2 hours</div>
-      </div>
-    </div>
-    <div class="sb-body">
-      <div class="sb-desc-col">
-        <div class="sb-desc-title">درباره این جلسه</div>
-        <div class="sb-desc-text">یاد می‌گیری چطور داستان تعریف کنی، عادت‌های گذشته رو بگی و رویدادها رو به ترتیب زمانی بچینی. تفاوت بین سه زمان گذشته اصلی رو کاملاً می‌فهمی و می‌تونی باهاشون جمله بسازی.</div>
-      </div>
-      <div class="sb-topics-col">
-        <div class="sb-topics-title">موضوعات</div>
-        <div class="topic-list">
-          <div class="topic-item"><div class="topic-dot"></div>passato prossimo<div class="topic-it">گذشته کامل</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>imperfetto<div class="topic-it">گذشته استمراری</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>trapassato prossimo<div class="topic-it">گذشته بعید</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>stare + gerundio<div class="topic-it">داشتم می‌رفتم</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>stare + per + infinito<div class="topic-it">داشت اتفاق می‌افتاد</div></div>
+      <div class="s-body">
+        <div class="s-desc">یاد می‌گیری چطور داستان تعریف کنی، عادت‌های گذشته رو بگی و رویدادها رو به ترتیب زمانی بچینی. تفاوت بین سه زمان گذشته اصلی رو کاملاً می‌فهمی و می‌تونی باهاشون جمله بسازی.</div>
+        <div class="s-topics-label">موضوعات</div>
+        <div class="s-pills">
+          <span class="pill">passato prossimo</span>
+          <span class="pill">imperfetto</span>
+          <span class="pill">trapassato prossimo</span>
+          <span class="pill">stare + gerundio</span>
+          <span class="pill">stare + per + infinito</span>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SESSION 2 -->
-  <div class="session-block">
-    <div class="sb-header">
-      <div class="sb-num">۰۲</div>
-      <div class="sb-title-wrap">
-        <div class="sb-fa">ضمایر</div>
-        <div class="sb-it">I pronomi</div>
+    <div class="s-card">
+      <div class="s-header">
+        <div class="s-titles">
+          <div class="s-fa">ضمایر</div>
+          <div class="s-it">I pronomi</div>
+        </div>
+        <div class="s-header-right">
+          <div class="s-date">Sat 30 May</div>
+          <div class="s-num">۰۲</div>
+        </div>
       </div>
-      <div class="sb-date">
-        <div class="sb-date-main">Sat 30 May 2025</div>
-        <div class="sb-date-sub">Session 02 · 2 hours</div>
-      </div>
-    </div>
-    <div class="sb-body">
-      <div class="sb-desc-col">
-        <div class="sb-desc-title">درباره این جلسه</div>
-        <div class="sb-desc-text">یاد می‌گیری چطور مثل یه ایتالیایی واقعی صحبت کنی — بدون تکرار اسم‌ها. ضمایر چیزیه که حرف زدنت رو طبیعی و روان می‌کنه.</div>
-      </div>
-      <div class="sb-topics-col">
-        <div class="sb-topics-title">موضوعات</div>
-        <div class="topic-list">
-          <div class="topic-item"><div class="topic-dot"></div>pronomi diretti<div class="topic-it">ضمایر مستقیم</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>pronomi indiretti<div class="topic-it">ضمایر غیرمستقیم</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>pronomi combinati<div class="topic-it">ضمایر ترکیبی</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>pronomi riflessivi<div class="topic-it">ضمایر انعکاسی</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>ci e ne<div class="topic-it">ضمایر ci و ne</div></div>
+      <div class="s-body">
+        <div class="s-desc">یاد می‌گیری چطور مثل یه ایتالیایی واقعی صحبت کنی — بدون تکرار اسم‌ها. ضمایر چیزیه که حرف زدنت رو طبیعی و روان می‌کنه.</div>
+        <div class="s-topics-label">موضوعات</div>
+        <div class="s-pills">
+          <span class="pill">pronomi diretti</span>
+          <span class="pill">pronomi indiretti</span>
+          <span class="pill">pronomi combinati</span>
+          <span class="pill">pronomi riflessivi</span>
+          <span class="pill">ci e ne</span>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SESSION 3 -->
-  <div class="session-block">
-    <div class="sb-header">
-      <div class="sb-num">۰۳</div>
-      <div class="sb-title-wrap">
-        <div class="sb-fa">امری</div>
-        <div class="sb-it">L'imperativo</div>
+    <div class="s-card">
+      <div class="s-header">
+        <div class="s-titles">
+          <div class="s-fa">امری</div>
+          <div class="s-it">L'imperativo</div>
+        </div>
+        <div class="s-header-right">
+          <div class="s-date">Sat 6 Jun</div>
+          <div class="s-num">۰۳</div>
+        </div>
       </div>
-      <div class="sb-date">
-        <div class="sb-date-main">Sat 6 Jun 2025</div>
-        <div class="sb-date-sub">Session 03 · 2 hours</div>
-      </div>
-    </div>
-    <div class="sb-body">
-      <div class="sb-desc-col">
-        <div class="sb-desc-title">درباره این جلسه</div>
-        <div class="sb-desc-text">یاد می‌گیری چطور دستور بدی، راهنمایی کنی و درخواست کنی — هم رسمی هم غیررسمی. تفاوت بین tu و Lei و نحوه استفاده از ضمایر با امری رو کاملاً درک می‌کنی.</div>
-      </div>
-      <div class="sb-topics-col">
-        <div class="sb-topics-title">موضوعات</div>
-        <div class="topic-list">
-          <div class="topic-item"><div class="topic-dot"></div>imperativo affermativo<div class="topic-it">امری مثبت</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>imperativo negativo<div class="topic-it">امری منفی</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>formale e informale<div class="topic-it">رسمی و غیررسمی</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>imperativo con pronomi<div class="topic-it">امری با ضمایر</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>imperativo di terza persona<div class="topic-it">امری سوم شخص</div></div>
+      <div class="s-body">
+        <div class="s-desc">یاد می‌گیری چطور دستور بدی، راهنمایی کنی و درخواست کنی — هم رسمی هم غیررسمی. تفاوت بین tu و Lei و نحوه استفاده از ضمایر با امری رو کاملاً درک می‌کنی.</div>
+        <div class="s-topics-label">موضوعات</div>
+        <div class="s-pills">
+          <span class="pill">imperativo affermativo</span>
+          <span class="pill">imperativo negativo</span>
+          <span class="pill">formale e informale</span>
+          <span class="pill">imperativo con pronomi</span>
+          <span class="pill">imperativo di terza persona</span>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SESSION 4 -->
-  <div class="session-block">
-    <div class="sb-header">
-      <div class="sb-num">۰۴</div>
-      <div class="sb-title-wrap">
-        <div class="sb-fa">مستقبل و مشروط</div>
-        <div class="sb-it">Il condizionale e il futuro</div>
+    <div class="s-card">
+      <div class="s-header">
+        <div class="s-titles">
+          <div class="s-fa">مستقبل و مشروط</div>
+          <div class="s-it">Il condizionale e il futuro</div>
+        </div>
+        <div class="s-header-right">
+          <div class="s-date">Sat 13 Jun</div>
+          <div class="s-num">۰۴</div>
+        </div>
       </div>
-      <div class="sb-date">
-        <div class="sb-date-main">Sat 13 Jun 2025</div>
-        <div class="sb-date-sub">Session 04 · 2 hours</div>
-      </div>
-    </div>
-    <div class="sb-body">
-      <div class="sb-desc-col">
-        <div class="sb-desc-title">درباره این جلسه</div>
-        <div class="sb-desc-text">یاد می‌گیری درباره آینده، آرزوها، فرضیه‌ها و شرط‌ها صحبت کنی. نکته جالب: مستقبل و مشروط از یه ریشه ساخته می‌شن — یادگیری یکی کمک می‌کنه اون یکی رو هم راحت‌تر یاد بگیری.</div>
-      </div>
-      <div class="sb-topics-col">
-        <div class="sb-topics-title">موضوعات</div>
-        <div class="topic-list">
-          <div class="topic-item"><div class="topic-dot"></div>futuro semplice<div class="topic-it">مستقبل ساده</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>futuro anteriore<div class="topic-it">مستقبل قبلی</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>condizionale presente<div class="topic-it">مشروط حال</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>condizionale passato<div class="topic-it">مشروط گذشته</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>periodo ipotetico T1 & T2<div class="topic-it">جملات شرطی</div></div>
+      <div class="s-body">
+        <div class="s-desc">یاد می‌گیری درباره آینده، آرزوها، فرضیه‌ها و شرط‌ها صحبت کنی. مستقبل و مشروط از یه ریشه ساخته می‌شن — یادگیری یکی کمک می‌کنه اون یکی رو هم راحت‌تر یاد بگیری.</div>
+        <div class="s-topics-label">موضوعات</div>
+        <div class="s-pills">
+          <span class="pill">futuro semplice</span>
+          <span class="pill">futuro anteriore</span>
+          <span class="pill">condizionale presente</span>
+          <span class="pill">condizionale passato</span>
+          <span class="pill">periodo ipotetico T1 & T2</span>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- SESSION 5 -->
-  <div class="session-block">
-    <div class="sb-header">
-      <div class="sb-num">۰۵</div>
-      <div class="sb-title-wrap">
-        <div class="sb-fa">التزامی</div>
-        <div class="sb-it">Il congiuntivo</div>
+    <div class="s-card">
+      <div class="s-header">
+        <div class="s-titles">
+          <div class="s-fa">التزامی</div>
+          <div class="s-it">Il congiuntivo</div>
+        </div>
+        <div class="s-header-right">
+          <div class="s-date">Sat 20 Jun</div>
+          <div class="s-num">۰۵</div>
+        </div>
       </div>
-      <div class="sb-date">
-        <div class="sb-date-main">Sat 20 Jun 2025</div>
-        <div class="sb-date-sub">Session 05 · 2 hours</div>
-      </div>
-    </div>
-    <div class="sb-body">
-      <div class="sb-desc-col">
-        <div class="sb-desc-title">درباره این جلسه</div>
-        <div class="sb-desc-text">یاد می‌گیری شک، نظر، احساسات و فرضیه‌های پیچیده رو بیان کنی. التزامی سخت‌ترین بخش گرامر ایتالیاییه — ولی با توضیح درست کاملاً قابل یادگیریه.</div>
-      </div>
-      <div class="sb-topics-col">
-        <div class="sb-topics-title">موضوعات</div>
-        <div class="topic-list">
-          <div class="topic-item"><div class="topic-dot"></div>congiuntivo presente<div class="topic-it">التزامی حال</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>congiuntivo imperfetto<div class="topic-it">التزامی ناقص</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>congiuntivo passato<div class="topic-it">التزامی گذشته</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>verbi e congiunzioni trigger<div class="topic-it">افعال و接続 محرک</div></div>
-          <div class="topic-item"><div class="topic-dot"></div>periodo ipotetico T3<div class="topic-it">جملات شرطی نوع ۳</div></div>
+      <div class="s-body">
+        <div class="s-desc">یاد می‌گیری شک، نظر، احساسات و فرضیه‌های پیچیده رو بیان کنی. التزامی سخت‌ترین بخش گرامر ایتالیاییه — ولی با توضیح درست کاملاً قابل یادگیریه.</div>
+        <div class="s-topics-label">موضوعات</div>
+        <div class="s-pills">
+          <span class="pill">congiuntivo presente</span>
+          <span class="pill">congiuntivo imperfetto</span>
+          <span class="pill">congiuntivo passato</span>
+          <span class="pill">verbi e congiunzioni trigger</span>
+          <span class="pill">periodo ipotetico T3</span>
         </div>
       </div>
     </div>
-  </div>
 
+  </div>
 </div>
 
-<!-- INCLUDES -->
 <div class="includes-section">
-  <h2 class="sec-title">هر جلسه <em>چی داره؟</em></h2>
-  <div class="inc-grid">
-    <div class="inc-cell">
-      <div class="inc-icon">📖</div>
-      <div>
-        <div class="inc-title">توضیح کامل گرامر</div>
-        <div class="inc-desc">با مثال‌های واقعی و دیالوگ — نه فقط قوانین خشک.</div>
+  <div class="inc-inner">
+    <h2 class="sec-title">هر جلسه <em>چی داره؟</em></h2>
+    <div class="inc-grid">
+      <div class="inc-card">
+        <div class="inc-icon">📖</div>
+        <div><div class="inc-title">توضیح کامل گرامر</div><div class="inc-desc">با مثال‌های واقعی و دیالوگ — نه فقط قوانین خشک.</div></div>
       </div>
-    </div>
-    <div class="inc-cell">
-      <div class="inc-icon">✏️</div>
-      <div>
-        <div class="inc-title">تمرین‌های متنوع</div>
-        <div class="inc-desc">۷ نوع تمرین مختلف در کلاس.</div>
+      <div class="inc-card">
+        <div class="inc-icon">✏️</div>
+        <div><div class="inc-title">تمرین‌های متنوع</div><div class="inc-desc">۷ نوع تمرین مختلف در کلاس.</div></div>
       </div>
-    </div>
-    <div class="inc-cell">
-      <div class="inc-icon">💬</div>
-      <div>
-        <div class="inc-title">دیالوگ و مکالمه</div>
-        <div class="inc-desc">گرامر در کاربرد طبیعی و واقعی.</div>
+      <div class="inc-card">
+        <div class="inc-icon">💬</div>
+        <div><div class="inc-title">دیالوگ و مکالمه</div><div class="inc-desc">گرامر در کاربرد طبیعی و واقعی.</div></div>
       </div>
-    </div>
-    <div class="inc-cell">
-      <div class="inc-icon">📚</div>
-      <div>
-        <div class="inc-title">کتابچه تمرین PDF</div>
-        <div class="inc-desc">اختصاصی هر جلسه — چاپ یا دیجیتال.</div>
+      <div class="inc-card">
+        <div class="inc-icon">📚</div>
+        <div><div class="inc-title">کتابچه تمرین PDF</div><div class="inc-desc">اختصاصی هر جلسه — چاپ یا دیجیتال.</div></div>
       </div>
-    </div>
-    <div class="inc-cell">
-      <div class="inc-icon">🗂️</div>
-      <div>
-        <div class="inc-title">کارت مرجع</div>
-        <div class="inc-desc">خلاصه همه قوانین در یک صفحه.</div>
+      <div class="inc-card">
+        <div class="inc-icon">🗂️</div>
+        <div><div class="inc-title">کارت مرجع</div><div class="inc-desc">خلاصه همه قوانین در یک صفحه.</div></div>
       </div>
-    </div>
-    <div class="inc-cell">
-      <div class="inc-icon">🎯</div>
-      <div>
-        <div class="inc-title">طراحی برای فارسی‌زبان‌ها</div>
-        <div class="inc-desc">توضیحات با در نظر گرفتن تفاوت دو زبان.</div>
+      <div class="inc-card">
+        <div class="inc-icon">🎯</div>
+        <div><div class="inc-title">طراحی برای فارسی‌زبان‌ها</div><div class="inc-desc">توضیحات با در نظر گرفتن تفاوت دو زبان.</div></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PRICING -->
 <div class="pricing-section">
-  <h2 class="sec-title">قیمت‌ها</h2>
-  <div class="pricing-grid">
-    <div class="p-card">
-      <div class="p-lbl">جلسه جداگانه</div>
-      <div class="p-name">یه ورکشاپ<br>به انتخابت</div>
-      <div>
-        <div class="p-amt">€12</div>
-        <div class="p-note">هر جلسه · پرداخت یکجا</div>
+  <div class="pricing-inner">
+    <h2 class="sec-title">قیمت‌ها</h2>
+    <p class="pricing-desc">یه جلسه یا همه — انتخاب با توئه.</p>
+    <div class="pricing-grid">
+      <div class="p-card">
+        <div class="p-lbl">جلسه جداگانه</div>
+        <div class="p-name">یه ورکشاپ به انتخابت</div>
+        <div>
+          <div class="p-amt">€12</div>
+          <div class="p-note">هر جلسه · پرداخت یکجا</div>
+        </div>
+        <div class="p-feats">
+          <div class="p-feat"><span class="p-chk">✓</span>یه جلسه به انتخابت</div>
+          <div class="p-feat"><span class="p-chk">✓</span>کتابچه تمرین PDF</div>
+          <div class="p-feat"><span class="p-chk">✓</span>کارت مرجع</div>
+          <div class="p-feat"><span class="p-chk">✓</span>بدون پیش‌نیاز</div>
+        </div>
+        <a href="booking.html" class="p-btn">انتخاب جلسه</a>
       </div>
-      <div class="p-feats">
-        <div class="p-feat"><span class="p-chk">✓</span>یه جلسه به انتخابت</div>
-        <div class="p-feat"><span class="p-chk">✓</span>کتابچه تمرین PDF</div>
-        <div class="p-feat"><span class="p-chk">✓</span>کارت مرجع</div>
-        <div class="p-feat"><span class="p-chk">✓</span>بدون پیش‌نیاز</div>
+      <div class="p-card feat">
+        <div class="p-lbl">بسته کامل</div>
+        <div class="p-name">همه ۵ جلسه با هم</div>
+        <div>
+          <div class="p-disc">🎉 ۱۷٪ تخفیف</div>
+          <div class="p-amt g" style="margin-top:10px;">€50</div>
+          <div class="p-note">به جای €60 · پرداخت یکجا</div>
+        </div>
+        <div class="p-feats">
+          <div class="p-feat"><span class="p-chk">✓</span>همه ۵ جلسه</div>
+          <div class="p-feat"><span class="p-chk">✓</span>۵ کتابچه تمرین PDF</div>
+          <div class="p-feat"><span class="p-chk">✓</span>۵ کارت مرجع</div>
+          <div class="p-feat"><span class="p-chk">✓</span>€۱۰ صرفه‌جویی</div>
+        </div>
+        <a href="booking.html" class="p-btn g-btn">بسته کامل رو بگیر</a>
       </div>
-      <a href="booking.html" class="p-btn">انتخاب جلسه</a>
-    </div>
-    <div class="p-card feat">
-      <div class="p-lbl">بسته کامل</div>
-      <div class="p-name">همه ۵ جلسه<br>با هم</div>
-      <div>
-        <div class="p-disc">🎉 ۱۷٪ تخفیف</div>
-        <div class="p-amt g" style="margin-top:10px;">€50</div>
-        <div class="p-note">به جای €60 · پرداخت یکجا</div>
-      </div>
-      <div class="p-feats">
-        <div class="p-feat"><span class="p-chk">✓</span>همه ۵ جلسه</div>
-        <div class="p-feat"><span class="p-chk">✓</span>۵ کتابچه تمرین PDF</div>
-        <div class="p-feat"><span class="p-chk">✓</span>۵ کارت مرجع</div>
-        <div class="p-feat"><span class="p-chk">✓</span>پایه گرامری کامل</div>
-        <div class="p-feat"><span class="p-chk">✓</span>€۱۰ صرفه‌جویی</div>
-      </div>
-      <a href="booking.html" class="p-btn g-btn">بسته کامل رو بگیر</a>
     </div>
   </div>
 </div>
 
-<!-- BOTTOM CTA -->
 <div class="bottom-cta">
-  <div class="bcta-text">آماده‌ای شروع کنی؟<br><em>همین الان ثبت‌نام کن.</em></div>
+  <h2 class="bcta-title">آماده‌ای شروع کنی؟<br><em>همین الان ثبت‌نام کن.</em></h2>
   <div class="bcta-btns">
     <a href="index.html" class="btn-out">برگشت به خانه</a>
     <a href="booking.html" class="btn-main">ثبت‌نام کن ←</a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <a href="index.html" class="f-logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>

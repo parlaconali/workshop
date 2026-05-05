@@ -25,13 +25,12 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Vazirmatn', sans-serif;
-  background: var(--white);
+  background: var(--off);
   color: var(--ink);
   direction: rtl;
   overflow-x: hidden;
 }
 
-/* ── NAV ── */
 nav {
   display: flex;
   align-items: center;
@@ -44,235 +43,159 @@ nav {
   z-index: 100;
 }
 
-.logo {
-  font-size: 17px;
-  font-weight: 900;
-  color: var(--ink);
-  text-decoration: none;
-}
+.logo { font-size: 17px; font-weight: 900; color: var(--ink); text-decoration: none; }
+.logo span { background: var(--green); color: var(--white); padding: 2px 9px; border-radius: 5px; margin-right: 4px; }
 
-.logo span {
-  background: var(--green);
-  color: var(--white);
-  padding: 2px 9px;
-  border-radius: 5px;
-  margin-right: 4px;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.nav-links { display: flex; align-items: center; gap: 12px; }
 
 .nav-link {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink2);
-  text-decoration: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: background 0.15s;
+  font-size: 13px; font-weight: 600; color: var(--ink2);
+  text-decoration: none; padding: 8px 14px; border-radius: 6px; transition: background 0.15s;
 }
 
 .nav-link:hover { background: var(--off); }
 
-/* ── STEPS BAR ── */
+/* STEPS */
 .steps-bar {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
   padding: 20px 48px;
+  background: var(--white);
   border-bottom: 1.5px solid var(--ink);
-  background: var(--off);
 }
 
-.step {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.step { display: flex; align-items: center; gap: 8px; }
 
 .step-num {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
+  width: 28px; height: 28px; border-radius: 50%;
   border: 2px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--ink3);
-  background: var(--white);
-  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 800; color: var(--ink3);
+  background: var(--white); transition: all 0.2s;
 }
 
-.step-label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink3);
-  transition: color 0.2s;
-}
-
-.step.active .step-num {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: var(--white);
-}
-
+.step-label { font-size: 12px; font-weight: 700; color: var(--ink3); transition: color 0.2s; }
+.step.active .step-num { background: var(--ink); border-color: var(--ink); color: var(--white); }
 .step.active .step-label { color: var(--ink); }
-
-.step.done .step-num {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--white);
-}
-
+.step.done .step-num { background: var(--green); border-color: var(--green); color: var(--white); }
 .step.done .step-label { color: var(--green-dk); }
 
-.step-line {
-  width: 48px;
-  height: 1.5px;
-  background: var(--border);
-  margin: 0 6px;
-  transition: background 0.2s;
-}
-
+.step-line { width: 40px; height: 1.5px; background: var(--border); margin: 0 8px; transition: background 0.2s; }
 .step-line.done { background: var(--green); }
 
-/* ── PAGES ── */
+/* PAGES */
 .page { display: none; }
 .page.active { display: block; }
 
-/* ── FORM PAGE ── */
-.form-wrap {
+/* FORM LAYOUT */
+.form-layout {
+  max-width: 960px;
+  margin: 48px auto;
+  padding: 0 24px;
   display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  min-height: calc(100vh - 120px);
+  grid-template-columns: 1fr 1.5fr;
+  gap: 28px;
+  align-items: start;
 }
 
-.form-sidebar {
-  padding: 40px 36px;
-  border-left: 1.5px solid var(--ink);
-  background: var(--off);
+/* SIDEBAR */
+.sidebar {
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 16px;
 }
 
-.fs-title {
-  font-size: 26px;
+.sidebar-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.sidebar-title {
+  font-size: 22px;
   font-weight: 900;
   letter-spacing: -0.02em;
-  line-height: 1.15;
+  line-height: 1.2;
 }
 
-.fs-title em { font-style: normal; color: var(--green); }
+.sidebar-title em { font-style: normal; color: var(--green); }
 
-.selected-display {
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--white);
-}
-
-.sd-header {
-  padding: 12px 16px;
-  background: var(--ink);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.5);
-}
-
-.sd-body {
-  padding: 16px;
+.summary-rows {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
-.sd-row {
+.sum-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
 }
 
-.sd-label { color: var(--ink2); font-weight: 500; }
-.sd-val { font-weight: 800; color: var(--ink); }
-.sd-val.green { color: var(--green-dk); }
+.sum-label { color: var(--ink3); }
+.sum-val { font-weight: 800; color: var(--ink); }
 
-.sd-divider { height: 1px; background: var(--border); }
+.sum-divider { height: 1px; background: var(--border); }
 
-.sd-total {
+.sum-total {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-top: 4px;
 }
 
-.sd-total-label { font-size: 14px; font-weight: 800; }
-.sd-total-price { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; }
+.sum-total-label { font-size: 14px; font-weight: 800; }
+.sum-total-price { font-size: 30px; font-weight: 900; letter-spacing: -0.03em; }
 
-.info-blocks {
+.info-rows {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  overflow: hidden;
+  gap: 12px;
 }
 
-.info-b {
-  padding: 14px 16px;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
+.info-row {
   display: flex;
   gap: 10px;
   align-items: flex-start;
 }
 
-.info-b:last-child { border-bottom: none; }
+.info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+.info-title { font-size: 12px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
+.info-desc { font-size: 11px; color: var(--ink3); line-height: 1.6; }
 
-.ib-icon { font-size: 15px; flex-shrink: 0; }
-.ib-title { font-size: 12px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
-.ib-desc { font-size: 11px; color: var(--ink3); line-height: 1.6; }
-
-/* ── FORM MAIN ── */
-.form-main {
-  padding: 40px 40px;
+/* MAIN FORM */
+.form-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
 }
 
-.form-section-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--ink);
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid var(--ink);
-  letter-spacing: -0.01em;
-}
-
-.f-group {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.f-label {
+.form-section-label {
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  color: var(--ink);
+  letter-spacing: 0.14em;
+  color: var(--ink3);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
 }
 
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.f-group { display: flex; flex-direction: column; gap: 6px; }
+
+.f-label { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--ink); }
+
 .f-input {
-  padding: 13px 14px;
+  padding: 12px 14px;
   border: 1.5px solid var(--border);
   border-radius: 8px;
   font-family: 'Vazirmatn', sans-serif;
@@ -288,201 +211,65 @@ nav {
 .f-input:focus { border-color: var(--ink); background: var(--white); }
 .f-input.error { border-color: var(--red); background: var(--red-lt); }
 
-.f-error {
-  font-size: 11px;
-  color: var(--red);
-  font-weight: 600;
-  display: none;
-}
-
+.f-error { font-size: 11px; color: var(--red); font-weight: 600; display: none; margin-top: 2px; }
 .f-error.show { display: block; }
 
-/* session selector */
-.session-selector {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+/* SESSION OPTIONS */
+.session-selector { display: flex; flex-direction: column; gap: 8px; }
 
 .s-opt {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 13px 15px;
+  padding: 12px 14px;
   border: 1.5px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.12s;
   background: var(--off);
 }
 
-.s-opt:hover { border-color: var(--ink); background: var(--white); }
+.s-opt:hover { border-color: var(--ink3); background: var(--white); }
 .s-opt.active { border-color: var(--ink); background: var(--white); }
 .s-opt.active.featured { border-color: var(--green); background: var(--green-lt); }
 
-.s-opt input[type="radio"] {
-  accent-color: var(--ink);
-  width: 15px;
-  height: 15px;
-  flex-shrink: 0;
-}
+.s-opt input[type="radio"] { accent-color: var(--ink); width: 15px; height: 15px; flex-shrink: 0; }
 
 .s-opt-body { flex: 1; }
-
-.s-opt-name {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.3;
-}
-
-.s-opt-price {
-  font-size: 11px;
-  color: var(--ink3);
-  font-weight: 500;
-  margin-top: 1px;
-  direction: ltr;
-  text-align: right;
-}
+.s-opt-name { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; }
+.s-opt-price { font-size: 11px; color: var(--ink3); font-weight: 500; margin-top: 1px; direction: ltr; text-align: right; }
 
 .s-opt-badge {
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--green);
-  color: var(--white);
+  font-size: 10px; font-weight: 800;
+  padding: 3px 8px; border-radius: 12px;
+  background: var(--green); color: var(--white);
   white-space: nowrap;
 }
-
-.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 
 .form-submit {
   background: var(--ink);
   color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 15px; font-weight: 800;
   padding: 16px 24px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  transition: all 0.15s;
-  margin-top: 4px;
+  border-radius: 10px; border: none;
+  cursor: pointer; width: 100%;
+  transition: all 0.15s; margin-top: 4px;
 }
 
 .form-submit:hover { background: var(--green); }
 
 .form-note {
-  font-size: 11px;
-  color: var(--ink3);
-  text-align: center;
-  line-height: 1.7;
+  font-size: 11px; color: var(--ink3);
+  text-align: center; line-height: 1.7;
 }
 
-/* ── CONFIRM PAGE ── */
-.confirm-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  min-height: calc(100vh - 120px);
-}
-
-.confirm-sidebar {
-  padding: 40px 36px;
-  border-left: 1.5px solid var(--ink);
-  background: var(--off);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.cs-title {
-  font-size: 24px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
-.cs-title em { font-style: normal; color: var(--green); }
-
-.summary-box {
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--white);
-}
-
-.sb-hd {
-  padding: 10px 16px;
-  background: var(--ink);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.5);
-}
-
-.sb-rows {
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sb-r {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-}
-
-.sb-r-label { color: var(--ink2); }
-.sb-r-val { font-weight: 800; color: var(--ink); }
-.sb-r-val.g { color: var(--green-dk); }
-
-.sb-divider { height: 1px; background: var(--border); }
-
-.sb-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 2px;
-}
-
-.sb-total-label { font-size: 14px; font-weight: 800; }
-.sb-total-price { font-size: 28px; font-weight: 900; letter-spacing: -0.03em; }
-
-.warning-box {
-  background: #fff8e6;
-  border: 1.5px solid #e6c040;
-  border-radius: 8px;
-  padding: 14px 16px;
-  font-size: 12px;
-  color: #7a5800;
-  line-height: 1.7;
-  font-weight: 500;
-}
-
-/* ── CONFIRM MAIN ── */
-.confirm-main {
-  padding: 40px 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.confirm-section-title {
-  font-size: 14px;
-  font-weight: 800;
-  color: var(--ink);
-  padding-bottom: 10px;
-  border-bottom: 1.5px solid var(--ink);
-}
-
+/* CONFIRM PAGE */
 .review-table {
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  border: 1.5px solid var(--ink);
+  gap: 0;
+  border: 1.5px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
 }
@@ -491,226 +278,159 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 13px 16px;
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
+  padding: 12px 16px;
   font-size: 13px;
+  border-bottom: 1px solid var(--border);
+  background: var(--white);
 }
 
 .rt-row:last-child { border-bottom: none; }
-
-.rt-label { color: var(--ink3); font-weight: 600; }
-.rt-val { font-weight: 700; color: var(--ink); }
+.rt-row.total-row { background: var(--off); }
+.rt-label { color: var(--ink3); }
+.rt-val { font-weight: 700; }
+.rt-val.big { font-size: 20px; font-weight: 900; }
 
 .edit-link {
-  font-size: 11px;
-  color: var(--ink3);
-  text-decoration: none;
-  cursor: pointer;
-  padding: 3px 8px;
+  font-size: 11px; color: var(--ink3);
+  cursor: pointer; padding: 2px 8px;
   border: 1px solid var(--border);
-  border-radius: 4px;
-  transition: all 0.12s;
+  border-radius: 4px; transition: all 0.12s;
+  text-decoration: none;
 }
 
 .edit-link:hover { border-color: var(--ink); color: var(--ink); }
 
-.payment-methods {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.pm-note {
-  font-size: 12px;
-  color: var(--ink2);
+.warning-note {
+  background: #fff8e4;
+  border: 1px solid #e6c840;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  color: #7a5800;
   line-height: 1.7;
-  padding: 12px 14px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--off);
 }
 
 .confirm-submit {
   background: var(--green);
   color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 15px;
-  font-weight: 800;
+  font-size: 15px; font-weight: 800;
   padding: 16px 24px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+  border-radius: 10px; border: none;
+  cursor: pointer; width: 100%;
   transition: all 0.15s;
 }
 
 .confirm-submit:hover { background: var(--green-dk); }
 
 .back-link {
-  font-size: 13px;
-  color: var(--ink3);
-  text-align: center;
-  cursor: pointer;
-  text-decoration: underline;
-  font-weight: 600;
+  font-size: 13px; color: var(--ink3);
+  text-align: center; cursor: pointer;
+  text-decoration: underline; font-weight: 600;
   transition: color 0.12s;
 }
 
 .back-link:hover { color: var(--ink); }
 
-.confirm-note {
-  font-size: 11px;
-  color: var(--ink3);
-  text-align: center;
-  line-height: 1.7;
-}
-
-/* ── SUCCESS PAGE ── */
+/* SUCCESS */
 .success-page {
-  min-height: calc(100vh - 57px);
+  min-height: calc(100vh - 120px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 60px 48px;
+  padding: 60px 24px;
   text-align: center;
-  gap: 24px;
+  gap: 20px;
 }
 
 .success-icon {
-  width: 80px;
-  height: 80px;
+  width: 72px; height: 72px;
   border-radius: 50%;
   background: var(--green-lt);
   border: 2px solid var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
 }
 
 .success-title {
-  font-size: 40px;
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  line-height: 1.1;
+  font-size: 40px; font-weight: 900;
+  letter-spacing: -0.03em; line-height: 1.1;
 }
 
 .success-title em { font-style: normal; color: var(--green); }
 
 .success-desc {
-  font-size: 15px;
-  color: var(--ink2);
-  line-height: 1.85;
-  max-width: 480px;
+  font-size: 15px; color: var(--ink2);
+  line-height: 1.85; max-width: 460px;
 }
 
-.success-box {
-  border: 1.5px solid var(--ink);
-  border-radius: 10px;
-  padding: 24px 32px;
-  background: var(--off);
+.success-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 24px 28px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 420px;
+  gap: 10px;
+  max-width: 400px;
   width: 100%;
   text-align: right;
 }
 
-.success-box-title {
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--ink3);
+.success-card-label {
+  font-size: 10px; font-weight: 800;
+  letter-spacing: 0.14em; color: var(--ink3);
+  margin-bottom: 4px;
 }
 
-.success-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 13px;
-}
-
-.success-row-label { color: var(--ink3); }
-.success-row-val { font-weight: 800; }
-
-.success-divider { height: 1px; background: var(--border); }
+.s-row { display: flex; justify-content: space-between; font-size: 13px; }
+.s-row-label { color: var(--ink3); }
+.s-row-val { font-weight: 800; }
+.s-divider { height: 1px; background: var(--border); }
 
 .success-email-note {
-  font-size: 13px;
-  color: var(--ink2);
-  line-height: 1.75;
-  max-width: 420px;
+  font-size: 13px; color: var(--ink2);
+  line-height: 1.75; max-width: 420px;
   padding: 14px 18px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--green-lt);
-  border-color: var(--green);
+  border: 1px solid var(--green);
 }
 
 .btn-home {
-  background: var(--ink);
-  color: var(--white);
+  background: var(--ink); color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
-  font-weight: 800;
-  padding: 14px 32px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  display: inline-block;
+  font-size: 14px; font-weight: 800;
+  padding: 14px 32px; border-radius: 8px;
+  border: none; cursor: pointer;
+  text-decoration: none; display: inline-block;
   transition: all 0.15s;
 }
 
 .btn-home:hover { background: var(--green); }
 
-/* ── FOOTER ── */
 footer {
   padding: 24px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: var(--ink);
-  border-top: 1.5px solid var(--ink);
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--ink); border-top: 1.5px solid var(--ink);
 }
 
-.f-logo {
-  font-size: 15px;
-  font-weight: 900;
-  color: var(--white);
-  text-decoration: none;
-}
-
-.f-logo span {
-  background: var(--green);
-  color: var(--white);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 4px;
-}
-
+.f-logo { font-size: 15px; font-weight: 900; color: var(--white); text-decoration: none; }
+.f-logo span { background: var(--green); color: var(--white); padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
 .f-note { font-size: 11px; color: rgba(255,255,255,0.25); }
 
-/* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   nav { padding: 14px 24px; }
-  .steps-bar { padding: 16px 24px; gap: 4px; }
+  .steps-bar { padding: 16px 24px; }
   .step-label { display: none; }
-  .form-wrap, .confirm-wrap { grid-template-columns: 1fr; }
-  .form-sidebar, .confirm-sidebar { border-left: none; border-bottom: 1.5px solid var(--ink); padding: 28px 24px; }
-  .form-main, .confirm-main { padding: 28px 24px; }
+  .form-layout { grid-template-columns: 1fr; margin: 24px auto; }
   .f-row { grid-template-columns: 1fr; }
-  .success-page { padding: 40px 24px; }
-  .success-title { font-size: 30px; }
   footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="index.html" class="logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="nav-links">
@@ -719,77 +439,56 @@ footer {
   </div>
 </nav>
 
-<!-- STEPS BAR -->
 <div class="steps-bar" id="stepsBar">
-  <div class="step active" id="step1">
-    <div class="step-num">۱</div>
-    <div class="step-label">اطلاعات</div>
-  </div>
+  <div class="step active" id="step1"><div class="step-num">۱</div><div class="step-label">اطلاعات</div></div>
   <div class="step-line" id="line1"></div>
-  <div class="step" id="step2">
-    <div class="step-num">۲</div>
-    <div class="step-label">تأیید</div>
-  </div>
+  <div class="step" id="step2"><div class="step-num">۲</div><div class="step-label">تأیید</div></div>
   <div class="step-line" id="line2"></div>
-  <div class="step" id="step3">
-    <div class="step-num">۳</div>
-    <div class="step-label">پرداخت</div>
-  </div>
+  <div class="step" id="step3"><div class="step-num">۳</div><div class="step-label">پرداخت</div></div>
   <div class="step-line" id="line3"></div>
-  <div class="step" id="step4">
-    <div class="step-num">✓</div>
-    <div class="step-label">تأیید نهایی</div>
-  </div>
+  <div class="step" id="step4"><div class="step-num">✓</div><div class="step-label">تأیید نهایی</div></div>
 </div>
 
-<!-- ══ PAGE 1: FORM ══ -->
+<!-- PAGE 1: FORM -->
 <div class="page active" id="pageForm">
-  <div class="form-wrap">
-    <div class="form-sidebar">
-      <div class="fs-title">ثبت‌نام<br><em>ورکشاپ</em></div>
+  <div class="form-layout">
 
-      <div class="selected-display">
-        <div class="sd-header">خلاصه سفارش</div>
-        <div class="sd-body">
-          <div class="sd-row">
-            <div class="sd-label">گزینه انتخابی</div>
-            <div class="sd-val" id="summaryOption">—</div>
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">ثبت‌نام <em>ورکشاپ</em></div>
+        <div class="summary-rows">
+          <div class="sum-row">
+            <div class="sum-label">گزینه انتخابی</div>
+            <div class="sum-val" id="summaryOption">—</div>
           </div>
-          <div class="sd-divider"></div>
-          <div class="sd-total">
-            <div class="sd-total-label">مبلغ قابل پرداخت</div>
-            <div class="sd-total-price" id="summaryPrice">—</div>
+          <div class="sum-divider"></div>
+          <div class="sum-total">
+            <div class="sum-total-label">مبلغ</div>
+            <div class="sum-total-price" id="summaryPrice">—</div>
           </div>
         </div>
       </div>
 
-      <div class="info-blocks">
-        <div class="info-b">
-          <div class="ib-icon">📅</div>
-          <div>
-            <div class="ib-title">شروع جلسات</div>
-            <div class="ib-desc">شنبه ۲۳ می — هر شنبه یه جلسه جدید</div>
+      <div class="sidebar-card">
+        <div class="info-rows">
+          <div class="info-row">
+            <div class="info-icon">📅</div>
+            <div><div class="info-title">شروع جلسات</div><div class="info-desc">شنبه ۲۳ می — هر شنبه یه جلسه جدید</div></div>
           </div>
-        </div>
-        <div class="info-b">
-          <div class="ib-icon">🔐</div>
-          <div>
-            <div class="ib-title">پرداخت امن</div>
-            <div class="ib-desc">از طریق Stripe — اطلاعاتت محفوظه</div>
+          <div class="info-row">
+            <div class="info-icon">🔐</div>
+            <div><div class="info-title">پرداخت امن</div><div class="info-desc">از طریق Stripe — اطلاعاتت محفوظه</div></div>
           </div>
-        </div>
-        <div class="info-b">
-          <div class="ib-icon">↩️</div>
-          <div>
-            <div class="ib-title">بازگشت وجه</div>
-            <div class="ib-desc">تا ۴۸ ساعت قبل از جلسه — بازپرداخت کامل</div>
+          <div class="info-row">
+            <div class="info-icon">↩️</div>
+            <div><div class="info-title">بازگشت وجه</div><div class="info-desc">تا ۴۸ ساعت قبل از جلسه — بازپرداخت کامل</div></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="form-main">
-      <div class="form-section-title">اطلاعات شخصی</div>
+    <div class="form-card">
+      <div class="form-section-label">اطلاعات شخصی</div>
 
       <div class="f-row">
         <div class="f-group">
@@ -816,203 +515,172 @@ footer {
         <div class="f-error" id="phoneErr">این فیلد اجباریه</div>
       </div>
 
-      <div class="form-section-title" style="margin-top:4px;">گزینه مورد نظر</div>
+      <div class="form-section-label" style="margin-top:4px;">گزینه مورد نظر</div>
 
-      <div class="f-group">
-        <div class="session-selector">
-          <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل — همه ۵ جلسه','€50')">
-            <input type="radio" name="session" value="bundle" checked>
-            <div class="s-opt-body">
-              <div class="s-opt-name">بسته کامل — همه ۵ جلسه</div>
-              <div class="s-opt-price">€50 · ۱۷٪ تخفیف به جای €60</div>
-            </div>
-            <span class="s-opt-badge">پیشنهادی</span>
-          </label>
-          <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12')">
-            <input type="radio" name="session" value="s1">
-            <div class="s-opt-body">
-              <div class="s-opt-name">جلسه ۱ — I tempi del passato</div>
-              <div class="s-opt-price">€12 · Sat 23 May</div>
-            </div>
-          </label>
-          <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12')">
-            <input type="radio" name="session" value="s2">
-            <div class="s-opt-body">
-              <div class="s-opt-name">جلسه ۲ — I pronomi</div>
-              <div class="s-opt-price">€12 · Sat 30 May</div>
-            </div>
-          </label>
-          <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12')">
-            <input type="radio" name="session" value="s3">
-            <div class="s-opt-body">
-              <div class="s-opt-name">جلسه ۳ — L'imperativo</div>
-              <div class="s-opt-price">€12 · Sat 6 Jun</div>
-            </div>
-          </label>
-          <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12')">
-            <input type="radio" name="session" value="s4">
-            <div class="s-opt-body">
-              <div class="s-opt-name">جلسه ۴ — Il condizionale e il futuro</div>
-              <div class="s-opt-price">€12 · Sat 13 Jun</div>
-            </div>
-          </label>
-          <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12')">
-            <input type="radio" name="session" value="s5">
-            <div class="s-opt-body">
-              <div class="s-opt-name">جلسه ۵ — Il congiuntivo</div>
-              <div class="s-opt-price">€12 · Sat 20 Jun</div>
-            </div>
-          </label>
-        </div>
+      <div class="session-selector">
+        <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل','€50')">
+          <input type="radio" name="session" value="bundle" checked>
+          <div class="s-opt-body">
+            <div class="s-opt-name">بسته کامل — همه ۵ جلسه</div>
+            <div class="s-opt-price">€50 · ۱۷٪ تخفیف به جای €60</div>
+          </div>
+          <span class="s-opt-badge">پیشنهادی</span>
+        </label>
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12')">
+          <input type="radio" name="session" value="s1">
+          <div class="s-opt-body">
+            <div class="s-opt-name">جلسه ۱ — I tempi del passato</div>
+            <div class="s-opt-price">€12 · Sat 23 May</div>
+          </div>
+        </label>
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12')">
+          <input type="radio" name="session" value="s2">
+          <div class="s-opt-body">
+            <div class="s-opt-name">جلسه ۲ — I pronomi</div>
+            <div class="s-opt-price">€12 · Sat 30 May</div>
+          </div>
+        </label>
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12')">
+          <input type="radio" name="session" value="s3">
+          <div class="s-opt-body">
+            <div class="s-opt-name">جلسه ۳ — L'imperativo</div>
+            <div class="s-opt-price">€12 · Sat 6 Jun</div>
+          </div>
+        </label>
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12')">
+          <input type="radio" name="session" value="s4">
+          <div class="s-opt-body">
+            <div class="s-opt-name">جلسه ۴ — Il condizionale e il futuro</div>
+            <div class="s-opt-price">€12 · Sat 13 Jun</div>
+          </div>
+        </label>
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12')">
+          <input type="radio" name="session" value="s5">
+          <div class="s-opt-body">
+            <div class="s-opt-name">جلسه ۵ — Il congiuntivo</div>
+            <div class="s-opt-price">€12 · Sat 20 Jun</div>
+          </div>
+        </label>
       </div>
 
       <button class="form-submit" onclick="goToConfirm()">ادامه — مرحله تأیید ←</button>
-      <div class="form-note">اطلاعاتت ذخیره میشه — در مرحله بعد همه چیز رو بررسی می‌کنی.</div>
+      <div class="form-note">اطلاعاتت در مرحله بعد قابل ویرایشه قبل از پرداخت.</div>
     </div>
+
   </div>
 </div>
 
-<!-- ══ PAGE 2: CONFIRM ══ -->
+<!-- PAGE 2: CONFIRM -->
 <div class="page" id="pageConfirm">
-  <div class="confirm-wrap">
-    <div class="confirm-sidebar">
-      <div class="cs-title">بررسی<br><em>اطلاعات</em></div>
+  <div class="form-layout">
 
-      <div class="summary-box">
-        <div class="sb-hd">خلاصه سفارش</div>
-        <div class="sb-rows">
-          <div class="sb-r">
-            <div class="sb-r-label">گزینه</div>
-            <div class="sb-r-val" id="confOption">—</div>
-          </div>
-          <div class="sb-r">
-            <div class="sb-r-label">نام</div>
-            <div class="sb-r-val" id="confName">—</div>
-          </div>
-          <div class="sb-r">
-            <div class="sb-r-label">ایمیل</div>
-            <div class="sb-r-val" id="confEmail" style="direction:ltr;text-align:left;font-size:12px;">—</div>
-          </div>
-          <div class="sb-divider"></div>
-          <div class="sb-total">
-            <div class="sb-total-label">مبلغ</div>
-            <div class="sb-total-price" id="confPrice">—</div>
+    <div class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">تأیید <em>سفارش</em></div>
+        <div class="summary-rows">
+          <div class="sum-row"><div class="sum-label">گزینه</div><div class="sum-val" id="confOption">—</div></div>
+          <div class="sum-row"><div class="sum-label">نام</div><div class="sum-val" id="confName">—</div></div>
+          <div class="sum-divider"></div>
+          <div class="sum-total">
+            <div class="sum-total-label">مبلغ قابل پرداخت</div>
+            <div class="sum-total-price" id="confPrice">—</div>
           </div>
         </div>
       </div>
 
-      <div class="warning-box">
-        ⚠️ بعد از کلیک روی «پرداخت»، به صفحه پرداخت امن Stripe منتقل می‌شی. جات بعد از تکمیل پرداخت تأیید میشه.
+      <div class="sidebar-card">
+        <div class="warning-note">
+          ⚠️ بعد از کلیک روی «پرداخت» به صفحه امن Stripe منتقل می‌شی. جات بعد از تکمیل پرداخت تأیید میشه.
+        </div>
       </div>
     </div>
 
-    <div class="confirm-main">
-      <div class="confirm-section-title">بررسی اطلاعات ثبت‌شده</div>
+    <div class="form-card">
+      <div class="form-section-label">بررسی اطلاعات</div>
 
       <div class="review-table">
         <div class="rt-row">
           <div class="rt-label">نام کامل</div>
-          <div style="display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
             <div class="rt-val" id="revName">—</div>
             <span class="edit-link" onclick="goBack()">ویرایش</span>
           </div>
         </div>
         <div class="rt-row">
           <div class="rt-label">ایمیل</div>
-          <div style="display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
             <div class="rt-val" id="revEmail" style="direction:ltr;font-size:12px;">—</div>
             <span class="edit-link" onclick="goBack()">ویرایش</span>
           </div>
         </div>
         <div class="rt-row">
           <div class="rt-label">شماره تماس</div>
-          <div style="display:flex;align-items:center;gap:12px;">
+          <div style="display:flex;align-items:center;gap:10px;">
             <div class="rt-val" id="revPhone" style="direction:ltr;">—</div>
             <span class="edit-link" onclick="goBack()">ویرایش</span>
           </div>
         </div>
-        <div class="rt-row" style="background:var(--off);">
+        <div class="rt-row">
           <div class="rt-label">گزینه انتخابی</div>
           <div class="rt-val" id="revOption">—</div>
         </div>
-        <div class="rt-row" style="background:var(--off);">
+        <div class="rt-row total-row">
           <div class="rt-label">مبلغ قابل پرداخت</div>
-          <div class="rt-val" id="revPrice" style="font-size:18px;">—</div>
+          <div class="rt-val big" id="revPrice">—</div>
         </div>
       </div>
 
-      <div class="confirm-section-title">پرداخت</div>
+      <div class="form-section-label" style="margin-top:4px;">پرداخت</div>
 
-      <div class="payment-methods">
-        <div class="pm-note">
-          پرداخت از طریق <b>Stripe</b> انجام میشه — امن، سریع و معتبر. بعد از تکمیل پرداخت، یه ایمیل تأییدیه برات ارسال میشه.
-        </div>
+      <div style="font-size:13px;color:var(--ink2);line-height:1.75;padding:14px 16px;background:var(--off);border-radius:10px;">
+        پرداخت از طریق <b>Stripe</b> انجام میشه — امن، سریع و معتبر. بعد از تکمیل پرداخت یه ایمیل تأییدیه برات ارسال میشه.
       </div>
 
       <button class="confirm-submit" onclick="goToSuccess()">پرداخت و ثبت‌نام نهایی ←</button>
       <div class="back-link" onclick="goBack()">← برگشت و ویرایش اطلاعات</div>
-      <div class="confirm-note">با کلیک روی «پرداخت»، شرایط و قوانین ورکشاپ رو می‌پذیری.</div>
+      <div class="form-note">با کلیک روی «پرداخت»، شرایط و قوانین ورکشاپ رو می‌پذیری.</div>
     </div>
+
   </div>
 </div>
 
-<!-- ══ PAGE 3: SUCCESS ══ -->
+<!-- PAGE 3: SUCCESS -->
 <div class="page" id="pageSuccess">
   <div class="success-page">
     <div class="success-icon">✓</div>
-    <h1 class="success-title">ثبت‌نامت<br><em>تأیید شد!</em></h1>
+    <h1 class="success-title">ثبت‌نامت <em>تأیید شد!</em></h1>
     <p class="success-desc">خوشحالیم که بهمون ملحق شدی! یه ایمیل تأییدیه با همه جزئیات جلسه برات ارسال شده.</p>
 
-    <div class="success-box">
-      <div class="success-box-title">خلاصه ثبت‌نام</div>
-      <div class="success-row">
-        <div class="success-row-label">نام</div>
-        <div class="success-row-val" id="succName">—</div>
-      </div>
-      <div class="success-row">
-        <div class="success-row-label">گزینه</div>
-        <div class="success-row-val" id="succOption">—</div>
-      </div>
-      <div class="success-divider"></div>
-      <div class="success-row">
-        <div class="success-row-label">مبلغ پرداختی</div>
-        <div class="success-row-val" id="succPrice">—</div>
-      </div>
-      <div class="success-row">
-        <div class="success-row-label">ایمیل تأییدیه</div>
-        <div class="success-row-val" id="succEmail" style="direction:ltr;font-size:12px;">—</div>
-      </div>
+    <div class="success-card">
+      <div class="success-card-label">خلاصه ثبت‌نام</div>
+      <div class="s-row"><div class="s-row-label">نام</div><div class="s-row-val" id="succName">—</div></div>
+      <div class="s-row"><div class="s-row-label">گزینه</div><div class="s-row-val" id="succOption">—</div></div>
+      <div class="s-divider"></div>
+      <div class="s-row"><div class="s-row-label">مبلغ پرداختی</div><div class="s-row-val" id="succPrice">—</div></div>
+      <div class="s-row"><div class="s-row-label">ایمیل</div><div class="s-row-val" id="succEmail" style="direction:ltr;font-size:12px;">—</div></div>
     </div>
 
     <div class="success-email-note">
-      📧 یه ایمیل تأییدیه همراه با لینک جلسه و جزئیات کامل به آدرس ایمیلت ارسال شده. اگه دریافت نکردی، پوشه اسپم رو چک کن.
+      📧 یه ایمیل تأییدیه همراه با لینک جلسه به آدرس ایمیلت ارسال شده. اگه دریافت نکردی، پوشه اسپم رو چک کن.
     </div>
 
     <a href="index.html" class="btn-home">برگشت به صفحه اصلی</a>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <a href="index.html" class="f-logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>
 </footer>
 
 <script>
-  // State
-  let formData = {
-    firstName: '', lastName: '', email: '', phone: '',
-    option: 'بسته کامل — همه ۵ جلسه', price: '€50'
-  };
-
-  // Init summary
-  updateSummary('بسته کامل — همه ۵ جلسه', '€50');
+  let formData = { firstName:'', lastName:'', email:'', phone:'', option:'بسته کامل', price:'€50' };
+  updateSummary('بسته کامل', '€50');
 
   function updateSummary(opt, price) {
     document.getElementById('summaryOption').textContent = opt;
     document.getElementById('summaryPrice').textContent = price;
-    formData.option = opt;
-    formData.price = price;
+    formData.option = opt; formData.price = price;
   }
 
   function selectOpt(el, opt, price) {
@@ -1024,21 +692,18 @@ footer {
   function validate() {
     let valid = true;
     const fields = [
-      { id: 'firstName', errId: 'firstNameErr', check: v => v.trim().length > 0 },
-      { id: 'lastName',  errId: 'lastNameErr',  check: v => v.trim().length > 0 },
-      { id: 'email',     errId: 'emailErr',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
-      { id: 'phone',     errId: 'phoneErr',     check: v => v.trim().length > 5 },
+      { id:'firstName', errId:'firstNameErr', check: v => v.trim().length > 0 },
+      { id:'lastName',  errId:'lastNameErr',  check: v => v.trim().length > 0 },
+      { id:'email',     errId:'emailErr',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id:'phone',     errId:'phoneErr',     check: v => v.trim().length > 5 },
     ];
     fields.forEach(f => {
       const el = document.getElementById(f.id);
       const err = document.getElementById(f.errId);
       if (!f.check(el.value)) {
-        el.classList.add('error');
-        err.classList.add('show');
-        valid = false;
+        el.classList.add('error'); err.classList.add('show'); valid = false;
       } else {
-        el.classList.remove('error');
-        err.classList.remove('show');
+        el.classList.remove('error'); err.classList.remove('show');
       }
     });
     return valid;
@@ -1050,26 +715,21 @@ footer {
     formData.lastName  = document.getElementById('lastName').value.trim();
     formData.email     = document.getElementById('email').value.trim();
     formData.phone     = document.getElementById('phone').value.trim();
-
-    const fullName = formData.firstName + ' ' + formData.lastName;
+    const full = formData.firstName + ' ' + formData.lastName;
     document.getElementById('confOption').textContent = formData.option;
-    document.getElementById('confName').textContent   = fullName;
-    document.getElementById('confEmail').textContent  = formData.email;
+    document.getElementById('confName').textContent   = full;
     document.getElementById('confPrice').textContent  = formData.price;
-    document.getElementById('revName').textContent    = fullName;
+    document.getElementById('revName').textContent    = full;
     document.getElementById('revEmail').textContent   = formData.email;
     document.getElementById('revPhone').textContent   = formData.phone;
     document.getElementById('revOption').textContent  = formData.option;
     document.getElementById('revPrice').textContent   = formData.price;
-
-    showPage('pageConfirm');
-    setStep(2);
+    showPage('pageConfirm'); setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function goBack() {
-    showPage('pageForm');
-    setStep(1);
+    showPage('pageForm'); setStep(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
@@ -1078,9 +738,7 @@ footer {
     document.getElementById('succOption').textContent = formData.option;
     document.getElementById('succPrice').textContent  = formData.price;
     document.getElementById('succEmail').textContent  = formData.email;
-    showPage('pageSuccess');
-    setStep(4);
-    // Hide steps bar on success
+    showPage('pageSuccess'); setStep(4);
     document.getElementById('stepsBar').style.display = 'none';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -1093,17 +751,15 @@ footer {
   function setStep(n) {
     for (let i = 1; i <= 4; i++) {
       const s = document.getElementById('step' + i);
-      s.classList.remove('active', 'done');
+      s.classList.remove('active','done');
       if (i < n) s.classList.add('done');
       else if (i === n) s.classList.add('active');
     }
     for (let i = 1; i <= 3; i++) {
-      const l = document.getElementById('line' + i);
-      l.classList.toggle('done', i < n);
+      document.getElementById('line' + i).classList.toggle('done', i < n);
     }
   }
 
-  // Clear errors on input
   ['firstName','lastName','email','phone'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       document.getElementById(id).classList.remove('error');
