@@ -517,7 +517,7 @@ footer {
 
       <div class="f-group">
         <label class="f-label">آدرس Gmail برای شرکت در ورکشاپ</label>
-        <input class="f-input" type="email" id="gmail" placeholder="example@gmail.com" dir="ltr" style="text-align:right;">
+        <input class="f-input" type="email" id="gmail" placeholder="example@gmail.com" dir="ltr" style="text-align:right;" autocomplete="off">
         <div style="font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.6;">این آدرس برای دادن دسترسی به Google Meet جلسه استفاده می‌شه — این آدرس برای دادن دسترسی به Google Meet استفاده می‌شه.</div>
         <div class="f-error" id="gmailErr">یه آدرس ایمیل معتبر وارد کن</div>
       </div>
@@ -710,7 +710,7 @@ footer {
       { id:'lastName',  errId:'lastNameErr',  check: v => v.trim().length > 0 },
       { id:'email',     errId:'emailErr',     check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
       { id:'phone',     errId:'phoneErr',     check: v => v.trim().length > 5 },
-      { id:'gmail',     errId:'gmailErr',     check: v => /^[^s@]+@gmail.com$/.test(v) },
+      { id:'gmail',     errId:'gmailErr',     check: v => v.trim().length > 5 && v.includes('@') },
     ];
     fields.forEach(f => {
       const el = document.getElementById(f.id);
@@ -787,7 +787,7 @@ footer {
     }
   }
 
-  ['firstName','lastName','email','phone','gmail'].forEach(id => {
+  ['firstName','lastName','email','phone'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       document.getElementById(id).classList.remove('error');
       document.getElementById(id + 'Err').classList.remove('show');
