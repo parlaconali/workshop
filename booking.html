@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ثبت‌نام — ورکشاپ ایتالیایی</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-<script src="https://js.stripe.com/v3/"></script>
 <style>
 :root {
   --ink:      #222222;
@@ -30,9 +29,6 @@ body {
   color: var(--ink);
   direction: rtl;
   overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 nav {
@@ -75,7 +71,7 @@ nav {
 .step-line { width: 40px; height: 1.5px; background: var(--border); margin: 0 8px; transition: background 0.2s; }
 .step-line.done { background: var(--green); }
 
-.page { display: none; flex: 1; }
+.page { display: none; }
 .page.active { display: block; }
 
 .form-layout {
@@ -158,36 +154,46 @@ nav {
   cursor: pointer; width: 100%; transition: all 0.15s; margin-top: 4px;
 }
 .form-submit:hover { background: var(--green); }
+.form-submit:disabled { background: var(--ink3); cursor: not-allowed; }
 
 .form-note { font-size: 11px; color: var(--ink3); text-align: center; line-height: 1.7; }
 
-/* PAYMENT */
-.payment-card {
-  background: var(--white); border-radius: 14px;
-  padding: 32px; display: flex; flex-direction: column; gap: 20px;
+/* CONFIRM PAGE */
+.review-table {
+  display: flex; flex-direction: column;
+  border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden;
+}
+.rt-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 12px 16px; font-size: 13px;
+  border-bottom: 1px solid var(--border); background: var(--white);
+}
+.rt-row:last-child { border-bottom: none; }
+.rt-row.total-row { background: var(--off); }
+.rt-label { color: var(--ink3); }
+.rt-val { font-weight: 700; }
+.rt-val.big { font-size: 20px; font-weight: 900; }
+
+.edit-link {
+  font-size: 11px; color: var(--ink3); cursor: pointer;
+  padding: 2px 8px; border: 1px solid var(--border); border-radius: 4px; transition: all 0.12s;
+}
+.edit-link:hover { border-color: var(--ink); color: var(--ink); }
+
+.warning-note {
+  background: #fff8e4; border: 1px solid #e6c840;
+  border-radius: 10px; padding: 14px 16px;
+  font-size: 12.5px; color: #7a5800; line-height: 1.7;
 }
 
-.payment-title { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; color: var(--ink); }
-
-#stripe-element-container {
-  border: 1.5px solid var(--border); border-radius: 10px;
-  padding: 16px; background: var(--white); min-height: 180px; direction: ltr;
-}
-
-.pay-btn {
+.confirm-submit {
   background: var(--green); color: var(--white);
   font-family: 'Vazirmatn', sans-serif; font-size: 15px; font-weight: 800;
   padding: 16px 24px; border-radius: 10px; border: none;
   cursor: pointer; width: 100%; transition: all 0.15s;
 }
-.pay-btn:hover { background: var(--green-dk); }
-.pay-btn:disabled { background: var(--ink3); cursor: not-allowed; }
-
-#payment-error {
-  font-size: 12px; color: var(--red); font-weight: 600;
-  display: none; text-align: center; padding: 10px;
-  background: var(--red-lt); border-radius: 8px;
-}
+.confirm-submit:hover { background: var(--green-dk); }
+.confirm-submit:disabled { background: var(--ink3); cursor: not-allowed; }
 
 .back-link {
   font-size: 13px; color: var(--ink3); text-align: center;
@@ -200,33 +206,27 @@ nav {
   min-height: calc(100vh - 120px); display: flex; flex-direction: column;
   align-items: center; justify-content: center; padding: 60px 24px; text-align: center; gap: 20px;
 }
-
 .success-icon {
   width: 72px; height: 72px; border-radius: 50%;
   background: var(--green-lt); border: 2px solid var(--green);
   display: flex; align-items: center; justify-content: center; font-size: 32px;
 }
-
 .success-title { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; }
 .success-title em { font-style: normal; color: var(--green); }
 .success-desc { font-size: 15px; color: var(--ink2); line-height: 1.85; max-width: 460px; }
-
 .success-card {
   background: var(--white); border-radius: 14px; padding: 24px 28px;
   display: flex; flex-direction: column; gap: 10px; max-width: 400px; width: 100%; text-align: right;
 }
-
 .success-card-label { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; color: var(--ink3); margin-bottom: 4px; }
 .s-row { display: flex; justify-content: space-between; font-size: 13px; }
 .s-row-label { color: var(--ink3); }
 .s-row-val { font-weight: 800; }
 .s-divider { height: 1px; background: var(--border); }
-
 .success-email-note {
   font-size: 13px; color: var(--ink2); line-height: 1.75; max-width: 420px;
   padding: 14px 18px; border-radius: 10px; background: var(--green-lt); border: 1px solid var(--green);
 }
-
 .btn-home {
   background: var(--ink); color: var(--white); font-family: 'Vazirmatn', sans-serif;
   font-size: 14px; font-weight: 800; padding: 14px 32px; border-radius: 8px;
@@ -236,7 +236,7 @@ nav {
 
 footer {
   padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
-  background: var(--ink); border-top: 1.5px solid var(--ink); margin-top: auto;
+  background: var(--ink); border-top: 1.5px solid var(--ink);
 }
 .f-logo { font-size: 15px; font-weight: 900; color: var(--white); text-decoration: none; }
 .f-logo span { background: var(--green); color: var(--white); padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
@@ -265,9 +265,9 @@ footer {
 <div class="steps-bar" id="stepsBar">
   <div class="step active" id="step1"><div class="step-num">۱</div><div class="step-label">اطلاعات</div></div>
   <div class="step-line" id="line1"></div>
-  <div class="step" id="step2"><div class="step-num">۲</div><div class="step-label">پرداخت</div></div>
+  <div class="step" id="step2"><div class="step-num">۲</div><div class="step-label">تأیید</div></div>
   <div class="step-line" id="line2"></div>
-  <div class="step" id="step3"><div class="step-num">✓</div><div class="step-label">تأیید</div></div>
+  <div class="step" id="step3"><div class="step-num">۳</div><div class="step-label">پرداخت</div></div>
 </div>
 
 <!-- PAGE 1: FORM -->
@@ -337,7 +337,7 @@ footer {
       <div class="form-section-label" style="margin-top:4px;">گزینه مورد نظر</div>
 
       <div class="session-selector">
-        <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل — همه ۵ جلسه','€50',5000)">
+        <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل — همه ۵ جلسه','€50')">
           <input type="radio" name="session" value="bundle" checked>
           <div class="s-opt-body">
             <div class="s-opt-name">بسته کامل — همه ۵ جلسه</div>
@@ -345,35 +345,35 @@ footer {
           </div>
           <span class="s-opt-badge">پیشنهادی</span>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12',1200)">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12')">
           <input type="radio" name="session" value="s1">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۱ — I tempi del passato</div>
             <div class="s-opt-price">€12 · Sat 23 May</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12',1200)">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12')">
           <input type="radio" name="session" value="s2">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۲ — I pronomi</div>
             <div class="s-opt-price">€12 · Sat 30 May</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12',1200)">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12')">
           <input type="radio" name="session" value="s3">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۳ — L'imperativo</div>
             <div class="s-opt-price">€12 · Sat 6 Jun</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12',1200)">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12')">
           <input type="radio" name="session" value="s4">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۴ — Il condizionale e il futuro</div>
             <div class="s-opt-price">€12 · Sat 13 Jun</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12',1200)">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12')">
           <input type="radio" name="session" value="s5">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۵ — Il congiuntivo</div>
@@ -382,70 +382,85 @@ footer {
         </label>
       </div>
 
-      <button class="form-submit" onclick="goToPayment()">ادامه — مرحله پرداخت ←</button>
-      <div class="form-note">پرداخت امن از طریق Stripe — اطلاعات کارت شما ذخیره نمی‌شه.</div>
+      <button class="form-submit" onclick="goToConfirm()">ادامه — مرحله تأیید ←</button>
+      <div class="form-note">اطلاعاتت در مرحله بعد قابل ویرایشه قبل از پرداخت.</div>
     </div>
   </div>
 </div>
 
-<!-- PAGE 2: PAYMENT -->
-<div class="page" id="pagePayment">
+<!-- PAGE 2: CONFIRM -->
+<div class="page" id="pageConfirm">
   <div class="form-layout">
     <div class="sidebar">
       <div class="sidebar-card">
-        <div class="sidebar-title">خلاصه <em>سفارش</em></div>
+        <div class="sidebar-title">تأیید <em>سفارش</em></div>
         <div class="summary-rows">
-          <div class="sum-row"><div class="sum-label">نام</div><div class="sum-val" id="payName">—</div></div>
-          <div class="sum-row"><div class="sum-label">گزینه</div><div class="sum-val" id="payOption">—</div></div>
+          <div class="sum-row"><div class="sum-label">گزینه</div><div class="sum-val" id="confOption">—</div></div>
+          <div class="sum-row"><div class="sum-label">نام</div><div class="sum-val" id="confName">—</div></div>
           <div class="sum-divider"></div>
           <div class="sum-total">
             <div class="sum-total-label">مبلغ قابل پرداخت</div>
-            <div class="sum-total-price" id="payPrice">—</div>
+            <div class="sum-total-price" id="confPrice">—</div>
           </div>
         </div>
       </div>
       <div class="sidebar-card">
-        <div class="info-rows">
-          <div class="info-row">
-            <div class="info-icon">🔐</div>
-            <div><div class="info-title">پرداخت امن</div><div class="info-desc">اطلاعات کارت شما توسط Stripe رمزگذاری می‌شه.</div></div>
-          </div>
-          <div class="info-row">
-            <div class="info-icon">↩️</div>
-            <div><div class="info-title">بازگشت وجه</div><div class="info-desc">تا ۴۸ ساعت قبل از جلسه — بازپرداخت کامل</div></div>
-          </div>
+        <div class="warning-note">
+          بعد از کلیک روی «پرداخت» به صفحه امن Stripe منتقل می‌شی. جات بعد از تکمیل پرداخت تأیید میشه.
         </div>
       </div>
     </div>
 
-    <div class="payment-card">
-      <div class="payment-title">اطلاعات پرداخت</div>
-      <div id="stripe-element-container"></div>
-      <div id="payment-error"></div>
-      <button class="pay-btn" id="payBtn" onclick="submitPayment()">پرداخت و ثبت‌نام نهایی ←</button>
-      <div class="back-link" onclick="goBackToForm()">← برگشت و ویرایش اطلاعات</div>
-    </div>
-  </div>
-</div>
+    <div class="form-card">
+      <div class="form-section-label">بررسی اطلاعات</div>
+      <div class="review-table">
+        <div class="rt-row">
+          <div class="rt-label">نام کامل</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="rt-val" id="revName">—</div>
+            <span class="edit-link" onclick="goBack()">ویرایش</span>
+          </div>
+        </div>
+        <div class="rt-row">
+          <div class="rt-label">ایمیل</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="rt-val" id="revEmail" style="direction:ltr;font-size:12px;">—</div>
+            <span class="edit-link" onclick="goBack()">ویرایش</span>
+          </div>
+        </div>
+        <div class="rt-row">
+          <div class="rt-label">شماره تماس</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="rt-val" id="revPhone" style="direction:ltr;">—</div>
+            <span class="edit-link" onclick="goBack()">ویرایش</span>
+          </div>
+        </div>
+        <div class="rt-row">
+          <div class="rt-label">Gmail ورکشاپ</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="rt-val" id="revGmail" style="direction:ltr;font-size:12px;">—</div>
+            <span class="edit-link" onclick="goBack()">ویرایش</span>
+          </div>
+        </div>
+        <div class="rt-row">
+          <div class="rt-label">گزینه انتخابی</div>
+          <div class="rt-val" id="revOption">—</div>
+        </div>
+        <div class="rt-row total-row">
+          <div class="rt-label">مبلغ قابل پرداخت</div>
+          <div class="rt-val big" id="revPrice">—</div>
+        </div>
+      </div>
 
-<!-- PAGE 3: SUCCESS -->
-<div class="page" id="pageSuccess">
-  <div class="success-page">
-    <div class="success-icon">✓</div>
-    <h1 class="success-title">ثبت‌نامت <em>تأیید شد!</em></h1>
-    <p class="success-desc">خوشحالیم که بهمون ملحق شدی! یه ایمیل تأییدیه با همه جزئیات برات ارسال شده.</p>
-    <div class="success-card">
-      <div class="success-card-label">خلاصه ثبت‌نام</div>
-      <div class="s-row"><div class="s-row-label">نام</div><div class="s-row-val" id="succName">—</div></div>
-      <div class="s-row"><div class="s-row-label">گزینه</div><div class="s-row-val" id="succOption">—</div></div>
-      <div class="s-divider"></div>
-      <div class="s-row"><div class="s-row-label">مبلغ پرداختی</div><div class="s-row-val" id="succPrice">—</div></div>
-      <div class="s-row"><div class="s-row-label">ایمیل</div><div class="s-row-val" id="succEmail" style="direction:ltr;font-size:12px;">—</div></div>
+      <div class="form-section-label" style="margin-top:4px;">پرداخت</div>
+      <div style="font-size:13px;color:var(--ink2);line-height:1.75;padding:14px 16px;background:var(--off);border-radius:10px;">
+        پرداخت از طریق <b>Stripe</b> انجام میشه — امن، سریع و معتبر. بعد از تکمیل پرداخت یه ایمیل تأییدیه برات ارسال میشه.
+      </div>
+
+      <button class="confirm-submit" id="confirmBtn" onclick="goToStripe()">پرداخت و ثبت‌نام نهایی ←</button>
+      <div class="back-link" onclick="goBack()">← برگشت و ویرایش اطلاعات</div>
+      <div class="form-note">با کلیک روی «پرداخت»، شرایط و قوانین ورکشاپ رو می‌پذیری.</div>
     </div>
-    <div class="success-email-note">
-      یه ایمیل تأییدیه همراه با لینک Google Meet به آدرس ایمیلت ارسال شده. اگه دریافت نکردی، پوشه اسپم رو چک کن.
-    </div>
-    <a href="index.html" class="btn-home">برگشت به صفحه اصلی</a>
   </div>
 </div>
 
@@ -455,31 +470,28 @@ footer {
 </footer>
 
 <script>
-  const STRIPE_PK = 'pk_test_51TTW6FKsI01QtFwgBLJwcNzFpj12rfCs7XwVny5EGoBS87FhSv5VE0YxQ3BHNTmEGZzkBWHsXOILbRBdzR6QeaQR009rCpwqy4';
+  const STRIPE_BUNDLE = 'https://buy.stripe.com/6oU3co4E3glX8fVaL4ew800';
+  const STRIPE_SINGLE = 'https://buy.stripe.com/aFacMY4E37Pr7bR3iCew801';
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEa9g0RdcefWJFyB3tpqvMZNWTpI4J2QJzDt0-mXajx5tVBKg9yI2_8kUqT04-BqGZIw/exec';
-
-  const stripe = Stripe(STRIPE_PK);
-  let elements, paymentElement;
 
   let formData = {
     firstName:'', lastName:'', email:'', phone:'',
-    gmail:'', option:'بسته کامل — همه ۵ جلسه', price:'€50', amount: 5000
+    gmail:'', option:'بسته کامل — همه ۵ جلسه', price:'€50'
   };
 
-  updateSummary('بسته کامل — همه ۵ جلسه', '€50', 5000);
+  updateSummary('بسته کامل — همه ۵ جلسه', '€50');
 
-  function updateSummary(opt, price, amount) {
+  function updateSummary(opt, price) {
     document.getElementById('summaryOption').textContent = opt;
     document.getElementById('summaryPrice').textContent = price;
     formData.option = opt;
     formData.price = price;
-    formData.amount = amount;
   }
 
-  function selectOpt(el, opt, price, amount) {
+  function selectOpt(el, opt, price) {
     document.querySelectorAll('.s-opt').forEach(o => o.classList.remove('active'));
     el.classList.add('active');
-    updateSummary(opt, price, amount);
+    updateSummary(opt, price);
   }
 
   function validate() {
@@ -503,105 +515,37 @@ footer {
     return valid;
   }
 
-  async function goToPayment() {
+  function goToConfirm() {
     if (!validate()) return;
-
     formData.firstName = document.getElementById('firstName').value.trim();
     formData.lastName  = document.getElementById('lastName').value.trim();
     formData.email     = document.getElementById('email').value.trim();
     formData.phone     = document.getElementById('phone').value.trim();
     formData.gmail     = document.getElementById('gmail').value.trim();
-
-    document.getElementById('payName').textContent   = formData.firstName + ' ' + formData.lastName;
-    document.getElementById('payOption').textContent = formData.option;
-    document.getElementById('payPrice').textContent  = formData.price;
-
-    showPage('pagePayment');
-    setStep(2);
+    const full = formData.firstName + ' ' + formData.lastName;
+    document.getElementById('confOption').textContent = formData.option;
+    document.getElementById('confName').textContent   = full;
+    document.getElementById('confPrice').textContent  = formData.price;
+    document.getElementById('revName').textContent    = full;
+    document.getElementById('revEmail').textContent   = formData.email;
+    document.getElementById('revPhone').textContent   = formData.phone;
+    document.getElementById('revGmail').textContent   = formData.gmail;
+    document.getElementById('revOption').textContent  = formData.option;
+    document.getElementById('revPrice').textContent   = formData.price;
+    showPage('pageConfirm'); setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    // Get clientSecret from Apps Script
-    try {
-      const res = await fetch(APPS_SCRIPT_URL + '?action=createIntent&amount=' + formData.amount + '&email=' + encodeURIComponent(formData.email));
-      const data = await res.json();
-      if (!data.clientSecret) throw new Error('no secret');
-      formData.clientSecret = data.clientSecret;
-
-      elements = stripe.elements({
-        clientSecret: data.clientSecret,
-        appearance: {
-          theme: 'stripe',
-          variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
-        }
-      });
-    } catch(e) {
-      // Fallback: use mode-based elements (no server needed)
-      elements = stripe.elements({
-        mode: 'payment',
-        amount: formData.amount,
-        currency: 'eur',
-        appearance: {
-          theme: 'stripe',
-          variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
-        }
-      });
-      formData.clientSecret = null;
-    }
-
-    paymentElement = elements.create('payment');
-    paymentElement.mount('#stripe-element-container');
   }
 
-  async function submitPayment() {
-    const btn = document.getElementById('payBtn');
-    const errEl = document.getElementById('payment-error');
+  function goToStripe() {
+    const btn = document.getElementById('confirmBtn');
     btn.disabled = true;
-    btn.textContent = 'در حال پردازش...';
-    errEl.style.display = 'none';
+    btn.textContent = 'در حال انتقال...';
 
-    try {
-      const { error: submitError } = await elements.submit();
-      if (submitError) {
-        showError(submitError.message);
-        btn.disabled = false;
-        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
-        return;
-      }
+    const isBundle = document.querySelector('input[name="session"]:checked').value === 'bundle';
+    const stripeUrl = isBundle ? STRIPE_BUNDLE : STRIPE_SINGLE;
+    const email = encodeURIComponent(formData.email);
 
-      // Confirm payment
-      const confirmParams = {
-        elements,
-        confirmParams: { return_url: window.location.href },
-        redirect: 'if_required'
-      };
-      if (formData.clientSecret) {
-        confirmParams.clientSecret = formData.clientSecret;
-      }
-      const { error: confirmError } = await stripe.confirmPayment(confirmParams);
-
-      if (confirmError) {
-        showError(confirmError.message);
-        btn.disabled = false;
-        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
-      } else {
-        await saveData();
-        showSuccess();
-      }
-
-    } catch(err) {
-      showError('خطا در پردازش پرداخت. لطفاً دوباره امتحان کنید.');
-      btn.disabled = false;
-      btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
-    }
-  }
-
-  function showError(msg) {
-    const errEl = document.getElementById('payment-error');
-    errEl.textContent = msg;
-    errEl.style.display = 'block';
-  }
-
-  async function saveData() {
+    // Save data via image trick — works on all devices
     const params = new URLSearchParams({
       action: 'save',
       name: formData.firstName + ' ' + formData.lastName,
@@ -611,25 +555,18 @@ footer {
       option: formData.option,
       price: formData.price
     });
-    try {
-      await fetch(APPS_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' });
-    } catch(e) {}
+
+    const img = new Image();
+    img.src = APPS_SCRIPT_URL + '?' + params.toString();
+
+    // Redirect after short delay to let image request fire
+    setTimeout(() => {
+      window.location.href = stripeUrl + '?prefilled_email=' + email;
+    }, 1500);
   }
 
-  function showSuccess() {
-    document.getElementById('succName').textContent   = formData.firstName + ' ' + formData.lastName;
-    document.getElementById('succOption').textContent = formData.option;
-    document.getElementById('succPrice').textContent  = formData.price;
-    document.getElementById('succEmail').textContent  = formData.email;
-    showPage('pageSuccess');
-    setStep(3);
-    document.getElementById('stepsBar').style.display = 'none';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function goBackToForm() {
-    showPage('pageForm');
-    setStep(1);
+  function goBack() {
+    showPage('pageForm'); setStep(1);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
