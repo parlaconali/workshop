@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ثبت‌نام — ورکشاپ ایتالیایی</title>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 :root {
   --ink:      #222222;
@@ -29,6 +30,9 @@ body {
   color: var(--ink);
   direction: rtl;
   overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {
@@ -45,29 +49,17 @@ nav {
 
 .logo { font-size: 17px; font-weight: 900; color: var(--ink); text-decoration: none; }
 .logo span { background: var(--green); color: var(--white); padding: 2px 9px; border-radius: 5px; margin-right: 4px; }
-
 .nav-links { display: flex; align-items: center; gap: 12px; }
-
-.nav-link {
-  font-size: 13px; font-weight: 600; color: var(--ink2);
-  text-decoration: none; padding: 8px 14px; border-radius: 6px; transition: background 0.15s;
-}
-
+.nav-link { font-size: 13px; font-weight: 600; color: var(--ink2); text-decoration: none; padding: 8px 14px; border-radius: 6px; transition: background 0.15s; }
 .nav-link:hover { background: var(--off); }
 
-/* STEPS */
 .steps-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  padding: 20px 48px;
-  background: var(--white);
-  border-bottom: 1.5px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  gap: 0; padding: 20px 48px;
+  background: var(--white); border-bottom: 1.5px solid var(--ink);
 }
 
 .step { display: flex; align-items: center; gap: 8px; }
-
 .step-num {
   width: 28px; height: 28px; border-radius: 50%;
   border: 2px solid var(--border);
@@ -75,346 +67,177 @@ nav {
   font-size: 12px; font-weight: 800; color: var(--ink3);
   background: var(--white); transition: all 0.2s;
 }
-
 .step-label { font-size: 12px; font-weight: 700; color: var(--ink3); transition: color 0.2s; }
 .step.active .step-num { background: var(--ink); border-color: var(--ink); color: var(--white); }
 .step.active .step-label { color: var(--ink); }
 .step.done .step-num { background: var(--green); border-color: var(--green); color: var(--white); }
 .step.done .step-label { color: var(--green-dk); }
-
 .step-line { width: 40px; height: 1.5px; background: var(--border); margin: 0 8px; transition: background 0.2s; }
 .step-line.done { background: var(--green); }
 
-/* PAGES */
-.page { display: none; }
+.page { display: none; flex: 1; }
 .page.active { display: block; }
 
-/* FORM LAYOUT */
 .form-layout {
-  max-width: 960px;
-  margin: 48px auto;
+  max-width: 960px; margin: 48px auto;
   padding: 0 24px;
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 28px;
-  align-items: start;
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 28px; align-items: start;
 }
 
-/* SIDEBAR */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
+.sidebar { display: flex; flex-direction: column; gap: 16px; }
 
 .sidebar-card {
-  background: var(--white);
-  border-radius: 14px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  background: var(--white); border-radius: 14px;
+  padding: 22px; display: flex; flex-direction: column; gap: 14px;
 }
 
-.sidebar-title {
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-}
-
+.sidebar-title { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.2; }
 .sidebar-title em { font-style: normal; color: var(--green); }
 
-.summary-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.sum-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 13px;
-}
-
+.summary-rows { display: flex; flex-direction: column; gap: 10px; }
+.sum-row { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
 .sum-label { color: var(--ink3); }
 .sum-val { font-weight: 800; color: var(--ink); }
-
 .sum-divider { height: 1px; background: var(--border); }
-
-.sum-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 4px;
-}
-
+.sum-total { display: flex; justify-content: space-between; align-items: center; padding-top: 4px; }
 .sum-total-label { font-size: 14px; font-weight: 800; }
 .sum-total-price { font-size: 30px; font-weight: 900; letter-spacing: -0.03em; }
 
-.info-rows {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.info-row {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-}
-
+.info-rows { display: flex; flex-direction: column; gap: 12px; }
+.info-row { display: flex; gap: 10px; align-items: flex-start; }
 .info-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
 .info-title { font-size: 12px; font-weight: 800; color: var(--ink); margin-bottom: 2px; }
 .info-desc { font-size: 11px; color: var(--ink3); line-height: 1.6; }
 
-/* MAIN FORM */
 .form-card {
-  background: var(--white);
-  border-radius: 14px;
-  padding: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+  background: var(--white); border-radius: 14px;
+  padding: 32px; display: flex; flex-direction: column; gap: 20px;
 }
 
 .form-section-label {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: var(--ink3);
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
+  font-size: 11px; font-weight: 800; letter-spacing: 0.14em; color: var(--ink3);
+  padding-bottom: 12px; border-bottom: 1px solid var(--border);
 }
 
 .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
 .f-group { display: flex; flex-direction: column; gap: 6px; }
-
 .f-label { font-size: 11px; font-weight: 800; letter-spacing: 0.06em; color: var(--ink); }
 
 .f-input {
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 8px;
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px;
-  color: var(--ink);
-  background: var(--off);
-  outline: none;
-  transition: all 0.15s;
-  width: 100%;
-  direction: rtl;
+  padding: 12px 14px; border: 1.5px solid var(--border); border-radius: 8px;
+  font-family: 'Vazirmatn', sans-serif; font-size: 14px; color: var(--ink);
+  background: var(--off); outline: none; transition: all 0.15s; width: 100%; direction: rtl;
 }
-
 .f-input:focus { border-color: var(--ink); background: var(--white); }
 .f-input.error { border-color: var(--red); background: var(--red-lt); }
 
 .f-error { font-size: 11px; color: var(--red); font-weight: 600; display: none; margin-top: 2px; }
 .f-error.show { display: block; }
 
-/* SESSION OPTIONS */
 .session-selector { display: flex; flex-direction: column; gap: 8px; }
 
 .s-opt {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  cursor: pointer;
-  transition: all 0.12s;
-  background: var(--off);
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border: 1.5px solid var(--border);
+  border-radius: 10px; cursor: pointer; transition: all 0.12s; background: var(--off);
 }
-
 .s-opt:hover { border-color: var(--ink3); background: var(--white); }
 .s-opt.active { border-color: var(--ink); background: var(--white); }
 .s-opt.active.featured { border-color: var(--green); background: var(--green-lt); }
-
 .s-opt input[type="radio"] { accent-color: var(--ink); width: 15px; height: 15px; flex-shrink: 0; }
-
 .s-opt-body { flex: 1; }
 .s-opt-name { font-size: 13px; font-weight: 700; color: var(--ink); line-height: 1.3; }
 .s-opt-price { font-size: 11px; color: var(--ink3); font-weight: 500; margin-top: 1px; direction: ltr; text-align: right; }
-
-.s-opt-badge {
-  font-size: 10px; font-weight: 800;
-  padding: 3px 8px; border-radius: 12px;
-  background: var(--green); color: var(--white);
-  white-space: nowrap;
-}
+.s-opt-badge { font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 12px; background: var(--green); color: var(--white); white-space: nowrap; }
 
 .form-submit {
-  background: var(--ink);
-  color: var(--white);
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 15px; font-weight: 800;
-  padding: 16px 24px;
-  border-radius: 10px; border: none;
-  cursor: pointer; width: 100%;
-  transition: all 0.15s; margin-top: 4px;
+  background: var(--ink); color: var(--white);
+  font-family: 'Vazirmatn', sans-serif; font-size: 15px; font-weight: 800;
+  padding: 16px 24px; border-radius: 10px; border: none;
+  cursor: pointer; width: 100%; transition: all 0.15s; margin-top: 4px;
 }
-
 .form-submit:hover { background: var(--green); }
 
-.form-note {
-  font-size: 11px; color: var(--ink3);
-  text-align: center; line-height: 1.7;
+.form-note { font-size: 11px; color: var(--ink3); text-align: center; line-height: 1.7; }
+
+/* PAYMENT */
+.payment-card {
+  background: var(--white); border-radius: 14px;
+  padding: 32px; display: flex; flex-direction: column; gap: 20px;
 }
 
-/* CONFIRM PAGE */
-.review-table {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border: 1.5px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
+.payment-title { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; color: var(--ink); }
+
+#stripe-element-container {
+  border: 1.5px solid var(--border); border-radius: 10px;
+  padding: 16px; background: var(--white); min-height: 180px; direction: ltr;
 }
 
-.rt-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  font-size: 13px;
-  border-bottom: 1px solid var(--border);
-  background: var(--white);
+.pay-btn {
+  background: var(--green); color: var(--white);
+  font-family: 'Vazirmatn', sans-serif; font-size: 15px; font-weight: 800;
+  padding: 16px 24px; border-radius: 10px; border: none;
+  cursor: pointer; width: 100%; transition: all 0.15s;
 }
+.pay-btn:hover { background: var(--green-dk); }
+.pay-btn:disabled { background: var(--ink3); cursor: not-allowed; }
 
-.rt-row:last-child { border-bottom: none; }
-.rt-row.total-row { background: var(--off); }
-.rt-label { color: var(--ink3); }
-.rt-val { font-weight: 700; }
-.rt-val.big { font-size: 20px; font-weight: 900; }
-
-.edit-link {
-  font-size: 11px; color: var(--ink3);
-  cursor: pointer; padding: 2px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px; transition: all 0.12s;
-  text-decoration: none;
+#payment-error {
+  font-size: 12px; color: var(--red); font-weight: 600;
+  display: none; text-align: center; padding: 10px;
+  background: var(--red-lt); border-radius: 8px;
 }
-
-.edit-link:hover { border-color: var(--ink); color: var(--ink); }
-
-.warning-note {
-  background: #fff8e4;
-  border: 1px solid #e6c840;
-  border-radius: 10px;
-  padding: 14px 16px;
-  font-size: 12.5px;
-  color: #7a5800;
-  line-height: 1.7;
-}
-
-.confirm-submit {
-  background: var(--green);
-  color: var(--white);
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 15px; font-weight: 800;
-  padding: 16px 24px;
-  border-radius: 10px; border: none;
-  cursor: pointer; width: 100%;
-  transition: all 0.15s;
-}
-
-.confirm-submit:hover { background: var(--green-dk); }
 
 .back-link {
-  font-size: 13px; color: var(--ink3);
-  text-align: center; cursor: pointer;
-  text-decoration: underline; font-weight: 600;
-  transition: color 0.12s;
+  font-size: 13px; color: var(--ink3); text-align: center;
+  cursor: pointer; text-decoration: underline; font-weight: 600;
 }
-
 .back-link:hover { color: var(--ink); }
 
 /* SUCCESS */
 .success-page {
-  min-height: calc(100vh - 120px);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 24px;
-  text-align: center;
-  gap: 20px;
+  min-height: calc(100vh - 120px); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 60px 24px; text-align: center; gap: 20px;
 }
 
 .success-icon {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--green-lt);
-  border: 2px solid var(--green);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 32px;
+  width: 72px; height: 72px; border-radius: 50%;
+  background: var(--green-lt); border: 2px solid var(--green);
+  display: flex; align-items: center; justify-content: center; font-size: 32px;
 }
 
-.success-title {
-  font-size: 40px; font-weight: 900;
-  letter-spacing: -0.03em; line-height: 1.1;
-}
-
+.success-title { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.1; }
 .success-title em { font-style: normal; color: var(--green); }
-
-.success-desc {
-  font-size: 15px; color: var(--ink2);
-  line-height: 1.85; max-width: 460px;
-}
+.success-desc { font-size: 15px; color: var(--ink2); line-height: 1.85; max-width: 460px; }
 
 .success-card {
-  background: var(--white);
-  border-radius: 14px;
-  padding: 24px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
-  width: 100%;
-  text-align: right;
+  background: var(--white); border-radius: 14px; padding: 24px 28px;
+  display: flex; flex-direction: column; gap: 10px; max-width: 400px; width: 100%; text-align: right;
 }
 
-.success-card-label {
-  font-size: 10px; font-weight: 800;
-  letter-spacing: 0.14em; color: var(--ink3);
-  margin-bottom: 4px;
-}
-
+.success-card-label { font-size: 10px; font-weight: 800; letter-spacing: 0.14em; color: var(--ink3); margin-bottom: 4px; }
 .s-row { display: flex; justify-content: space-between; font-size: 13px; }
 .s-row-label { color: var(--ink3); }
 .s-row-val { font-weight: 800; }
 .s-divider { height: 1px; background: var(--border); }
 
 .success-email-note {
-  font-size: 13px; color: var(--ink2);
-  line-height: 1.75; max-width: 420px;
-  padding: 14px 18px;
-  border-radius: 10px;
-  background: var(--green-lt);
-  border: 1px solid var(--green);
+  font-size: 13px; color: var(--ink2); line-height: 1.75; max-width: 420px;
+  padding: 14px 18px; border-radius: 10px; background: var(--green-lt); border: 1px solid var(--green);
 }
 
 .btn-home {
-  background: var(--ink); color: var(--white);
-  font-family: 'Vazirmatn', sans-serif;
-  font-size: 14px; font-weight: 800;
-  padding: 14px 32px; border-radius: 8px;
-  border: none; cursor: pointer;
-  text-decoration: none; display: inline-block;
-  transition: all 0.15s;
+  background: var(--ink); color: var(--white); font-family: 'Vazirmatn', sans-serif;
+  font-size: 14px; font-weight: 800; padding: 14px 32px; border-radius: 8px;
+  border: none; cursor: pointer; text-decoration: none; display: inline-block; transition: all 0.15s;
 }
-
 .btn-home:hover { background: var(--green); }
 
 footer {
-  padding: 24px 48px;
-  display: flex; justify-content: space-between; align-items: center;
-  background: var(--ink); border-top: 1.5px solid var(--ink);
+  padding: 24px 48px; display: flex; justify-content: space-between; align-items: center;
+  background: var(--ink); border-top: 1.5px solid var(--ink); margin-top: auto;
 }
-
 .f-logo { font-size: 15px; font-weight: 900; color: var(--white); text-decoration: none; }
 .f-logo span { background: var(--green); color: var(--white); padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
 .f-note { font-size: 11px; color: rgba(255,255,255,0.25); }
@@ -442,25 +265,19 @@ footer {
 <div class="steps-bar" id="stepsBar">
   <div class="step active" id="step1"><div class="step-num">۱</div><div class="step-label">اطلاعات</div></div>
   <div class="step-line" id="line1"></div>
-  <div class="step" id="step2"><div class="step-num">۲</div><div class="step-label">تأیید</div></div>
+  <div class="step" id="step2"><div class="step-num">۲</div><div class="step-label">پرداخت</div></div>
   <div class="step-line" id="line2"></div>
-  <div class="step" id="step3"><div class="step-num">۳</div><div class="step-label">پرداخت</div></div>
-  <div class="step-line" id="line3"></div>
-  <div class="step" id="step4"><div class="step-num">✓</div><div class="step-label">تأیید نهایی</div></div>
+  <div class="step" id="step3"><div class="step-num">✓</div><div class="step-label">تأیید</div></div>
 </div>
 
 <!-- PAGE 1: FORM -->
 <div class="page active" id="pageForm">
   <div class="form-layout">
-
     <div class="sidebar">
       <div class="sidebar-card">
         <div class="sidebar-title">ثبت‌نام <em>ورکشاپ</em></div>
         <div class="summary-rows">
-          <div class="sum-row">
-            <div class="sum-label">گزینه انتخابی</div>
-            <div class="sum-val" id="summaryOption">—</div>
-          </div>
+          <div class="sum-row"><div class="sum-label">گزینه انتخابی</div><div class="sum-val" id="summaryOption">—</div></div>
           <div class="sum-divider"></div>
           <div class="sum-total">
             <div class="sum-total-label">مبلغ</div>
@@ -468,7 +285,6 @@ footer {
           </div>
         </div>
       </div>
-
       <div class="sidebar-card">
         <div class="info-rows">
           <div class="info-row">
@@ -489,7 +305,6 @@ footer {
 
     <div class="form-card">
       <div class="form-section-label">اطلاعات شخصی</div>
-
       <div class="f-row">
         <div class="f-group">
           <label class="f-label">نام</label>
@@ -502,30 +317,27 @@ footer {
           <div class="f-error" id="lastNameErr">این فیلد اجباریه</div>
         </div>
       </div>
-
       <div class="f-group">
         <label class="f-label">ایمیل</label>
         <input class="f-input" type="email" id="email" placeholder="ایمیلت رو بنویس" dir="ltr" style="text-align:right;">
         <div class="f-error" id="emailErr">یه ایمیل معتبر وارد کن</div>
       </div>
-
       <div class="f-group">
         <label class="f-label">شماره تماس</label>
         <input class="f-input" type="tel" id="phone" placeholder="+98 یا +39 ..." dir="ltr" style="text-align:right;">
         <div class="f-error" id="phoneErr">این فیلد اجباریه</div>
       </div>
-
       <div class="f-group">
         <label class="f-label">آدرس Gmail برای شرکت در ورکشاپ</label>
         <input class="f-input" type="email" id="gmail" placeholder="example@gmail.com" dir="ltr" style="text-align:right;" autocomplete="off">
-        <div style="font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.6;">این آدرس برای دادن دسترسی به Google Meet جلسه استفاده می‌شه — این آدرس برای دادن دسترسی به Google Meet استفاده می‌شه.</div>
+        <div style="font-size:11px;color:var(--ink3);margin-top:4px;line-height:1.6;">این آدرس برای دادن دسترسی به Google Meet استفاده می‌شه.</div>
         <div class="f-error" id="gmailErr">یه آدرس ایمیل معتبر وارد کن</div>
       </div>
 
       <div class="form-section-label" style="margin-top:4px;">گزینه مورد نظر</div>
 
       <div class="session-selector">
-        <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل','€50')">
+        <label class="s-opt featured active" onclick="selectOpt(this,'بسته کامل — همه ۵ جلسه','€50',5000)">
           <input type="radio" name="session" value="bundle" checked>
           <div class="s-opt-body">
             <div class="s-opt-name">بسته کامل — همه ۵ جلسه</div>
@@ -533,35 +345,35 @@ footer {
           </div>
           <span class="s-opt-badge">پیشنهادی</span>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12')">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۱ — I tempi del passato','€12',1200)">
           <input type="radio" name="session" value="s1">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۱ — I tempi del passato</div>
             <div class="s-opt-price">€12 · Sat 23 May</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12')">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۲ — I pronomi','€12',1200)">
           <input type="radio" name="session" value="s2">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۲ — I pronomi</div>
             <div class="s-opt-price">€12 · Sat 30 May</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12')">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۳ — L\'imperativo','€12',1200)">
           <input type="radio" name="session" value="s3">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۳ — L'imperativo</div>
             <div class="s-opt-price">€12 · Sat 6 Jun</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12')">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۴ — Il condizionale e il futuro','€12',1200)">
           <input type="radio" name="session" value="s4">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۴ — Il condizionale e il futuro</div>
             <div class="s-opt-price">€12 · Sat 13 Jun</div>
           </div>
         </label>
-        <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12')">
+        <label class="s-opt" onclick="selectOpt(this,'جلسه ۵ — Il congiuntivo','€12',1200)">
           <input type="radio" name="session" value="s5">
           <div class="s-opt-body">
             <div class="s-opt-name">جلسه ۵ — Il congiuntivo</div>
@@ -570,91 +382,49 @@ footer {
         </label>
       </div>
 
-      <button class="form-submit" onclick="goToConfirm()">ادامه — مرحله تأیید ←</button>
-      <div class="form-note">اطلاعاتت در مرحله بعد قابل ویرایشه قبل از پرداخت.</div>
+      <button class="form-submit" onclick="goToPayment()">ادامه — مرحله پرداخت ←</button>
+      <div class="form-note">پرداخت امن از طریق Stripe — اطلاعات کارت شما ذخیره نمی‌شه.</div>
     </div>
-
   </div>
 </div>
 
-<!-- PAGE 2: CONFIRM -->
-<div class="page" id="pageConfirm">
+<!-- PAGE 2: PAYMENT -->
+<div class="page" id="pagePayment">
   <div class="form-layout">
-
     <div class="sidebar">
       <div class="sidebar-card">
-        <div class="sidebar-title">تأیید <em>سفارش</em></div>
+        <div class="sidebar-title">خلاصه <em>سفارش</em></div>
         <div class="summary-rows">
-          <div class="sum-row"><div class="sum-label">گزینه</div><div class="sum-val" id="confOption">—</div></div>
-          <div class="sum-row"><div class="sum-label">نام</div><div class="sum-val" id="confName">—</div></div>
+          <div class="sum-row"><div class="sum-label">نام</div><div class="sum-val" id="payName">—</div></div>
+          <div class="sum-row"><div class="sum-label">گزینه</div><div class="sum-val" id="payOption">—</div></div>
           <div class="sum-divider"></div>
           <div class="sum-total">
             <div class="sum-total-label">مبلغ قابل پرداخت</div>
-            <div class="sum-total-price" id="confPrice">—</div>
+            <div class="sum-total-price" id="payPrice">—</div>
           </div>
         </div>
       </div>
-
       <div class="sidebar-card">
-        <div class="warning-note">
-          ⚠️ بعد از کلیک روی «پرداخت» به صفحه امن Stripe منتقل می‌شی. جات بعد از تکمیل پرداخت تأیید میشه.
+        <div class="info-rows">
+          <div class="info-row">
+            <div class="info-icon">🔐</div>
+            <div><div class="info-title">پرداخت امن</div><div class="info-desc">اطلاعات کارت شما توسط Stripe رمزگذاری می‌شه.</div></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">↩️</div>
+            <div><div class="info-title">بازگشت وجه</div><div class="info-desc">تا ۴۸ ساعت قبل از جلسه — بازپرداخت کامل</div></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="form-card">
-      <div class="form-section-label">بررسی اطلاعات</div>
-
-      <div class="review-table">
-        <div class="rt-row">
-          <div class="rt-label">نام کامل</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div class="rt-val" id="revName">—</div>
-            <span class="edit-link" onclick="goBack()">ویرایش</span>
-          </div>
-        </div>
-        <div class="rt-row">
-          <div class="rt-label">ایمیل</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div class="rt-val" id="revEmail" style="direction:ltr;font-size:12px;">—</div>
-            <span class="edit-link" onclick="goBack()">ویرایش</span>
-          </div>
-        </div>
-        <div class="rt-row">
-          <div class="rt-label">شماره تماس</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div class="rt-val" id="revPhone" style="direction:ltr;">—</div>
-            <span class="edit-link" onclick="goBack()">ویرایش</span>
-          </div>
-        </div>
-        <div class="rt-row">
-          <div class="rt-label">Gmail ورکشاپ</div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <div class="rt-val" id="revGmail" style="direction:ltr;font-size:12px;">—</div>
-            <span class="edit-link" onclick="goBack()">ویرایش</span>
-          </div>
-        </div>
-        <div class="rt-row">
-          <div class="rt-label">گزینه انتخابی</div>
-          <div class="rt-val" id="revOption">—</div>
-        </div>
-        <div class="rt-row total-row">
-          <div class="rt-label">مبلغ قابل پرداخت</div>
-          <div class="rt-val big" id="revPrice">—</div>
-        </div>
-      </div>
-
-      <div class="form-section-label" style="margin-top:4px;">پرداخت</div>
-
-      <div style="font-size:13px;color:var(--ink2);line-height:1.75;padding:14px 16px;background:var(--off);border-radius:10px;">
-        پرداخت از طریق <b>Stripe</b> انجام میشه — امن، سریع و معتبر. بعد از تکمیل پرداخت یه ایمیل تأییدیه برات ارسال میشه.
-      </div>
-
-      <button class="confirm-submit" onclick="goToSuccess()">پرداخت و ثبت‌نام نهایی ←</button>
-      <div class="back-link" onclick="goBack()">← برگشت و ویرایش اطلاعات</div>
-      <div class="form-note">با کلیک روی «پرداخت»، شرایط و قوانین ورکشاپ رو می‌پذیری.</div>
+    <div class="payment-card">
+      <div class="payment-title">اطلاعات پرداخت</div>
+      <div id="stripe-element-container"></div>
+      <div id="payment-error"></div>
+      <button class="pay-btn" id="payBtn" onclick="submitPayment()">پرداخت و ثبت‌نام نهایی ←</button>
+      <div class="back-link" onclick="goBackToForm()">← برگشت و ویرایش اطلاعات</div>
     </div>
-
   </div>
 </div>
 
@@ -663,8 +433,7 @@ footer {
   <div class="success-page">
     <div class="success-icon">✓</div>
     <h1 class="success-title">ثبت‌نامت <em>تأیید شد!</em></h1>
-    <p class="success-desc">خوشحالیم که بهمون ملحق شدی! یه ایمیل تأییدیه با همه جزئیات جلسه برات ارسال شده.</p>
-
+    <p class="success-desc">خوشحالیم که بهمون ملحق شدی! یه ایمیل تأییدیه با همه جزئیات برات ارسال شده.</p>
     <div class="success-card">
       <div class="success-card-label">خلاصه ثبت‌نام</div>
       <div class="s-row"><div class="s-row-label">نام</div><div class="s-row-val" id="succName">—</div></div>
@@ -673,11 +442,9 @@ footer {
       <div class="s-row"><div class="s-row-label">مبلغ پرداختی</div><div class="s-row-val" id="succPrice">—</div></div>
       <div class="s-row"><div class="s-row-label">ایمیل</div><div class="s-row-val" id="succEmail" style="direction:ltr;font-size:12px;">—</div></div>
     </div>
-
     <div class="success-email-note">
-      📧 یه ایمیل تأییدیه همراه با لینک جلسه به آدرس ایمیلت ارسال شده. اگه دریافت نکردی، پوشه اسپم رو چک کن.
+      یه ایمیل تأییدیه همراه با لینک Google Meet به آدرس ایمیلت ارسال شده. اگه دریافت نکردی، پوشه اسپم رو چک کن.
     </div>
-
     <a href="index.html" class="btn-home">برگشت به صفحه اصلی</a>
   </div>
 </div>
@@ -688,19 +455,31 @@ footer {
 </footer>
 
 <script>
-  let formData = { firstName:'', lastName:'', email:'', phone:'', option:'بسته کامل', price:'€50' };
-  updateSummary('بسته کامل', '€50');
+  const STRIPE_PK = 'pk_live_51TTW613NalteA7GOGzAAeLcyZ2QROyJXKxIFr3hkxczWwS1b7ULhkacOzOXx85Khk40iiEot9YdKZPRDc6OSUm5800FVa2kFxJ';
+  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEa9g0RdcefWJFyB3tpqvMZNWTpI4J2QJzDt0-mXajx5tVBKg9yI2_8kUqT04-BqGZIw/exec';
 
-  function updateSummary(opt, price) {
+  const stripe = Stripe(STRIPE_PK);
+  let elements, paymentElement;
+
+  let formData = {
+    firstName:'', lastName:'', email:'', phone:'',
+    gmail:'', option:'بسته کامل — همه ۵ جلسه', price:'€50', amount: 5000
+  };
+
+  updateSummary('بسته کامل — همه ۵ جلسه', '€50', 5000);
+
+  function updateSummary(opt, price, amount) {
     document.getElementById('summaryOption').textContent = opt;
     document.getElementById('summaryPrice').textContent = price;
-    formData.option = opt; formData.price = price;
+    formData.option = opt;
+    formData.price = price;
+    formData.amount = amount;
   }
 
-  function selectOpt(el, opt, price) {
+  function selectOpt(el, opt, price, amount) {
     document.querySelectorAll('.s-opt').forEach(o => o.classList.remove('active'));
     el.classList.add('active');
-    updateSummary(opt, price);
+    updateSummary(opt, price, amount);
   }
 
   function validate() {
@@ -724,74 +503,127 @@ footer {
     return valid;
   }
 
-  function goToConfirm() {
+  async function goToPayment() {
     if (!validate()) return;
+
     formData.firstName = document.getElementById('firstName').value.trim();
     formData.lastName  = document.getElementById('lastName').value.trim();
     formData.email     = document.getElementById('email').value.trim();
     formData.phone     = document.getElementById('phone').value.trim();
     formData.gmail     = document.getElementById('gmail').value.trim();
-    const full = formData.firstName + ' ' + formData.lastName;
-    document.getElementById('confOption').textContent = formData.option;
-    document.getElementById('confName').textContent   = full;
-    document.getElementById('confPrice').textContent  = formData.price;
-    document.getElementById('revName').textContent    = full;
-    document.getElementById('revEmail').textContent   = formData.email;
-    document.getElementById('revPhone').textContent   = formData.phone;
-    document.getElementById('revGmail').textContent   = formData.gmail;
-    document.getElementById('revOption').textContent  = formData.option;
-    document.getElementById('revPrice').textContent   = formData.price;
-    showPage('pageConfirm'); setStep(2);
+
+    document.getElementById('payName').textContent   = formData.firstName + ' ' + formData.lastName;
+    document.getElementById('payOption').textContent = formData.option;
+    document.getElementById('payPrice').textContent  = formData.price;
+
+    showPage('pagePayment');
+    setStep(2);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Initialize Stripe Payment Element
+    elements = stripe.elements({
+      mode: 'payment',
+      amount: formData.amount,
+      currency: 'eur',
+      appearance: {
+        theme: 'stripe',
+        variables: { fontFamily: 'Vazirmatn, sans-serif', borderRadius: '8px', colorPrimary: '#222222' }
+      }
+    });
+
+    paymentElement = elements.create('payment');
+    paymentElement.mount('#stripe-element-container');
   }
 
-  function goBack() {
-    showPage('pageForm'); setStep(1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  async function submitPayment() {
+    const btn = document.getElementById('payBtn');
+    const errEl = document.getElementById('payment-error');
+    btn.disabled = true;
+    btn.textContent = 'در حال پردازش...';
+    errEl.style.display = 'none';
+
+    try {
+      // Validate the payment element
+      const { error: submitError } = await elements.submit();
+      if (submitError) {
+        showError(submitError.message);
+        btn.disabled = false;
+        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
+        return;
+      }
+
+      // Create PaymentIntent server-side via Apps Script
+      const intentRes = await fetch(APPS_SCRIPT_URL + '?action=createIntent&amount=' + formData.amount + '&email=' + encodeURIComponent(formData.email));
+      const intentData = await intentRes.json();
+
+      if (!intentData.clientSecret) {
+        showError('خطا در ایجاد پرداخت. لطفاً دوباره امتحان کنید.');
+        btn.disabled = false;
+        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
+        return;
+      }
+
+      // Confirm payment
+      const { error: confirmError } = await stripe.confirmPayment({
+        elements,
+        clientSecret: intentData.clientSecret,
+        confirmParams: { return_url: window.location.href },
+        redirect: 'if_required'
+      });
+
+      if (confirmError) {
+        showError(confirmError.message);
+        btn.disabled = false;
+        btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
+      } else {
+        // Payment succeeded — save data and show success
+        await saveData();
+        showSuccess();
+      }
+
+    } catch(err) {
+      showError('خطا در پردازش پرداخت. لطفاً دوباره امتحان کنید.');
+      btn.disabled = false;
+      btn.textContent = 'پرداخت و ثبت‌نام نهایی ←';
+    }
   }
 
-  const STRIPE_BUNDLE = 'https://buy.stripe.com/test_3cI14ob3v50L4teeaCbsc01';
-  const STRIPE_SINGLE = 'https://buy.stripe.com/test_5kQ00k8Vn64P2l64A2bsc00';
+  function showError(msg) {
+    const errEl = document.getElementById('payment-error');
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
 
-  const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEa9g0RdcefWJFyB3tpqvMZNWTpI4J2QJzDt0-mXajx5tVBKg9yI2_8kUqT04-BqGZIw/exec';
-
-  function goToSuccess() {
-    const isBundle = document.querySelector('input[name="session"]:checked').value === 'bundle';
-    const stripeUrl = isBundle ? STRIPE_BUNDLE : STRIPE_SINGLE;
-    const full = formData.firstName + ' ' + formData.lastName;
-
-    const data = {
-      name: full,
+  async function saveData() {
+    const params = new URLSearchParams({
+      action: 'save',
+      name: formData.firstName + ' ' + formData.lastName,
       email: formData.email,
       phone: formData.phone,
       gmail: formData.gmail,
       option: formData.option,
       price: formData.price
-    };
-
-    // Save data via GET request (image trick - works on all mobile browsers)
-    const email = encodeURIComponent(formData.email);
-    const stripeRedirect = stripeUrl + '?prefilled_email=' + email;
-    
-    const params = new URLSearchParams({
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      gmail: data.gmail,
-      option: data.option,
-      price: data.price
     });
+    try {
+      await fetch(APPS_SCRIPT_URL + '?' + params.toString(), { mode: 'no-cors' });
+    } catch(e) {}
+  }
 
-    const img = new Image();
-    img.src = APPS_SCRIPT_URL + '?' + params.toString();
-    img.onload = img.onerror = function() {
-      window.location.href = stripeRedirect;
-    };
-    
-    // Fallback redirect after 3 seconds regardless
-    setTimeout(() => {
-      window.location.href = stripeRedirect;
-    }, 3000);
+  function showSuccess() {
+    document.getElementById('succName').textContent   = formData.firstName + ' ' + formData.lastName;
+    document.getElementById('succOption').textContent = formData.option;
+    document.getElementById('succPrice').textContent  = formData.price;
+    document.getElementById('succEmail').textContent  = formData.email;
+    showPage('pageSuccess');
+    setStep(3);
+    document.getElementById('stepsBar').style.display = 'none';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function goBackToForm() {
+    showPage('pageForm');
+    setStep(1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function showPage(id) {
@@ -800,13 +632,13 @@ footer {
   }
 
   function setStep(n) {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 3; i++) {
       const s = document.getElementById('step' + i);
       s.classList.remove('active','done');
       if (i < n) s.classList.add('done');
       else if (i === n) s.classList.add('active');
     }
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 2; i++) {
       document.getElementById('line' + i).classList.toggle('done', i < n);
     }
   }
