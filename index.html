@@ -81,7 +81,8 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
   font-family: 'Vazirmatn', sans-serif;
   font-size: 13px;
   font-weight: 800;
-  padding: 9px 20px;
+  padding: 9px 16px;
+  white-space: nowrap;
   border-radius: 6px;
   border: none;
   cursor: pointer;
@@ -723,7 +724,9 @@ footer {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  nav { padding: 14px 24px; }
+  nav { padding: 14px 16px; }
+  .nav-link { padding: 6px 8px; font-size: 12px; }
+  .nav-btn { padding: 8px 12px; font-size: 12px; white-space: nowrap; }
   .hero { padding: 40px 24px 36px; gap: 16px; }
   .hero-title { font-size: 46px; }
   .countdown-num { font-size: 36px; min-width: 52px; }
@@ -768,7 +771,7 @@ footer {
   <h1 class="hero-title">گرامر ایتالیایی رو <span class="orange">یاد بگیر.</span></h1>
 
   <!-- COUNTDOWN -->
-  <div class="countdown-wrap">
+  <div class="countdown-wrap" dir="ltr">
     <div class="countdown-item">
       <div class="countdown-num" id="cd-days">00</div>
       <div class="countdown-lbl">روز</div>
@@ -1070,7 +1073,7 @@ footer {
 <script>
 // ── COUNTDOWN ──
 function updateCountdown() {
-  const target = new Date('2025-05-23T14:00:00+02:00');
+  const target = new Date('2026-05-23T14:00:00+02:00');
   const now = new Date();
   const diff = target - now;
 
