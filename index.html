@@ -13,9 +13,9 @@
   --white:    #ffffff;
   --off:      #f5f5f3;
   --border:   #e0e0de;
-  --green:    #7ec800;
-  --green-lt: #f0fad8;
-  --green-dk: #5fa000;
+  --orange:    #E07B39;
+  --orange-lt: #FDF0E6;
+  --orange-dk: #C4601D;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +23,7 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Vazirmatn', sans-serif;
-  background: var(--white);
+  background: #f0efed;
   color: var(--ink);
   direction: rtl;
   overflow-x: hidden;
@@ -35,12 +35,16 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 18px 48px;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
   background: var(--white);
   position: sticky;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   top: 0;
   z-index: 100;
+  transition: box-shadow 0.3s;
 }
+
+nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
 
 .logo {
   font-size: 17px;
@@ -50,18 +54,14 @@ nav {
 }
 
 .logo span {
-  background: var(--green);
+  background: var(--orange);
   color: var(--white);
   padding: 2px 9px;
   border-radius: 5px;
   margin-right: 4px;
 }
 
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+.nav-links { display: flex; align-items: center; gap: 12px; }
 
 .nav-link {
   font-size: 13px;
@@ -70,7 +70,7 @@ nav {
   text-decoration: none;
   padding: 8px 14px;
   border-radius: 6px;
-  transition: background 0.15s;
+  transition: background 0.15s, color 0.15s;
 }
 
 .nav-link:hover { background: var(--off); color: var(--ink); }
@@ -87,10 +87,11 @@ nav {
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.15s;
+  transition: all 0.2s;
+  transform: translateY(0);
 }
 
-.nav-btn:hover { background: var(--green); }
+.nav-btn:hover { background: var(--orange); transform: translateY(-1px); }
 
 /* ── HERO ── */
 .hero {
@@ -98,22 +99,36 @@ nav {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 90px 48px 72px;
-  border-bottom: 1.5px solid var(--ink);
-  gap: 28px;
+  padding: 56px 48px 48px;
+  border-bottom: none;
+  gap: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  position: relative;
+  overflow: hidden;
+  background: #DC7D47;
+  border-bottom-color: #c36835;
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .hero-date-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--green-lt);
-  color: var(--green-dk);
-  border: 1px solid var(--green);
+  background: rgba(255,255,255,0.2);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.4);
   padding: 7px 16px;
   border-radius: 40px;
   font-size: 13px;
   font-weight: 700;
+  animation: fadeDown 0.6s ease both;
 }
 
 .hero-title {
@@ -121,58 +136,121 @@ nav {
   font-weight: 900;
   line-height: 1.06;
   letter-spacing: -0.03em;
-  color: var(--ink);
+  color: var(--white);
   max-width: 700px;
+  animation: fadeUp 0.6s ease 0.1s both;
 }
 
-.hero-title .green { color: var(--green); }
+.hero-title .orange { color: rgba(255,255,255,0.75); }
+
+/* COUNTDOWN */
+.countdown-wrap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.6s ease 0.2s both;
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.countdown-num {
+  font-size: 38px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--white);
+  min-width: 56px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.countdown-num.changed {
+  transform: scale(1.15);
+  color: rgba(255,255,255,0.7);
+}
+
+.countdown-lbl {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.08em;
+}
+
+.countdown-sep {
+  font-size: 32px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.3);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.countdown-caption {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+  margin-top: -8px;
+}
 
 .hero-btns {
   display: flex;
   gap: 12px;
   justify-content: center;
   flex-wrap: wrap;
+  animation: fadeUp 0.6s ease 0.3s both;
 }
 
 .btn-main {
-  background: var(--ink);
-  color: var(--white);
+  background: var(--white);
+  color: var(--orange-dk);
   font-family: 'Vazirmatn', sans-serif;
   font-size: 15px;
   font-weight: 800;
   padding: 15px 32px;
   border-radius: 8px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--white);
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.15s;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.btn-main:hover { background: var(--green); border-color: var(--green); }
+.btn-main:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
 
 .btn-out {
   background: transparent;
-  color: var(--ink);
+  color: var(--white);
   font-family: 'Vazirmatn', sans-serif;
   font-size: 15px;
   font-weight: 700;
   padding: 15px 32px;
   border-radius: 8px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid rgba(255,255,255,0.5);
   cursor: pointer;
   text-decoration: none;
   display: inline-block;
-  transition: all 0.15s;
+  transition: all 0.2s;
 }
 
-.btn-out:hover { background: var(--off); }
+.btn-out:hover { background: rgba(255,255,255,0.15); border-color: var(--white); transform: translateY(-1px); }
 
 .hero-desc {
   font-size: 16px;
-  color: var(--ink2);
+  color: rgba(255,255,255,0.8);
   line-height: 1.85;
   max-width: 520px;
+  animation: fadeUp 0.6s ease 0.4s both;
 }
 
 /* ── STATS ── */
@@ -181,8 +259,9 @@ nav {
   justify-content: center;
   gap: 48px;
   padding: 36px 48px;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
   background: var(--off);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
 .stat {
@@ -190,7 +269,10 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  transition: transform 0.2s;
 }
+
+.stat:hover { transform: translateY(-2px); }
 
 .stat-val {
   font-size: 28px;
@@ -205,16 +287,13 @@ nav {
   font-weight: 600;
 }
 
-.stat-divider {
-  width: 1px;
-  background: var(--border);
-  align-self: stretch;
-}
+.stat-divider { width: 1px; background: var(--border); align-self: stretch; }
 
 /* ── SESSIONS ── */
 .sessions-section {
   padding: 64px 48px;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.06);
 }
 
 .sec-header {
@@ -230,7 +309,7 @@ nav {
   margin-bottom: 10px;
 }
 
-.sec-title em { font-style: normal; color: var(--green); }
+.sec-title em { font-style: normal; color: var(--orange); }
 
 .sec-desc {
   font-size: 14px;
@@ -253,11 +332,16 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transition: background 0.15s;
-  border: 1.5px solid var(--border);
+  border: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: default;
 }
 
-.s-card:hover { background: var(--off); }
+.s-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.13);
+}
 
 .s-top {
   display: flex;
@@ -266,11 +350,7 @@ nav {
   gap: 16px;
 }
 
-.s-titles {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
+.s-titles { display: flex; flex-direction: column; gap: 2px; }
 
 .s-fa {
   font-size: 17px;
@@ -286,12 +366,7 @@ nav {
   text-align: right;
 }
 
-.s-right {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
-}
+.s-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 
 .s-num {
   font-size: 11px;
@@ -304,88 +379,200 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s;
 }
 
-.s-date {
-  font-size: 11px;
-  color: var(--ink3);
-  font-weight: 600;
-  direction: ltr;
-  text-align: left;
-}
+.s-card:hover .s-num { background: var(--orange); }
 
-.s-desc {
-  font-size: 13px;
-  color: var(--ink2);
-  line-height: 1.7;
-}
+.s-date { font-size: 11px; color: var(--ink3); font-weight: 600; direction: ltr; }
 
-.s-pills {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.s-desc { font-size: 13px; color: var(--ink2); line-height: 1.7; }
+
+.s-pills { display: flex; gap: 6px; flex-wrap: wrap; }
 
 .pill {
   font-size: 11px;
   font-weight: 600;
   padding: 4px 10px;
   border-radius: 20px;
-  background: var(--green-lt);
-  color: var(--green-dk);
-  border: 1px solid var(--green);
+  background: var(--orange-lt);
+  color: var(--orange-dk);
+  border: 1px solid var(--orange);
   white-space: nowrap;
   direction: ltr;
+  transition: all 0.15s;
 }
+
+.s-card:hover .pill { background: var(--orange); color: var(--white); border-color: var(--orange); }
 
 /* ── INCLUDES ── */
 .includes-section {
   padding: 64px 48px;
   background: var(--off);
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.05);
 }
 
 .inc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 16px;
   max-width: 860px;
   margin: 32px auto 0;
 }
 
 .inc-card {
   background: var(--white);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
   display: flex;
   gap: 14px;
   align-items: flex-start;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: none;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
 }
 
-.inc-icon { font-size: 20px; flex-shrink: 0; }
+.inc-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.13);
+}
 
-.inc-title {
-  font-size: 13px;
-  font-weight: 800;
+.inc-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.inc-card:hover .inc-icon { transform: scale(1.2); }
+
+.inc-title { font-size: 13px; font-weight: 800; color: var(--ink); margin-bottom: 4px; }
+.inc-desc { font-size: 12px; color: var(--ink3); line-height: 1.65; }
+
+/* ── ABOUT ── */
+.about-section {
+  padding: 64px 48px;
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,0.06);
+}
+
+.about-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.about-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.about-photo {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--ink);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.about-photo:hover {
+  transform: scale(1.04);
+  border-color: var(--orange);
+  box-shadow: 0 16px 40px rgba(126,200,0,0.2);
+}
+
+.about-photo-placeholder {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--off);
+  border: 3px dashed var(--border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--ink3);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.about-photo-placeholder:hover {
+  border-color: var(--orange);
+  color: var(--orange-dk);
+}
+
+.about-photo-placeholder .ph-icon { font-size: 32px; }
+
+.about-name {
+  font-size: 16px;
+  font-weight: 900;
   color: var(--ink);
-  margin-bottom: 4px;
 }
 
-.inc-desc {
+.about-role {
   font-size: 12px;
   color: var(--ink3);
-  line-height: 1.65;
+  font-weight: 600;
+  direction: ltr;
+}
+
+.about-content { display: flex; flex-direction: column; gap: 16px; }
+
+.about-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--ink3);
+}
+
+.about-title {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.about-title em { font-style: normal; color: var(--orange); }
+
+.about-text {
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 2;
+}
+
+.about-text p + p { margin-top: 12px; }
+
+.about-highlight {
+  font-weight: 800;
+  color: var(--ink);
+  display: block;
+  margin-top: 16px;
+  padding: 14px 18px;
+  background: var(--orange-lt);
+  border-right: 3px solid var(--orange);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 /* ── PRICING ── */
 .pricing-section {
   padding: 64px 48px;
   background: var(--ink);
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
 
 .pricing-section .sec-title { color: var(--white); }
-.pricing-section .sec-title em { color: var(--green); }
+.pricing-section .sec-title em { color: var(--orange); }
 .pricing-section .sec-desc { color: rgba(255,255,255,0.45); }
 
 .pricing-grid {
@@ -397,32 +584,32 @@ nav {
 }
 
 .p-card {
-  border: 1.5px solid rgba(255,255,255,0.1);
+  border: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
   border-radius: 12px;
   padding: 28px;
   display: flex;
   flex-direction: column;
   gap: 18px;
-  transition: border-color 0.15s;
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.p-card:hover { border-color: rgba(255,255,255,0.25); }
-.p-card.feat { border-color: var(--green); background: rgba(126,200,0,0.05); }
-
-.p-lbl {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.3);
+.p-card:hover {
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3);
+  transform: translateY(-4px);
 }
 
-.p-name {
-  font-size: 20px;
-  font-weight: 900;
-  color: var(--white);
-  letter-spacing: -0.02em;
-  line-height: 1.2;
+.p-card.feat {
+  box-shadow: 0 4px 20px rgba(224,123,57,0.25);
+  background: rgba(224,123,57,0.08);
 }
+
+.p-card.feat:hover {
+  box-shadow: 0 16px 40px rgba(224,123,57,0.25);
+}
+
+.p-lbl { font-size: 10px; font-weight: 800; letter-spacing: 0.16em; color: rgba(255,255,255,0.3); }
+.p-name { font-size: 20px; font-weight: 900; color: var(--white); letter-spacing: -0.02em; line-height: 1.2; }
 
 .p-amt {
   font-size: 48px;
@@ -434,15 +621,8 @@ nav {
   text-align: right;
 }
 
-.p-amt.g { color: var(--green); }
-
-.p-note {
-  font-size: 11px;
-  color: rgba(255,255,255,0.28);
-  direction: ltr;
-  text-align: right;
-  margin-top: 2px;
-}
+.p-amt.g { color: var(--orange); }
+.p-note { font-size: 11px; color: rgba(255,255,255,0.28); direction: ltr; text-align: right; margin-top: 2px; }
 
 .p-disc {
   display: inline-flex;
@@ -450,7 +630,7 @@ nav {
   gap: 5px;
   background: rgba(126,200,0,0.12);
   border: 1px solid rgba(126,200,0,0.3);
-  color: var(--green);
+  color: var(--orange);
   font-size: 12px;
   font-weight: 800;
   padding: 6px 12px;
@@ -458,23 +638,9 @@ nav {
   width: fit-content;
 }
 
-.p-feats {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255,255,255,0.07);
-}
-
-.p-feat {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.55);
-}
-
-.p-chk { color: var(--green); flex-shrink: 0; }
+.p-feats { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.07); }
+.p-feat { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: rgba(255,255,255,0.55); }
+.p-chk { color: var(--orange); flex-shrink: 0; }
 
 .p-btn {
   display: block;
@@ -486,22 +652,16 @@ nav {
   cursor: pointer;
   text-align: center;
   text-decoration: none;
-  transition: all 0.15s;
+  transition: all 0.2s;
   border: 1.5px solid rgba(255,255,255,0.15);
   color: var(--white);
   background: transparent;
   margin-top: auto;
 }
 
-.p-btn:hover { background: rgba(255,255,255,0.07); }
-
-.p-btn.g-btn {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--white);
-}
-
-.p-btn.g-btn:hover { background: var(--green-dk); border-color: var(--green-dk); }
+.p-btn:hover { background: rgba(255,255,255,0.07); transform: translateY(-1px); }
+.p-btn.g-btn { background: var(--orange); border-color: var(--orange); color: var(--white); }
+.p-btn.g-btn:hover { background: var(--orange-dk); border-color: var(--orange-dk); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(126,200,0,0.3); }
 
 /* ── BOTTOM CTA ── */
 .bottom-cta {
@@ -511,7 +671,7 @@ nav {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  border-bottom: 1.5px solid var(--ink);
+  border-bottom: none;
 }
 
 .bcta-title {
@@ -521,13 +681,9 @@ nav {
   line-height: 1.15;
 }
 
-.bcta-title em { font-style: normal; color: var(--green); }
+.bcta-title em { font-style: normal; color: var(--orange); }
 
-.bcta-btns {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-}
+.bcta-btns { display: flex; gap: 12px; justify-content: center; }
 
 /* ── FOOTER ── */
 footer {
@@ -538,63 +694,66 @@ footer {
   background: var(--ink);
 }
 
-.f-logo {
-  font-size: 15px;
-  font-weight: 900;
-  color: var(--white);
-  text-decoration: none;
-}
-
-.f-logo span {
-  background: var(--green);
-  color: var(--white);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-right: 4px;
-}
-
+.f-logo { font-size: 15px; font-weight: 900; color: var(--white); text-decoration: none; }
+.f-logo span { background: var(--orange); color: var(--white); padding: 2px 8px; border-radius: 4px; margin-right: 4px; }
 .f-note { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
   nav { padding: 14px 24px; }
-  .hero { padding: 60px 24px 48px; gap: 22px; }
+  .hero { padding: 40px 24px 36px; gap: 16px; }
   .hero-title { font-size: 46px; }
+  .countdown-num { font-size: 36px; min-width: 52px; }
   .stats { gap: 24px; padding: 28px 24px; flex-wrap: wrap; }
   .stat-divider { display: none; }
-  .sessions-section, .includes-section, .pricing-section, .bottom-cta { padding: 48px 24px; }
+  .sessions-section, .includes-section, .about-section, .pricing-section, .bottom-cta { padding: 48px 24px; }
   .inc-grid { grid-template-columns: 1fr 1fr; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 100%; }
+  .about-inner { grid-template-columns: 1fr; gap: 32px; }
+  .about-photo-wrap { flex-direction: row; justify-content: flex-start; gap: 20px; }
+  .about-photo, .about-photo-placeholder { width: 100px; height: 100px; }
   footer { padding: 20px 24px; flex-direction: column; gap: 8px; text-align: center; }
 }
 
 @media (max-width: 540px) {
   .hero-title { font-size: 36px; }
+  .countdown-wrap { gap: 10px; }
+  .countdown-num { font-size: 30px; min-width: 44px; }
+  .countdown-sep { font-size: 28px; }
   .stats { gap: 16px; }
   .inc-grid { grid-template-columns: 1fr; }
   .hero-btns { flex-direction: column; align-items: center; }
+  .about-photo-wrap { flex-direction: column; align-items: center; }
 }
-
-/* ── ANIMATION ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.hero > * {
-  animation: fadeUp 0.45s ease both;
-}
-.hero > *:nth-child(1) { animation-delay: 0.05s; }
-.hero > *:nth-child(2) { animation-delay: 0.12s; }
-.hero > *:nth-child(3) { animation-delay: 0.19s; }
-.hero > *:nth-child(4) { animation-delay: 0.26s; }
-.hero > *:nth-child(5) { animation-delay: 0.33s; }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="navbar">
   <a href="index.html" class="logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="nav-links">
     <a href="info.html" class="nav-link">اطلاعات بیشتر</a>
@@ -604,8 +763,34 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-date-tag">📅 شروع: شنبه ۲۳ می — هر شنبه ساعت ۱۴:۰۰</div>
-  <h1 class="hero-title">گرامر ایتالیایی رو <span class="green">یاد بگیر.</span></h1>
+  <h1 class="hero-title">گرامر ایتالیایی رو <span class="orange">یاد بگیر.</span></h1>
+
+  <!-- COUNTDOWN -->
+  <div class="countdown-wrap">
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-days">00</div>
+      <div class="countdown-lbl">روز</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-hours">00</div>
+      <div class="countdown-lbl">ساعت</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-mins">00</div>
+      <div class="countdown-lbl">دقیقه</div>
+    </div>
+    <div class="countdown-sep">:</div>
+    <div class="countdown-item">
+      <div class="countdown-num" id="cd-secs">00</div>
+      <div class="countdown-lbl">ثانیه</div>
+    </div>
+  </div>
+  <div class="countdown-caption">تا شروع اولین جلسه</div>
+
   <div class="hero-btns">
     <a href="booking.html" class="btn-main">همین الان ثبت‌نام کن ←</a>
     <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
@@ -614,7 +799,7 @@ footer {
 </section>
 
 <!-- STATS -->
-<div class="stats">
+<div class="stats reveal">
   <div class="stat">
     <div class="stat-val">۵</div>
     <div class="stat-lbl">جلسه</div>
@@ -638,13 +823,13 @@ footer {
 
 <!-- SESSIONS -->
 <div id="sessions" class="sessions-section">
-  <div class="sec-header">
+  <div class="sec-header reveal">
     <h2 class="sec-title">برنامه <em>جلسات</em></h2>
     <p class="sec-desc">هر جلسه مستقله — می‌تونی فقط اونی که می‌خوای رو بگیری.</p>
   </div>
 
   <div class="sessions-list">
-    <div class="s-card">
+    <div class="s-card reveal">
       <div class="s-top">
         <div class="s-titles">
           <div class="s-fa">زمان‌های گذشته</div>
@@ -664,7 +849,7 @@ footer {
       </div>
     </div>
 
-    <div class="s-card">
+    <div class="s-card reveal">
       <div class="s-top">
         <div class="s-titles">
           <div class="s-fa">ضمایر</div>
@@ -685,7 +870,7 @@ footer {
       </div>
     </div>
 
-    <div class="s-card">
+    <div class="s-card reveal">
       <div class="s-top">
         <div class="s-titles">
           <div class="s-fa">امری</div>
@@ -706,7 +891,7 @@ footer {
       </div>
     </div>
 
-    <div class="s-card">
+    <div class="s-card reveal">
       <div class="s-top">
         <div class="s-titles">
           <div class="s-fa">مستقبل و مشروط</div>
@@ -725,7 +910,7 @@ footer {
       </div>
     </div>
 
-    <div class="s-card">
+    <div class="s-card reveal">
       <div class="s-top">
         <div class="s-titles">
           <div class="s-fa">التزامی</div>
@@ -749,46 +934,46 @@ footer {
 
 <!-- INCLUDES -->
 <div class="includes-section">
-  <div class="sec-header">
+  <div class="sec-header reveal">
     <h2 class="sec-title">هر جلسه <em>چی داره؟</em></h2>
   </div>
   <div class="inc-grid">
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">📖</div>
       <div>
         <div class="inc-title">توضیح کامل گرامر</div>
         <div class="inc-desc">با مثال‌های واقعی و دیالوگ — نه فقط قوانین خشک.</div>
       </div>
     </div>
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">✏️</div>
       <div>
         <div class="inc-title">تمرین‌های متنوع</div>
         <div class="inc-desc">۷ نوع تمرین مختلف در کلاس.</div>
       </div>
     </div>
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">💬</div>
       <div>
         <div class="inc-title">دیالوگ و مکالمه</div>
         <div class="inc-desc">گرامر در کاربرد طبیعی و واقعی.</div>
       </div>
     </div>
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">📚</div>
       <div>
         <div class="inc-title">کتابچه تمرین PDF</div>
         <div class="inc-desc">اختصاصی هر جلسه — چاپ یا دیجیتال.</div>
       </div>
     </div>
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">🗂️</div>
       <div>
         <div class="inc-title">کارت مرجع</div>
         <div class="inc-desc">خلاصه همه قوانین در یک صفحه.</div>
       </div>
     </div>
-    <div class="inc-card">
+    <div class="inc-card reveal">
       <div class="inc-icon">🎯</div>
       <div>
         <div class="inc-title">طراحی برای فارسی‌زبان‌ها</div>
@@ -798,14 +983,42 @@ footer {
   </div>
 </div>
 
+<!-- ABOUT -->
+<div class="about-section">
+  <div class="about-inner">
+    <div class="about-photo-wrap reveal">
+      <img src="photo.jpg" alt="Ali" class="about-photo"
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+      <div class="about-photo-placeholder" style="display:none;">
+        <div class="ph-icon">👤</div>
+        <div>عکس به زودی</div>
+      </div>
+      <div>
+        <div class="about-name">علی</div>
+        <div class="about-role">Italian Language Instructor</div>
+      </div>
+    </div>
+    <div class="about-content reveal">
+      <div class="about-label">درباره مدرس</div>
+      <h2 class="about-title">گرامر ایتالیایی می‌تونه سخت باشه —<br><em>مخصوصاً برای فارسی‌زبان‌ها.</em></h2>
+      <div class="about-text">
+        <p>ساختار این دو زبان خیلی با هم فرق داره و توضیحاتی که معمولاً توی کتاب‌ها پیدا می‌کنی، این تفاوت‌ها رو در نظر نمی‌گیره.</p>
+        <p>من ایتالیایی رو اینجا در ایتالیا، وسط کار و زندگی واقعی یاد گرفتم — از صفر، با همون چالش‌هایی که تو هم احتمالاً باهاشون روبرو شدی یا میشی. این تجربه، کنار مطالعه جدی ساختار و گرامر زبان، بهم کمک کرد بفهمم کجاها گیر می‌کنیم و چرا.</p>
+        <p>توی این ورکشاپ‌ها، هر موضوع رو با مثال‌های واقعی، ساختار واضح، و توضیحاتی که مخصوص فارسی‌زبان‌هاست یاد می‌گیری — بدون دور زدن و بدون پیچیده‌کاری.</p>
+        <span class="about-highlight">هدف اینه که در کمترین زمان ممکن، بیشترین چیزی که نیاز داری رو یاد بگیری.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- PRICING -->
 <div class="pricing-section">
-  <div class="sec-header">
+  <div class="sec-header reveal">
     <h2 class="sec-title">قیمت‌ها</h2>
     <p class="sec-desc">یه جلسه یا همه — انتخاب با توئه.</p>
   </div>
   <div class="pricing-grid">
-    <div class="p-card">
+    <div class="p-card reveal">
       <div class="p-lbl">جلسه جداگانه</div>
       <div class="p-name">یه ورکشاپ به انتخابت</div>
       <div>
@@ -820,7 +1033,7 @@ footer {
       </div>
       <a href="booking.html" class="p-btn">انتخاب جلسه</a>
     </div>
-    <div class="p-card feat">
+    <div class="p-card feat reveal">
       <div class="p-lbl">بسته کامل</div>
       <div class="p-name">همه ۵ جلسه با هم</div>
       <div>
@@ -840,7 +1053,7 @@ footer {
 </div>
 
 <!-- BOTTOM CTA -->
-<div class="bottom-cta">
+<div class="bottom-cta reveal">
   <h2 class="bcta-title">آماده‌ای؟<br><em>همین الان ثبت‌نام کن.</em></h2>
   <div class="bcta-btns">
     <a href="info.html" class="btn-out">اطلاعات بیشتر</a>
@@ -853,6 +1066,119 @@ footer {
   <a href="index.html" class="f-logo"><span>ورکشاپ</span> ایتالیایی</a>
   <div class="f-note">ورکشاپ گرامر ایتالیایی برای فارسی‌زبان‌ها · ۲۰۲۵</div>
 </footer>
+
+<script>
+// ── COUNTDOWN ──
+function updateCountdown() {
+  const target = new Date('2025-05-23T14:00:00+02:00');
+  const now = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '00';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-mins').textContent = '00';
+    document.getElementById('cd-secs').textContent = '00';
+    return;
+  }
+
+  const days  = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+
+  const pad = n => String(n).padStart(2, '0');
+
+  const setVal = (id, val) => {
+    const el = document.getElementById(id);
+    if (el.textContent !== pad(val)) {
+      el.textContent = pad(val);
+      el.classList.remove('changed');
+      void el.offsetWidth;
+      el.classList.add('changed');
+      setTimeout(() => el.classList.remove('changed'), 400);
+    }
+  };
+
+  setVal('cd-days', days);
+  setVal('cd-hours', hours);
+  setVal('cd-mins', mins);
+  setVal('cd-secs', secs);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('visible');
+      }, i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── HERO DOTS CANVAS ──
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let dots = [];
+  let W, H;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function init() {
+    resize();
+    dots = [];
+    const count = Math.floor((W * H) / 5000);
+    for (let i = 0; i < count; i++) {
+      dots.push({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        r: Math.random() * 1.5 + 1.2,
+        opacity: Math.random() * 0.3 + 0.15,
+        vx: (Math.random() - 0.5) * 0.12,
+        vy: (Math.random() - 0.5) * 0.12,
+      });
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    dots.forEach(d => {
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, d.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${d.opacity})`;
+      ctx.fill();
+      d.x += d.vx;
+      d.y += d.vy;
+      if (d.x < -5) d.x = W + 5;
+      if (d.x > W + 5) d.x = -5;
+      if (d.y < -5) d.y = H + 5;
+      if (d.y > H + 5) d.y = -5;
+    });
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', init);
+})();
+
+// ── NAV SHADOW ON SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 10);
+});
+</script>
 
 </body>
 </html>
