@@ -275,6 +275,15 @@ footer { padding: 24px 48px; display: flex; justify-content: space-between; alig
         <div class="f-error" id="gmailErr">یه آدرس ایمیل معتبر وارد کن</div>
       </div>
 
+      <div class="f-group">
+        <label class="f-label">کد تخفیف <span style="font-weight:500;color:var(--ink3);">(اختیاری)</span></label>
+        <div style="display:flex;gap:8px;">
+          <input class="f-input" type="text" id="promoCode" placeholder="کد تخفیف را وارد کن" dir="ltr" style="text-align:right;letter-spacing:0.05em;">
+          <button type="button" onclick="applyPromo()" style="background:var(--ink);color:var(--white);font-family:'Vazirmatn',sans-serif;font-size:13px;font-weight:800;padding:0 18px;border-radius:8px;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0;transition:background 0.15s;" onmouseover="this.style.background='var(--orange)'" onmouseout="this.style.background='var(--ink)'">اعمال</button>
+        </div>
+        <div id="promoMsg" style="font-size:11px;margin-top:4px;display:none;"></div>
+      </div>
+
       <div class="form-section-label" style="margin-top:4px;">گزینه مورد نظر</div>
 
       <div class="session-selector">
@@ -404,6 +413,43 @@ footer { padding: 24px 48px; display: flex; justify-content: space-between; alig
     document.querySelectorAll('.s-opt').forEach(o => o.classList.remove('active'));
     el.classList.add('active');
     updateSummary(opt, price, amount);
+  }
+
+  const VALID_CODES = {
+    'KEYTORINO26': { discount: 20, type: 'percent', applyTo: 'bundle', newAmount: 4000, newPrice: '€40' }
+  };
+
+  let promoApplied = false;
+
+  function applyPromo() {
+    const code = document.getElementById('promoCode').value.trim().toUpperCase();
+    const msg = document.getElementById('promoMsg');
+    const promo = VALID_CODES[code];
+    const isBundle = document.querySelector('input[name="session"]:checked').value === 'bundle';
+
+    if (!promo) {
+      msg.textContent = '✗ کد تخفیف نامعتبر است';
+      msg.style.color = 'var(--red)';
+      msg.style.display = 'block';
+      promoApplied = false;
+      return;
+    }
+
+    if (promo.applyTo === 'bundle' && !isBundle) {
+      msg.textContent = 'این کد تخفیف فقط برای بسته کامل معتبره';
+      msg.style.color = 'var(--orange)';
+      msg.style.display = 'block';
+      promoApplied = false;
+      return;
+    }
+
+    msg.textContent = '✓ کد تخفیف اعمال شد — ' + promo.discount + '٪ تخفیف';
+    msg.style.color = 'var(--orange-dk)';
+    msg.style.display = 'block';
+    formData.amount = promo.newAmount;
+    formData.price = promo.newPrice;
+    document.getElementById('summaryPrice').textContent = promo.newPrice;
+    promoApplied = true;
   }
 
   function validate() {
